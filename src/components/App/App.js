@@ -19,6 +19,8 @@ class App extends Component {
           <img src={homeLogo} className="homeLogo" alt="Happy Hour Hero Logo" />
           <h2>Find your happy hour:</h2>
           <form className="homeSearchForm" onSubmit={this.handleSubmit}>
+            <i class="fas fa-map-marker-alt"></i>
+            <i class="fas fa-search"></i>
             <input 
               className="homeSearchInput" 
               placeholder="Enter a restaurant or location" 
