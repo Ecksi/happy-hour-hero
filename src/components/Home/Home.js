@@ -14,9 +14,7 @@ class Home extends Component {
     this.state = {
       city: '',
       state: '',
-      zip: '',
-      longitude: '',
-      latitude: ''
+      zip: ''
     };
   }
 
@@ -41,8 +39,9 @@ class Home extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { city, state, zip, longitude, latitude } = this.state; 
-    this.props.storeLocation(city, state, zip, longitude, latitude);
+
+    const { city, state, zip } = this.state; 
+    this.props.storeLocation(city, state, zip);
     // this.props.history.push('/HappyHours');
   }
 
@@ -50,9 +49,15 @@ class Home extends Component {
     this.innerRef = ref;
   }
 
-
-  getLocation = () => {
+  getLocation = async () => {
     this.innerRef && this.innerRef.getLocation();
+    
+    setTimeout(() => {
+      const { longitude, latitude } = this.innerRef.state.coords;
+
+      this.props.storeLocation(null, null, null, longitude, latitude);
+    }, 5000);
+
   }
 
   render() {
@@ -66,7 +71,6 @@ class Home extends Component {
           <GeoLocator ref={getInnerRef} />
           <i className="fas fa-map-marker-alt" onClick={this.getLocation} ></i>
           <i className="fas fa-search"></i>
-          <GeoLocator />
           <LocationAutocomplete
             name="zip"
             className="homeSearchInput" 
