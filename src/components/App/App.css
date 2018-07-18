@@ -1,24 +1,52 @@
-.App {
-  text-align: center; }
+* {
+  font-family: 'Nunito', sans-serif;
+}
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px; }
+.homeContainer {
+  width: 600px;
+  margin: 50px auto 0 auto;
+  text-align: center;
+}
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white; }
+.homeLogo {
+  height: 250px;
+}
 
-.App-title {
-  font-size: 1.5em; }
+.homeContainer h2 {
+  font-weight: 300;
+  color: #555;
+  font-size: 1.3rem;
+  margin-top: 60px;
+}
 
-.App-intro {
-  font-size: large; }
+.homeSearchForm {
+  display: flex;
+  flex-direction: column;
+}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
+.homeSearchInput {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  height: 50px;
+  border: 5px solid rgba(0,0,0,0.1);
+  font-size: 1rem;
+  padding: 0 20px;
+}
+
+.homeSearchInput::placeholder {
+  color: #999;
+  text-align: center;
+}
+
+.homeSearchSubmit {
+  height: 60px;
+  background: #fdb82a;
+  color: #fff;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.homeSearchSubmit:hover {
+  cursor: pointer;
+}
