@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom'; 
+import Home from '../Home/Home';
+import HappyHours from '../HappyHours/HappyHours';
 import './App.css';
 import homeLogo from './images/home-logo.png';
+
 
 class App extends Component {
   constructor (props) {
@@ -9,25 +13,14 @@ class App extends Component {
   }
 
   handleSubmit = () => {
-
+    this.props.history.push('/HappyHourResults');
   }
 
   render() {
     return (
       <div className="App">
-        <section className="homeContainer">
-          <img src={homeLogo} className="homeLogo" alt="Happy Hour Hero Logo" />
-          <h2>Find your happy hour:</h2>
-          <form className="homeSearchForm" onSubmit={this.handleSubmit}>
-            <i class="fas fa-map-marker-alt"></i>
-            <i class="fas fa-search"></i>
-            <input 
-              className="homeSearchInput" 
-              placeholder="Enter a restaurant or location" 
-            />
-            <input className="homeSearchSubmit" type="submit" value="Submit" />
-          </form>
-        </section>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/happyHours' component={HappyHours} />
       </div>
     );
   }
