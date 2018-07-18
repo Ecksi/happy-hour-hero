@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './Home.css';
 import homeLogo from './images/home-logo.png';
 import LocationAutocomplete from 'location-autocomplete';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
+import { storeLocation } from '../../actions';
+import GeoLocator from '../GeoLocator/GeoLocator';
 
 class Home extends Component {
   constructor (props) {
@@ -10,7 +13,10 @@ class Home extends Component {
 
     this.state = {
       city: '',
-      state: ''
+      state: '',
+      zip: '',
+      longitude: '',
+      latitude: ''
     };
   }
 
@@ -33,19 +39,34 @@ class Home extends Component {
     });
   }
 
-  handleSubmit = () => {
-    
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { city, state, zip, longitude, latitude } = this.state; 
+    this.props.storeLocation(city, state, zip, longitude, latitude);
     // this.props.history.push('/HappyHours');
   }
 
+  getInnerRef = (ref) => {
+    this.innerRef = ref;
+  }
+
+
+  getLocation = () => {
+    this.innerRef && this.innerRef.getLocation();
+  }
+
   render() {
+    const { getInnerRef, getLocation } = this;
+
     return (
       <section className="homeContainer">
         <img src={homeLogo} className="homeLogo" alt="Happy Hour Hero Logo" />
         <h2>Find your happy hour:</h2>
         <form className="homeSearchForm" onSubmit={this.handleSubmit}>
-          <i className="fas fa-map-marker-alt"></i>
+          <GeoLocator ref={getInnerRef} />
+          <i className="fas fa-map-marker-alt" onClick={this.getLocation} ></i>
           <i className="fas fa-search"></i>
+          <GeoLocator />
           <LocationAutocomplete
             name="zip"
             className="homeSearchInput" 
@@ -63,4 +84,10 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export const mapDispatchToProps = (dispatch) => ({
+  storeLocation: (city, state, zip, longitude, latitude) => {
+    return dispatch(storeLocation(city, state, zip, longitude, latitude));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(Home);
