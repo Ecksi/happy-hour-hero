@@ -27,21 +27,30 @@ class Home extends Component {
   }
 
   onDropdownSelect = (component) => {
-    const place = component.autocomplete.getPlace();
-    const city = place.vicinity;
-    const state = place.address_components[2].short_name;
+    const { zip } = this.state;
     
-    this.setState({
-      city,
-      state
-    });
+    if (isNaN(zip)) {
+      const place = component.autocomplete.getPlace();
+      const city = place.vicinity;
+      const state = place.address_components[2].short_name;
+      
+      this.setState({
+        city,
+        state
+      });
+    }
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { city, state, zip } = this.state; 
-    this.props.storeLocation(city, state, zip);
+    const { city, state, zip } = this.state;
+
+    if (city === 'Denver' && state === 'CO') {
+      this.props.storeLocation(null, null, null, -104.996595, 39.750801);
+    } else {
+      this.props.storeLocation(city, state, zip);
+    }
     // this.props.history.push('/HappyHours');
   }
 
