@@ -14,13 +14,14 @@ class Home extends Component {
     this.state = {
       city: '',
       state: '',
-      zip: ''
+      zip: '',
+      findLocationDropdown: false
     };
   }
 
   onChangeHandler = (event) => {
     const { name, value } = event.target;
-
+    
     this.setState({
       [name]: value
     });
@@ -28,12 +29,13 @@ class Home extends Component {
 
   onDropdownSelect = (component) => {
     const { zip } = this.state;
-    
+    console.log('1')
     if (isNaN(zip)) {
+      console.log('2')
       const place = component.autocomplete.getPlace();
       const city = place.vicinity;
       const state = place.address_components[2].short_name;
-      
+      console.log(city)
       this.setState({
         city,
         state
@@ -51,7 +53,8 @@ class Home extends Component {
     } else {
       this.props.storeLocation(city, state, zip);
     }
-    // this.props.history.push('/HappyHours');
+
+    this.props.history.push('/HappyHours');
   }
 
   getInnerRef = (ref) => {
@@ -65,8 +68,20 @@ class Home extends Component {
       const { longitude, latitude } = this.innerRef.state.coords;
 
       this.props.storeLocation(null, null, null, longitude, latitude);
+      this.props.history.push('/HappyHours');
     }, 5000);
+  }
 
+  handleSearchInput = () => {
+    if (this.state.zip === "") {
+      this.setState({
+        findLocationDropdown: true
+      });
+    } else {
+      this.setState({
+        findLocationDropdown: false
+      });  
+    }
   }
 
   render() {
@@ -77,8 +92,6 @@ class Home extends Component {
         <img src={homeLogo} className="homeLogo" alt="Happy Hour Hero Logo" />
         <h2>Find your happy hour:</h2>
         <form className="homeSearchForm" onSubmit={this.handleSubmit}>
-          <GeoLocator ref={getInnerRef} />
-          <i className="fas fa-map-marker-alt" onClick={this.getLocation} ></i>
           <i className="fas fa-search"></i>
           <LocationAutocomplete
             name="zip"
@@ -88,8 +101,15 @@ class Home extends Component {
             locationType="(cities)" 
             googleAPIKey={googleApiKey}
             onChange={this.onChangeHandler}
+            onKeyDown={this.handleSearchInput}
+            onFocus={this.handleSearchInput}
             onDropdownSelect={this.onDropdownSelect}
           />
+          <div className="findLocationDropdown" style={{display: this.state.findLocationDropdown ? 'block' : 'none' }}>
+            <GeoLocator ref={getInnerRef} />
+            <i className="fas fa-map-marker-alt" onClick={this.getLocation} ></i>
+            <a onClick={this.getLocation}>Current Location</a>
+          </div>
           <input className="homeSearchSubmit" type="submit" value="Submit" />
         </form>
       </section>
