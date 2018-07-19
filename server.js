@@ -28,6 +28,24 @@ app.get('/api/v1/restaurants/:id', (request, response) => {
     .catch(error => response.status(500).json({ error }));
 });
 
+app.get('/api/v1/drink_specials', (request, response) => {
+  database('drink_specials').select()
+    .then((drink_special) => {
+      response.status(200).json(drink_special);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
+
+app.get('/api/v1/drink_specials/:id', (request, response) => {
+  database('drink_specials')
+    .select()
+    .where('id', request.params.id)
+    .then(drink_special => response.status(200).json(drink_special)[id])
+    .catch(error => response.status(500).json({ error }));
+});
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
 });
