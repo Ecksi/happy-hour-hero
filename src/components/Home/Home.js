@@ -47,12 +47,12 @@ class Home extends Component {
 
     const { city, state, zip } = this.state;
 
-    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}+${state}`);
+    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}+${state}&key=${googleApiKey}`);
     const data = await response.json();
     const latitude = data.results[0].geometry.location.lat;
     const longitude = data.results[0].geometry.location.lng;
 
-    this.props.storeLocation(city, state, zip, longitude, latitude);
+    this.props.storeLocation(city, state, zip, null, longitude, latitude);
 
     this.props.history.push('/HappyHours');
   }
@@ -64,10 +64,13 @@ class Home extends Component {
   getLocation = () => {
     this.innerRef && this.innerRef.getLocation();
     
-    setTimeout(() => {
+    setTimeout(async () => {
       const { longitude, latitude } = this.innerRef.state.coords;
+      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${googleApiKey}`);
+      const data = await response.json();
+      const address = data.results[0].formatted_address;
 
-      this.props.storeLocation(null, null, null, longitude, latitude);
+      this.props.storeLocation(null, null, null, address, longitude, latitude);
       this.props.history.push('/HappyHours');
     }, 5000);
   }
@@ -118,8 +121,8 @@ class Home extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  storeLocation: (city, state, zip, longitude, latitude) => {
-    return dispatch(storeLocation(city, state, zip, longitude, latitude));
+  storeLocation: (city, state, zip, address, longitude, latitude) => {
+    return dispatch(storeLocation(city, state, zip, address, longitude, latitude));
   }
 });
 
