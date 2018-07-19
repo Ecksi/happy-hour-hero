@@ -29,13 +29,12 @@ class Home extends Component {
 
   onDropdownSelect = (component) => {
     const { zip } = this.state;
-    console.log('1')
+
     if (isNaN(zip)) {
-      console.log('2')
       const place = component.autocomplete.getPlace();
       const city = place.vicinity;
       const state = place.address_components[2].short_name;
-      console.log(city)
+     
       this.setState({
         city,
         state

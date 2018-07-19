@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
 import UserMarker from '../UserMarker/UserMarker';
@@ -8,20 +9,23 @@ class GoogleMap extends Component {
     super();
 
     this.state = {
-      center: {
-        lat: 39.750801,
-        lng: -104.996595
-      },
-      zoom: 16
+      zoom: 13
     };
   }
  
   render() {
+    const { latitude, longitude } = this.props.location;
+
+    const center =  {
+      lat: latitude,
+      lng: longitude
+    }
+
     return (
       <div style={{ height: '400px', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: googleApiKey }}
-          defaultCenter={this.state.center}
+          defaultCenter={ center }
           defaultZoom={this.state.zoom}
         >
           <UserMarker
@@ -44,5 +48,9 @@ class GoogleMap extends Component {
     );
   }
 }
- 
-export default GoogleMap;
+
+export const mapStateToProps = (state) => ({
+  location: state.location
+});
+
+export default connect(mapStateToProps)(GoogleMap);
