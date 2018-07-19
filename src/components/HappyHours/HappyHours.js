@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
+import GoogleMap from '../GoogleMap/GoogleMap';
 import './HappyHours.css';
 
 class HappyHours extends Component {
@@ -12,6 +13,7 @@ class HappyHours extends Component {
     return (
       <section className="happyHoursContainer">
         <Header />
+        <GoogleMap />
       </section>
     );
   }

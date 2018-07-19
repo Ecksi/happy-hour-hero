@@ -6,24 +6,6 @@ class Header extends Component {
   constructor (props) {
     super(props);
     
-    this.state = {
-      city: null, 
-      state: null,
-      zip: null,
-      longitude: null,
-      latitude: null
-    };
-  }
-
-  componentDidMount = () => {
-    const { city, state, zip, longitude, latitude } = this.props.location;
-  
-    if (this.props.location.city) {
-      this.setState({
-        city,
-        state
-      });
-    }
   }
 
   render() {
