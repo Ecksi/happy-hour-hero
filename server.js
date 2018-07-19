@@ -28,6 +28,15 @@ app.get('/api/v1/restaurants/:id', (request, response) => {
     .catch(error => response.status(500).json({ error }));
 });
 
+// Be  able to search for all restaurants  associated with inputed zipcode.
+// app.get('/api/v1/restaurants/:zip_code', (request, response) => {
+//   database('restaurants')
+//     .select()
+//     .where('zip_code', request.params.zipcode)
+//     .then(restaurant => response.status(200).json(restaurant)[zip_code])
+//     .catch(error => response.status(500).json({ error }));
+// });
+
 app.get('/api/v1/drink_specials', (request, response) => {
   database('drink_specials').select()
     .then((drink_special) => {
