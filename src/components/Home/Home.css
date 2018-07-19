@@ -1,43 +1,36 @@
 * {
-  font-family: 'Nunito', sans-serif;
-}
+  font-family: 'Nunito', sans-serif; }
 
 .homeContainer {
   width: 600px;
   margin: 50px auto 0 auto;
-  text-align: center;
-}
+  text-align: center; }
 
 .homeLogo {
-  height: 250px;
-}
+  height: 250px; }
 
 .homeContainer h2 {
   font-weight: 300;
   color: #555;
   font-size: 1.3rem;
-  margin-top: 60px;
-}
+  margin-top: 60px; }
 
 .homeSearchForm {
   display: flex;
   flex-direction: column;
-  position: relative;
-}
+  position: relative; }
 
 .homeSearchInput {
   margin-bottom: 20px;
   border-radius: 5px;
   height: 50px;
-  border: 5px solid rgba(0,0,0,0.1);
+  border: 5px solid rgba(0, 0, 0, 0.1);
   font-size: 1rem;
-  padding: 0 70px;
-}
+  padding: 0 40px; }
 
 .homeSearchInput::placeholder {
   color: #999;
-  text-align: center;
-}
+  text-align: center; }
 
 .homeSearchSubmit {
   height: 60px;
@@ -45,12 +38,10 @@
   color: #fff;
   font-size: 1.2rem;
   border: none;
-  border-radius: 5px;
-}
+  border-radius: 5px; }
 
 .homeSearchSubmit:hover {
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .fa-map-marker-alt {
   font-weight: 900;
@@ -58,8 +49,7 @@
   color: #ccc;
   position: absolute;
   left: 30px;
-  top: 15px;
-}
+  top: 15px; }
 
 .fa-search {
   font-weight: 900;
@@ -67,5 +57,25 @@
   color: #ccc;
   position: absolute;
   right: 30px;
-  top: 15px;
-}
+  top: 10px; }
+
+.fa-map-marker-alt:hover {
+  cursor: pointer; }
+
+.findLocationDropdown {
+  position: relative;
+  margin-top: -20px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 30px;
+  padding: 20px 80px;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.findLocationDropdown a {
+  color: #1493ff;
+  float: left; }
+
+.findLocationDropdown a:hover {
+  cursor: pointer; }
