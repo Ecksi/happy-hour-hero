@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
- 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import UserMarker from '../UserMarker/UserMarker';
+
  
 class GoogleMap extends Component {
   static defaultProps = {
@@ -21,11 +21,7 @@ class GoogleMap extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          <AnyReactComponent
-            lat={39.750801}
-            lng={-104.996595}
-            text={'Denver, CO'}
-          />
+          <UserMarker/>
         </GoogleMapReact>
       </div>
     );
