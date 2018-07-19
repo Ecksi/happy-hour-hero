@@ -65,14 +65,16 @@ class Home extends Component {
     this.innerRef && this.innerRef.getLocation();
     
     setTimeout(async () => {
+      console.log(this.innerRef)
       const { longitude, latitude } = this.innerRef.state.coords;
+      console.log(longitude)
       const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${googleApiKey}`);
       const data = await response.json();
       const address = data.results[0].formatted_address;
 
       this.props.storeLocation(null, null, null, address, longitude, latitude);
       this.props.history.push('/HappyHours');
-    }, 5000);
+    }, 10000);
   }
 
   handleSearchInput = () => {

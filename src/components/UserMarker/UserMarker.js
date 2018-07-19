@@ -11,7 +11,7 @@ class UserMarker extends Component {
   render() {
     return (
       <section className="userMarker">
-        <i class="fas fa-male"></i>
+        <p>Current Location</p>
       </section>
     );
   }

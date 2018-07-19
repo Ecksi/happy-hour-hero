@@ -1,52 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
-import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
+import './GoogleMap.css';
 import UserMarker from '../UserMarker/UserMarker';
-import RestaurantMarker from '../RestaurantMarker/RestaurantMarker';
 
 class GoogleMap extends Component {
   constructor() {
     super();
 
     this.state = {
-      zoom: 13
+      zoom: 11
     };
   }
- 
+  
   render() {
-    const { latitude, longitude } = this.props.location;
-
-    const center =  {
-      lat: latitude,
-      lng: longitude
+    const center = {
+      lat: this.props.location.latitude,
+      lng: this.props.location.longitude
     };
 
     return (
-      <div style={{ height: '400px', width: '100%' }}>
+      <div className='google-map'>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: googleApiKey }}
           defaultCenter={ center }
-          defaultZoom={this.state.zoom}
-        >
+          defaultZoom={ this.state.zoom }>
           <UserMarker
-            key={0}
-          />
-          <RestaurantMarker 
-            key={1}
-            lat={39.752816}
-            lng={-104.993984}
-            className="brothers"
-          />
-          <RestaurantMarker 
-            key={2}
-            lat={39.750934}
-            lng={-104.999928}
-            className="brothers"
+            lat={ center.lat }
+            lng={ center.lng }
           />
         </GoogleMapReact>
       </div>
-    );
+    )
   }
 }
 
