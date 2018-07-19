@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import './GoogleMap.css';
 import UserMarker from '../UserMarker/UserMarker';
+import RestaurantMarker from '../RestaurantMarker/RestaurantMarker';
 
 class GoogleMap extends Component {
   constructor() {
@@ -27,6 +28,10 @@ class GoogleMap extends Component {
           <UserMarker
             lat={ center.lat }
             lng={ center.lng }
+          />
+          <RestaurantMarker
+            lat={ center.lat + 0.02 }
+            lng={ center.lng + 0.02 }
           />
         </GoogleMapReact>
       </div>
