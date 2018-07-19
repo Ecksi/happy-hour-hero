@@ -1,35 +1,41 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
-import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
- 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
- 
+import './GoogleMap.css';
+import UserMarker from '../UserMarker/UserMarker';
+
 class GoogleMap extends Component {
-  static defaultProps = {
-    center: {
-      lat: 39.750801,
-      lng: -104.996595
-    },
-    zoom: 16
-  };
- 
+  constructor() {
+    super();
+
+    this.state = {
+      zoom: 11
+    };
+  }
+  
   render() {
+    const center = {
+      lat: this.props.location.latitude,
+      lng: this.props.location.longitude
+    };
+
     return (
-      <div style={{ height: '400px', width: '100%' }}>
+      <div className='google-map'>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: googleApiKey }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          <AnyReactComponent
-            lat={39.750801}
-            lng={-104.996595}
-            text={'Denver, CO'}
+          defaultCenter={ center }
+          defaultZoom={ this.state.zoom }>
+          <UserMarker
+            lat={ center.lat }
+            lng={ center.lng }
           />
         </GoogleMapReact>
       </div>
-    );
+    )
   }
 }
- 
-export default GoogleMap;
+
+export const mapStateToProps = (state) => ({
+  location: state.location
+});
+
+export default connect(mapStateToProps)(GoogleMap);

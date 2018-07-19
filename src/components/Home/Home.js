@@ -27,15 +27,14 @@ class Home extends Component {
     });
   }
 
-  onDropdownSelect = (component) => {
+  onDropdownSelect = async (component) => {
     const { zip } = this.state;
-    console.log('1')
+
     if (isNaN(zip)) {
-      console.log('2')
       const place = component.autocomplete.getPlace();
       const city = place.vicinity;
       const state = place.address_components[2].short_name;
-      console.log(city)
+     
       this.setState({
         city,
         state
@@ -43,16 +42,17 @@ class Home extends Component {
     }
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
     const { city, state, zip } = this.state;
 
-    if (city === 'Denver' && state === 'CO') {
-      this.props.storeLocation(null, null, null, -104.996595, 39.750801);
-    } else {
-      this.props.storeLocation(city, state, zip);
-    }
+    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}+${state}&key=${googleApiKey}`);
+    const data = await response.json();
+    const latitude = data.results[0].geometry.location.lat;
+    const longitude = data.results[0].geometry.location.lng;
+
+    this.props.storeLocation(city, state, zip, null, longitude, latitude);
 
     this.props.history.push('/HappyHours');
   }
@@ -61,15 +61,20 @@ class Home extends Component {
     this.innerRef = ref;
   }
 
-  getLocation = async () => {
+  getLocation = () => {
     this.innerRef && this.innerRef.getLocation();
     
-    setTimeout(() => {
+    setTimeout(async () => {
+      console.log(this.innerRef)
       const { longitude, latitude } = this.innerRef.state.coords;
+      console.log(longitude)
+      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${googleApiKey}`);
+      const data = await response.json();
+      const address = data.results[0].formatted_address;
 
-      this.props.storeLocation(null, null, null, longitude, latitude);
+      this.props.storeLocation(null, null, null, address, longitude, latitude);
       this.props.history.push('/HappyHours');
-    }, 5000);
+    }, 10000);
   }
 
   handleSearchInput = () => {
@@ -118,8 +123,8 @@ class Home extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  storeLocation: (city, state, zip, longitude, latitude) => {
-    return dispatch(storeLocation(city, state, zip, longitude, latitude));
+  storeLocation: (city, state, zip, address, longitude, latitude) => {
+    return dispatch(storeLocation(city, state, zip, address, longitude, latitude));
   }
 });
 

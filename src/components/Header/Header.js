@@ -9,14 +9,14 @@ class Header extends Component {
   }
 
   render() {
-    const { city, state, zip, longitude, latitude } = this.props.location;
+    const { city, state, zip, address, longitude, latitude } = this.props.location;
 
     return (
       <header>
         <section className="headerContainer">
           <i className="fas fa-bars"></i>
           <div className="headerLocation">
-            { this.props.location.city ? <p>{ city }, { state } </p> : null }
+            { this.props.location.city ? <p>{ city }, { state } </p> : <p>{ address }</p> }
             <i class="fas fa-caret-down"></i>
           </div>
         </section>
