@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
 import UserMarker from '../UserMarker/UserMarker';
+import RestaurantMarker from '../RestaurantMarker/RestaurantMarker';
 
 class GoogleMap extends Component {
   constructor() {
@@ -19,7 +20,7 @@ class GoogleMap extends Component {
     const center =  {
       lat: latitude,
       lng: longitude
-    }
+    };
 
     return (
       <div style={{ height: '400px', width: '100%' }}>
@@ -31,13 +32,13 @@ class GoogleMap extends Component {
           <UserMarker
             key={0}
           />
-          <UserMarker 
+          <RestaurantMarker 
             key={1}
             lat={39.752816}
             lng={-104.993984}
             className="brothers"
           />
-          <UserMarker 
+          <RestaurantMarker 
             key={2}
             lat={39.750934}
             lng={-104.999928}

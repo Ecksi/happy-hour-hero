@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './UserMarker.css';
+import './RestaurantMarker.css';
 
 class UserMarker extends Component {
   constructor (props) {

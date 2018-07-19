@@ -27,7 +27,7 @@ class Home extends Component {
     });
   }
 
-  onDropdownSelect = (component) => {
+  onDropdownSelect = async (component) => {
     const { zip } = this.state;
 
     if (isNaN(zip)) {
@@ -42,16 +42,17 @@ class Home extends Component {
     }
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
     const { city, state, zip } = this.state;
 
-    if (city === 'Denver' && state === 'CO') {
-      this.props.storeLocation(null, null, null, -104.996595, 39.750801);
-    } else {
-      this.props.storeLocation(city, state, zip);
-    }
+    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}+${state}`);
+    const data = await response.json();
+    const latitude = data.results[0].geometry.location.lat;
+    const longitude = data.results[0].geometry.location.lng;
+
+    this.props.storeLocation(city, state, zip, longitude, latitude);
 
     this.props.history.push('/HappyHours');
   }
@@ -60,7 +61,7 @@ class Home extends Component {
     this.innerRef = ref;
   }
 
-  getLocation = async () => {
+  getLocation = () => {
     this.innerRef && this.innerRef.getLocation();
     
     setTimeout(() => {
