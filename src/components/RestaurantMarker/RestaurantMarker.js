@@ -10,8 +10,8 @@ class UserMarker extends Component {
 
   render() {
     return (
-      <section className="userMarker">
-        <i class="fas fa-female"></i>
+      <section className="restaurantMarker">
+        <p>Restaurant</p>
       </section>
     );
   }
