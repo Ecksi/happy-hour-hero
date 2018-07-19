@@ -43,14 +43,23 @@ class Home extends Component {
   }
 
   handleSubmit = async (event) => {
-    event.preventDefault();
+    let latitude;
+    let longitude;
+    let location;
 
+    event.preventDefault();
     const { city, state, zip } = this.state;
 
-    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}+${state}&key=${googleApiKey}`);
+    if (city && state) {
+      location = `${city}+${state}`;
+    } else if (!isNaN(parseInt(zip)) && zip.length === 5) {
+      location = zip;
+    }
+
+    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
     const data = await response.json();
-    const latitude = data.results[0].geometry.location.lat;
-    const longitude = data.results[0].geometry.location.lng;
+    latitude = data.results[0].geometry.location.lat;
+    longitude = data.results[0].geometry.location.lng;
 
     this.props.storeLocation(city, state, zip, null, longitude, latitude);
 
@@ -65,9 +74,8 @@ class Home extends Component {
     this.innerRef && this.innerRef.getLocation();
     
     setTimeout(async () => {
-      console.log(this.innerRef)
       const { longitude, latitude } = this.innerRef.state.coords;
-      console.log(longitude)
+   
       const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${googleApiKey}`);
       const data = await response.json();
       const address = data.results[0].formatted_address;
