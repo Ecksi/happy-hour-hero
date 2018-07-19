@@ -5,7 +5,6 @@ import homeLogo from './images/home-logo.png';
 import LocationAutocomplete from 'location-autocomplete';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
 import { storeLocation } from '../../actions';
-import GeoLocator from '../GeoLocator/GeoLocator';
 
 class Home extends Component {
   constructor (props) {
@@ -15,8 +14,14 @@ class Home extends Component {
       city: '',
       state: '',
       zip: '',
+      latitude: '',
+      longitude: '',
       findLocationDropdown: false
     };
+  }
+
+  componentDidMount() {
+    this.getMyLocation()
   }
 
   onChangeHandler = (event) => {
@@ -44,37 +49,60 @@ class Home extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-
     const { city, state, zip } = this.state;
 
-    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}+${state}&key=${googleApiKey}`);
-    const data = await response.json();
-    const latitude = data.results[0].geometry.location.lat;
-    const longitude = data.results[0].geometry.location.lng;
-
-    this.props.storeLocation(city, state, zip, null, longitude, latitude);
+    const location = await this.returnLocation();
+    const latLng = await this.getLatLng(location);
+    const address = await this.getAddress(location);
+    
+    this.props.storeLocation(city, state, zip, address, latLng.longitude, latLng.latitude);
 
     this.props.history.push('/HappyHours');
   }
 
-  getInnerRef = (ref) => {
-    this.innerRef = ref;
+  getMyLocation = () => {
+    const location = window.navigator && window.navigator.geolocation;
+
+    if (location) {
+      location.getCurrentPosition((position) => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        });
+      });
+    };
   }
 
-  getLocation = () => {
-    this.innerRef && this.innerRef.getLocation();
-    
-    setTimeout(async () => {
-      console.log(this.innerRef)
-      const { longitude, latitude } = this.innerRef.state.coords;
-      console.log(longitude)
-      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${googleApiKey}`);
-      const data = await response.json();
-      const address = data.results[0].formatted_address;
+  getLatLng = async (location) => {
+    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
+    const data = await response.json();
+    const latitude = data.results[0].geometry.location.lat;
+    const longitude = data.results[0].geometry.location.lng;
 
-      this.props.storeLocation(null, null, null, address, longitude, latitude);
-      this.props.history.push('/HappyHours');
-    }, 10000);
+    return {latitude, longitude};
+  }
+
+  getAddress = async (location) => {
+    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
+    const data = await response.json();
+    const address = data.results[0].formatted_address;
+
+    return address;
+  }
+
+  returnLocation = async () => {
+    let location;
+    const { city, state, zip, latitude, longitude } = this.state;
+
+    if (city && state) {
+      location = `${city}+${state}`;
+    } else if (!isNaN(parseInt(zip)) && zip.length === 5) {
+      location = zip;
+    } else {
+      location = `${latitude} + ${longitude}`;
+    }
+
+    return location;
   }
 
   handleSearchInput = () => {
@@ -90,8 +118,6 @@ class Home extends Component {
   }
 
   render() {
-    const { getInnerRef, getLocation } = this;
-
     return (
       <section className="homeContainer">
         <img src={homeLogo} className="homeLogo" alt="Happy Hour Hero Logo" />
@@ -111,9 +137,8 @@ class Home extends Component {
             onDropdownSelect={this.onDropdownSelect}
           />
           <div className="findLocationDropdown" style={{display: this.state.findLocationDropdown ? 'block' : 'none' }}>
-            <GeoLocator ref={getInnerRef} />
-            <i className="fas fa-map-marker-alt" onClick={this.getLocation} ></i>
-            <a onClick={this.getLocation}>Current Location</a>
+            <i className="fas fa-map-marker-alt" onClick={this.handleSubmit} ></i>
+            <a onClick={this.handleSubmit}>Current Location</a>
           </div>
           <input className="homeSearchSubmit" type="submit" value="Submit" />
         </form>
