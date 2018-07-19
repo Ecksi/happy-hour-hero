@@ -1,0 +1,29 @@
+header {
+  height: 75px;
+  display: flex;
+  background: #fdb82a;
+  align-items: center; }
+
+.headerContainer {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  align-items: center; }
+
+.headerLocation {
+  margin-left: 50px;
+  display: flex;
+  align-items: center; }
+
+.fa-bars {
+  color: #fff;
+  font-size: 1.5rem; }
+
+.headerLocation p {
+  color: #fff;
+  font-size: 1.5rem; }
+
+.headerLocation i {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-left: 20px; }

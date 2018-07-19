@@ -57,7 +57,7 @@
   color: #ccc;
   position: absolute;
   right: 30px;
-  top: 10px; }
+  top: 15px; }
 
 .fa-map-marker-alt:hover {
   cursor: pointer; }
@@ -65,13 +65,12 @@
 .findLocationDropdown {
   position: relative;
   margin-top: -20px;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
   margin-bottom: 30px;
+  box-shadow: 1px 1px 1px 1px #eee;
   padding: 20px 80px;
-  -ms-flex-align: center;
-  align-items: center; }
+  align-items: center;
+  width: 73%;
+  border-radius: 3px; }
 
 .findLocationDropdown a {
   color: #1493ff;
