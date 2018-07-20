@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './Home.css';
 import homeLogo from './images/home-logo.png';
 import LocationAutocomplete from 'location-autocomplete';
+import SearchBar  from '../SearchBar/SearchBar';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
 import { storeLocation } from '../../actions';
 
@@ -124,18 +125,7 @@ class Home extends Component {
         <h2>Find your happy hour:</h2>
         <form className="homeSearchForm" onSubmit={this.handleSubmit}>
           <i className="fas fa-search"></i>
-          <LocationAutocomplete
-            name="zip"
-            className="homeSearchInput" 
-            placeholder="Enter a restaurant or location" 
-            targetArea="City, State"
-            locationType="(cities)" 
-            googleAPIKey={googleApiKey}
-            onChange={this.onChangeHandler}
-            onKeyDown={this.handleSearchInput}
-            onFocus={this.handleSearchInput}
-            onDropdownSelect={this.onDropdownSelect}
-          />
+          <SearchBar />
           <div className="findLocationDropdown" style={{display: this.state.latitude ? 'block' : 'none' }}>
             <i className="fas fa-map-marker-alt" onClick={this.handleSubmit} ></i>
             <a onClick={this.handleSubmit}>Current Location</a>
