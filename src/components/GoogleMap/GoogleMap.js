@@ -4,29 +4,33 @@ import GoogleMapReact from 'google-map-react';
 import './GoogleMap.css';
 import UserMarker from '../UserMarker/UserMarker';
 import RestaurantMarker from '../RestaurantMarker/RestaurantMarker';
+import { restaurants } from '../../reducers/restaurants';
 
 class GoogleMap extends Component {
   constructor() {
     super();
 
     this.state = {
-      zoom: 16
+      zoom: 13
     };
   }
 
-  componentDidMount() {
-    this.getMarkers();
-  }
-
-  getMarkers = () => {
-
-  }
-  
   render() {
     const center = {
       lat: this.props.location.latitude,
       lng: this.props.location.longitude
     };
+
+    const markers = this.props.filteredRestaurants.map((restaurant, index) => {
+      const { latitude, longitude, name } = restaurant;
+
+      return ( <RestaurantMarker
+        lat={ latitude }
+        lng={ longitude }
+        key={ index }
+        name={ name }
+      />);
+    });
 
     return (
       <div className='google-map'>
@@ -37,10 +41,7 @@ class GoogleMap extends Component {
             lat={ center.lat }
             lng={ center.lng }
           />
-          <RestaurantMarker
-            lat={ center.lat + 0.02 }
-            lng={ center.lng + 0.02 }
-          />
+          { markers }
         </GoogleMapReact>
       </div>
     )
@@ -48,7 +49,8 @@ class GoogleMap extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  location: state.location
+  location: state.location,
+  filteredRestaurants: state.filteredRestaurants
 });
 
 export default connect(mapStateToProps)(GoogleMap);
