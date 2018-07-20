@@ -10,6 +10,8 @@ exports.up = function (knex, Promise) {
       table.string('state');
       table.integer('zip_code');
       table.string('restaurant_image');
+      table.string('latitude');
+      table.string('longitude')
       table.timestamps(true, true);
     }),
 
