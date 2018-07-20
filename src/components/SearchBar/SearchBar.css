@@ -16,22 +16,19 @@
 .Demo__suggestion-icon {
   margin-right: 8px; }
 
-.Demo__search-bar-container {
-  width: 90%;
-  max-width: 500px;
-  margin: 40px auto 0; }
+.searchInputContainer {
+  margin-bottom: 30px; }
 
-.Demo__search-input-container {
-  position: relative; }
-
-.Demo__search-input,
-.Demo__search-input:focus,
-.Demo__search-input:active {
+.searchInput,
+.searchInput:focus,
+.searchInput:active {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   border: honeydew;
   display: block;
-  width: 100%;
-  padding: 16px;
+  width: calc(100% - 40px);
+  background: white;
+  padding: 20px;
   font-size: 16px;
   border-radius: 2px;
   outline: none; }

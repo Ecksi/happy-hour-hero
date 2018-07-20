@@ -13,8 +13,7 @@ class SearchBar extends React.Component {
       address: '',
       errorMessage: '',
       latitude: null,
-      longitude: null,
-      isGeocoding: false,
+      longitude: null
     };
   }
 
@@ -23,11 +22,11 @@ class SearchBar extends React.Component {
       address,
       latitude: null,
       longitude: null,
-      errorMessage: '',
+      errorMessage: ''
     });
   };
 
-  handleSelect = selected => {
+  handleSelect = (selected) => {
     this.setState({ isGeocoding: true, address: selected });
     geocodeByAddress(selected)
       .then(res => getLatLng(res[0]))
@@ -35,7 +34,7 @@ class SearchBar extends React.Component {
         this.setState({
           latitude: lat,
           longitude: lng,
-          isGeocoding: false,
+          isGeocoding: false
         });
       })
       .catch(error => {
@@ -79,12 +78,12 @@ class SearchBar extends React.Component {
         >
           {({ getInputProps, suggestions, getSuggestionItemProps }) => {
             return (
-              <div className="Demo__search-bar-container">
-                <div className="Demo__search-input-container">
+              <div className="searchBarContainer">
+                <div className="searchInputContainer">
                   <input
                     {...getInputProps({
                       placeholder: 'Search Places...',
-                      className: 'Demo__search-input',
+                      className: 'searchInput'
                     })}
                   />
                   {this.state.address.length > 0 && (
@@ -118,41 +117,12 @@ class SearchBar extends React.Component {
                       );
                       /* eslint-enable react/jsx-key */
                     })}
-                    <div className="Demo__dropdown-footer">
-                      <div>
-                      </div>
-                    </div>
                   </div>
                 )}
               </div>
             );
           }}
         </PlacesAutocomplete>
-        {errorMessage.length > 0 && (
-          <div className="Demo__error-message">{this.state.errorMessage}</div>
-        )}
-
-        {((latitude && longitude) || isGeocoding) && (
-          <div>
-            <h3 className="Demo__geocode-result-header">Geocode result</h3>
-            {isGeocoding ? (
-              <div>
-                <i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" />
-              </div>
-            ) : (
-              <div>
-                <div className="Demo__geocode-result-item--lat">
-                  <label>Latitude:</label>
-                  <span>{latitude}</span>
-                </div>
-                <div className="Demo__geocode-result-item--lng">
-                  <label>Longitude:</label>
-                  <span>{longitude}</span>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
       </div>
     );
   }
