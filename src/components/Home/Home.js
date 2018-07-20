@@ -136,7 +136,7 @@ class Home extends Component {
             onFocus={this.handleSearchInput}
             onDropdownSelect={this.onDropdownSelect}
           />
-          <div className="findLocationDropdown" style={{display: this.state.findLocationDropdown ? 'block' : 'none' }}>
+          <div className="findLocationDropdown" style={{display: this.state.latitude ? 'block' : 'none' }}>
             <i className="fas fa-map-marker-alt" onClick={this.handleSubmit} ></i>
             <a onClick={this.handleSubmit}>Current Location</a>
           </div>
