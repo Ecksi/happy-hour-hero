@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './Home.css';
 import homeLogo from './images/home-logo.png';
 import LocationAutocomplete from 'location-autocomplete';
-import SearchBar  from '../SearchBar/SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
 import { storeLocation } from '../../actions';
 
@@ -12,9 +12,6 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      city: '',
-      state: '',
-      zip: '',
       latitude: '',
       longitude: '',
       findLocationDropdown: false
@@ -25,38 +22,18 @@ class Home extends Component {
     this.getMyLocation()
   }
 
-  onChangeHandler = (event) => {
-    const { name, value } = event.target;
-    
-    this.setState({
-      [name]: value
-    });
-  }
-
-  onDropdownSelect = async (component) => {
-    const { zip } = this.state;
-
-    if (isNaN(zip)) {
-      const place = component.autocomplete.getPlace();
-      const city = place.vicinity;
-      const state = place.address_components[2].short_name;
-     
-      this.setState({
-        city,
-        state
-      });
-    }
-  }
-
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { city, state, zip } = this.state;
 
-    const location = await this.returnLocation();
-    const latLng = await this.getLatLng(location);
-    const address = await this.getAddress(location);
-    
-    this.props.storeLocation(city, state, zip, address, latLng.longitude, latLng.latitude);
+    const { latitude, longitude } = this.state;
+    const { address } = this.props.location;
+
+    if (!address) {
+      const location = `${latitude} + ${longitude}`;
+      const address = await this.getAddress(location);
+      
+      this.props.storeLocation(address, longitude, latitude);
+    } 
 
     this.props.history.push('/HappyHours');
   }
@@ -74,48 +51,12 @@ class Home extends Component {
     };
   }
 
-  getLatLng = async (location) => {
-    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
-    const data = await response.json();
-    const latitude = data.results[0].geometry.location.lat;
-    const longitude = data.results[0].geometry.location.lng;
-
-    return {latitude, longitude};
-  }
-
   getAddress = async (location) => {
     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
     const data = await response.json();
     const address = data.results[0].formatted_address;
 
     return address;
-  }
-
-  returnLocation = async () => {
-    let location;
-    const { city, state, zip, latitude, longitude } = this.state;
-
-    if (city && state) {
-      location = `${city}+${state}`;
-    } else if (!isNaN(parseInt(zip)) && zip.length === 5) {
-      location = zip;
-    } else {
-      location = `${latitude} + ${longitude}`;
-    }
-
-    return location;
-  }
-
-  handleSearchInput = () => {
-    if (this.state.zip === "") {
-      this.setState({
-        findLocationDropdown: true
-      });
-    } else {
-      this.setState({
-        findLocationDropdown: false
-      });  
-    }
   }
 
   render() {
@@ -138,9 +79,13 @@ class Home extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  storeLocation: (city, state, zip, address, longitude, latitude) => {
-    return dispatch(storeLocation(city, state, zip, address, longitude, latitude));
+  storeLocation: (address, longitude, latitude) => {
+    return dispatch(storeLocation(address, longitude, latitude));
   }
 });
 
-export default connect(null, mapDispatchToProps)(Home);
+export const mapStateToProps = (state) => ({
+  location: state.location
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

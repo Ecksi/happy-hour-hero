@@ -39,10 +39,9 @@ class HappyHours extends Component {
       {name: 'Illegal Petes', latitude: 39.750870, longitude: -104.999999},
       {name: 'Hapa', latitude: 39.749750, longitude: -104.999919}
     ];
-    
     const homeLatitude = this.props.location.latitude;
     const homeLongitude = this.props.location.longitude;
-  
+   
     const filteredRestaurants = [];
 
     const markers = restaurants.forEach(restaurant => {

@@ -21,6 +21,9 @@ class GoogleMap extends Component {
       lng: this.props.location.longitude
     };
 
+    console.log(center)
+    
+
     const markers = this.props.filteredRestaurants.map((restaurant, index) => {
       const { latitude, longitude, name } = restaurant;
 

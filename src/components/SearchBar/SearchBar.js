@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from 'react-places-autocomplete';
 import { classnames } from '../../helpers';
 import './SearchBar.css';
+import  { storeLocation } from '../../actions';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -33,9 +35,12 @@ class SearchBar extends React.Component {
       .then(({ lat, lng }) => {
         this.setState({
           latitude: lat,
-          longitude: lng,
-          isGeocoding: false
+          longitude: lng
         });
+
+        const { address, latitude, longitude } = this.state;
+
+        this.props.storeLocation(address, longitude, latitude);
       })
       .catch(error => {
         this.setState({ isGeocoding: false });
@@ -63,8 +68,7 @@ class SearchBar extends React.Component {
       address,
       errorMessage,
       latitude,
-      longitude,
-      isGeocoding,
+      longitude
     } = this.state;
 
     return (
@@ -86,20 +90,20 @@ class SearchBar extends React.Component {
                       className: 'searchInput'
                     })}
                   />
-                  {this.state.address.length > 0 && (
+                  {/* {this.state.address.length > 0 && (
                     <button
-                      className="Demo__clear-button"
+                      className="clearButton"
                       onClick={this.handleCloseClick}
                     >
                       x
                     </button>
-                  )}
+                  )} */}
                 </div>
                 {suggestions.length > 0 && (
-                  <div className="Demo__autocomplete-container">
+                  <div className="autocompleteContainer">
                     {suggestions.map(suggestion => {
-                      const className = classnames('Demo__suggestion-item', {
-                        'Demo__suggestion-item--active': suggestion.active,
+                      const className = classnames('suggestionItem', {
+                        'suggestionItem--active': suggestion.active,
                       });
 
                       return (
@@ -128,4 +132,10 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar;
+export const mapDispatchToProps = (dispatch) => ({
+  storeLocation: (address, longitude, latitude) => {
+    return dispatch(storeLocation(address, longitude, latitude));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(SearchBar);

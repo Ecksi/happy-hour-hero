@@ -33,9 +33,9 @@
   border-radius: 2px;
   outline: none; }
 
-.Demo__clear-button,
-.Demo__clear-button:active,
-.Demo__clear-button:focus {
+.clearButton,
+.clearButton:active,
+.clearButton:focus {
   position: absolute;
   right: 16px;
   top: 50%;
@@ -46,7 +46,7 @@
   font-weight: 600;
   color: #999; }
 
-.Demo__autocomplete-container {
+.autocompleteContainer {
   border-bottom: honeydew;
   border-left: honeydew;
   border-right: honeydew;
@@ -54,34 +54,14 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 0 0 2px 2px; }
 
-.Demo__suggestion-item {
+.suggestionItem {
   padding: 8px;
   text-align: left;
   background-color: #fff;
   cursor: pointer; }
 
-.Demo__suggestion-item--active {
+.suggestionItem--active {
   background-color: #fafafa; }
-
-.Demo__dropdown-footer {
-  display: flex;
-  justify-content: flex-end;
-  padding: 4px; }
-
-.Demo__dropdown-footer-image {
-  display: inline-block;
-  width: 150px; }
-
-.Demo__spinner {
-  color: #18bc9c;
-  font-size: 30px; }
-
-.Demo__error-message {
-  color: red; }
-
-.Demo__geocode-result-header {
-  font-size: 20px;
-  color: #222222; }
 
 @media (max-width: 480px) {
   .autocomplete-container {
