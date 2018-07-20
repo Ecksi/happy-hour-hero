@@ -11,7 +11,9 @@ exports.seed = (knex, Promise) => {
           city: 'Denver',
           state: 'CO',
           zip_code: 80202,
-          restaurant_image: 'http://www.brothersbar.com/wp-content/uploads/2015/10/GALLERY-Stapleton.jpg'
+          restaurant_image: 'http://www.brothersbar.com/wp-content/uploads/2015/10/GALLERY-Stapleton.jpg',
+          latitude: '39.752816',
+          longitude: '-104.993984'
         }
       ])
       .then(() => console.log('Seeding complete!'))
