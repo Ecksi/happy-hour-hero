@@ -12,12 +12,8 @@ app.use(express.static('public'));
 
 app.get('/api/v1/restaurants', (request, response) => {
   database('restaurants').select()
-    .then((restaurant) => {
-      response.status(200).json(restaurant);
-    })
-    .catch((error) => {
-      response.status(500).json({ error });
-    });
+    .then(restaurant => response.status(200).json(restaurant))
+    .catch((error) => response.status(500).json({ error }));
 });
 
 app.get('/api/v1/restaurants/:id', (request, response) => {
@@ -28,28 +24,14 @@ app.get('/api/v1/restaurants/:id', (request, response) => {
     .catch(error => response.status(500).json({ error }));
 });
 
-// Be  able to search for all restaurants  associated with inputed zipcode.
-// app.get('/api/v1/restaurants/:zip_code', (request, response) => {
-//   database('restaurants')
-//     .select()
-//     .where('zip_code', request.params.zipcode)
-//     .then(restaurant => response.status(200).json(restaurant)[zip_code])
-//     .catch(error => response.status(500).json({ error }));
-// });
-
 app.get('/api/v1/drink_specials', (request, response) => {
   database('drink_specials').select()
-    .then((drink_special) => {
-      response.status(200).json(drink_special);
-    })
-    .catch((error) => {
-      response.status(500).json({ error });
-    });
+    .then(drink_special => response.status(200).json(drink_special))
+    .catch(error => response.status(500).json({ error }));
 });
 
 app.get('/api/v1/drink_specials/:id', (request, response) => {
-  database('drink_specials')
-    .select()
+  database('drink_specials').select()
     .where('id', request.params.id)
     .then(drink_special => response.status(200).json(drink_special)[id])
     .catch(error => response.status(500).json({ error }));
@@ -57,19 +39,27 @@ app.get('/api/v1/drink_specials/:id', (request, response) => {
 
 app.get('/api/v1/food_specials', (request, response) => {
   database('food_specials').select()
-    .then((food_special) => {
-      response.status(200).json(food_special);
-    })
-    .catch((error) => {
-      response.status(500).json({ error });
-    });
+    .then(food_special => response.status(200).json(food_special))
+    .catch(error => response.status(500).json({ error }));
 });
 
 app.get('/api/v1/food_specials/:id', (request, response) => {
-  database('food_specials')
-    .select()
+  database('food_specials').select()
     .where('id', request.params.id)
     .then(food_special => response.status(200).json(food_special)[id])
+    .catch(error => response.status(500).json({ error }));
+});
+
+app.get('/api/v1/happy_hours', (request, response) => {
+  database('happy_hours').select()
+    .then(happy_hour => response.status(200).json(happy_hour))
+    .catch(error => response.status(500).json({ error }));
+});
+
+app.get('/api/v1/happy_hours/:id', (request, response) => {
+  database('happy_hours').select()
+    .where('id', request.params.id)
+    .then(happy_hour => response.status(200).json(happy_hour)[id])
     .catch(error => response.status(500).json({ error }));
 });
 
