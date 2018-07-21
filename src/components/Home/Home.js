@@ -70,14 +70,15 @@ class Home extends Component {
         throw new Error(`${response.status}`);
       }
 
-      this.props.storeRestaurants(restaurants)
+      return restaurants;
+      // this.props.storeRestaurants(restaurants)
     } catch (error) {
       throw new Error(`Network request failed. (error: ${error.message})`);
     }
   }
 
-  filterRestaurants = () => {
-    const restaurants = this.props.restaurants;
+  filterRestaurants = async () => {
+    const restaurants = await this.getAllRestaurants();
     const homeLatitude = this.props.location.latitude;
     const homeLongitude = this.props.location.longitude;
    

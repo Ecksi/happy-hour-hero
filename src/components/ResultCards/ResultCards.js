@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from '../Header/Header';
 import ResultCard from '../ResultCard/ResultCard';
-import GoogleMap from '../GoogleMap/GoogleMap';
 import './ResultCards.css';
-import { storeRestaurants, storeFilteredRestaurants } from '../../actions';
-
 
 class ResultCards extends Component {
   constructor (props) {
@@ -14,12 +10,35 @@ class ResultCards extends Component {
   }
 
   render() {
+    let resultCards;
+    const { filteredRestaurants } = this.props;
+
+    if (filteredRestaurants.length > 0) {
+      resultCards = filteredRestaurants.map((restaurant, index) => {
+        const restaurantName = restaurant.name;
+        const { id, address, restaurant_image } = restaurant;
+
+        return ( <ResultCard
+          restaurantName={ restaurantName }
+          address={ address }
+          image = { restaurant_image }
+          key={ index }
+          id={ id }
+        />);
+      });
+
+    }
+
     return (
       <section className="resultCardsContainer">
-        <ResultCard />
+        { resultCards }
       </section>
     );
   }
 }
 
-export default ResultCards;
+export const mapStateToProps = (state) => ({
+  filteredRestaurants: state.filteredRestaurants
+});
+
+export default connect(mapStateToProps)(ResultCards);
