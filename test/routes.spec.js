@@ -50,13 +50,13 @@ describe('CLIENT routes', () => {
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.a('array');
-          response.body.length.should.equal(1);
+          response.body.length.should.equal(3);
           response.body[0].should.have.property('name');
           response.body[0].name.should.equal('Brothers Bar');
           response.body[0].should.have.property('address');
           response.body[0].address.should.equal('1920 Market St');
           response.body[0].should.have.property('phone');
-          response.body[0].phone.should.equal('(303)297-2767');
+          response.body[0].phone.should.equal('(303) 297-2767');
           response.body[0].should.have.property('website');
           response.body[0].website.should.equal('http://www.brothersbar.com/denver-co/');
           response.body[0].should.have.property('city');
@@ -99,7 +99,7 @@ describe('CLIENT routes', () => {
           response.body[0].should.have.property('address');
           response.body[0].address.should.equal('1920 Market St');
           response.body[0].should.have.property('phone');
-          response.body[0].phone.should.equal('(303)297-2767');
+          response.body[0].phone.should.equal('(303) 297-2767');
           response.body[0].should.have.property('website');
           response.body[0].website.should.equal('http://www.brothersbar.com/denver-co/');
           response.body[0].should.have.property('city');
@@ -218,7 +218,7 @@ describe('CLIENT routes', () => {
   describe('GET /api/v1/food_specials/:id', () => {
     it('should return an array of one food special', done => {
       chai.request(server)
-        .get('/api/v1/food_specials/8')
+        .get('/api/v1/food_specials/4')
         .end((error, response) => {
           response.should.have.status(200);
           response.should.be.json;
@@ -253,7 +253,7 @@ describe('CLIENT routes', () => {
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.a('array');
-          response.body.length.should.equal(1);
+          response.body.length.should.equal(3);
           response.body[0].should.have.property('day');
           response.body[0].day.should.equal('Monday');
           response.body[0].should.have.property('start_time');
@@ -263,7 +263,7 @@ describe('CLIENT routes', () => {
           response.body[0].should.have.property('drink_specials_id');
           response.body[0].drink_specials_id.should.equal(16);
           response.body[0].should.have.property('food_specials_id');
-          response.body[0].food_specials_id.should.equal(8);
+          response.body[0].food_specials_id.should.equal(4);
           response.body[0].should.have.property('restaurant_id');
           response.body[0].restaurant_id.should.equal(1);
           done();
@@ -283,7 +283,7 @@ describe('CLIENT routes', () => {
   describe('GET /api/v1/happy_hours/:id', () => {
     it('should return an array of one happy hour', done => {
       chai.request(server)
-        .get('/api/v1/happy_hours/18')
+        .get('/api/v1/happy_hours/4')
         .end((error, response) => {
           response.should.have.status(200);
           response.should.be.json;
@@ -298,7 +298,7 @@ describe('CLIENT routes', () => {
           response.body[0].should.have.property('drink_specials_id');
           response.body[0].drink_specials_id.should.equal(16);
           response.body[0].should.have.property('food_specials_id');
-          response.body[0].food_specials_id.should.equal(8);
+          response.body[0].food_specials_id.should.equal(4);
           response.body[0].should.have.property('restaurant_id');
           response.body[0].restaurant_id.should.equal(1);
           done();
