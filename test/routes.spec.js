@@ -160,6 +160,36 @@ describe('CLIENT routes', () => {
     });
   });
 
+  describe('GET /api/v1/drink_specials/:id', () => {
+    it('should return an array of one drink special',  done => {
+      chai.request(server)
+        .get('/api/v1/drink_specials/18')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(1);
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('$3 Vegas Bombs');
+          response.body[0].should.have.property('best_deal');
+          response.body[0].best_deal.should.equal(true);
+          done();
+        });
+    });
+
+    it('should return an empty array if the id for the drink special was not found', done => {
+      chai.request(server)
+        .get('/api/v1/drink_specials/20203030')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(0);
+          done();
+        });
+    });
+  });
+
   describe('GET /api/v1/food_specials', () => {
     it('should return an array of all food specials', done => {
       chai.request(server)
