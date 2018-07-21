@@ -279,4 +279,42 @@ describe('CLIENT routes', () => {
         });
     });
   });
+
+  describe('GET /api/v1/happy_hours/:id', () => {
+    it('should return an array of one happy hour', done => {
+      chai.request(server)
+        .get('/api/v1/happy_hours/18')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(1);
+          response.body[0].should.have.property('day');
+          response.body[0].day.should.equal('Monday');
+          response.body[0].should.have.property('start_time');
+          response.body[0].start_time.should.equal('1600');
+          response.body[0].should.have.property('end_time');
+          response.body[0].end_time.should.equal('2000');
+          response.body[0].should.have.property('drink_specials_id');
+          response.body[0].drink_specials_id.should.equal(16);
+          response.body[0].should.have.property('food_specials_id');
+          response.body[0].food_specials_id.should.equal(8);
+          response.body[0].should.have.property('restaurant_id');
+          response.body[0].restaurant_id.should.equal(1);
+          done();
+        });
+    });
+
+    it('should return an empty array if the id for the happy hour was not found', done => {
+      chai.request(server)
+        .get('/api/v1/happy_hours/20203030')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(0);
+          done();
+        });
+    });
+  });
 });
