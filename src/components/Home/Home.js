@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Home.css';
 import homeLogo from './images/home-logo.png';
-import LocationAutocomplete from 'location-autocomplete';
 import SearchBar from '../SearchBar/SearchBar';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
-import { storeLocation } from '../../actions';
+import { storeLocation, storeRestaurants, storeFilteredRestaurants } from '../../actions';
+import geolib from 'geolib';
 
 class Home extends Component {
   constructor (props) {
@@ -19,6 +19,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    this.getAllRestaurants();
     this.getMyLocation()
   }
 
@@ -35,6 +36,7 @@ class Home extends Component {
       this.props.storeLocation(address, longitude, latitude);
     } 
 
+    this.filterRestaurants();
     this.props.history.push('/HappyHours');
   }
 
@@ -59,6 +61,44 @@ class Home extends Component {
     return address;
   }
 
+  getAllRestaurants = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/restaurants');
+      const restaurants = await response.json();
+
+      if (!response.ok) {
+        throw new Error(`${response.status}`);
+      }
+
+      this.props.storeRestaurants(restaurants)
+    } catch (error) {
+      throw new Error(`Network request failed. (error: ${error.message})`);
+    }
+  }
+
+  filterRestaurants = () => {
+    const restaurants = this.props.restaurants;
+    const homeLatitude = this.props.location.latitude;
+    const homeLongitude = this.props.location.longitude;
+   
+    const filteredRestaurants = [];
+
+    const markers = restaurants.forEach(restaurant => {
+      const meters = geolib.getDistance(
+        {latitude: homeLatitude, longitude: homeLongitude},
+        {latitude: restaurant.latitude, longitude: restaurant.longitude}
+      );
+
+      const miles = meters * 0.000621371;
+
+      if (miles < 5) {
+        filteredRestaurants.push(restaurant);
+      }
+    });
+
+    this.props.storeFilteredRestaurants(filteredRestaurants);
+  }
+
   render() {
     return (
       <section className="homeContainer">
@@ -81,11 +121,18 @@ class Home extends Component {
 export const mapDispatchToProps = (dispatch) => ({
   storeLocation: (address, longitude, latitude) => {
     return dispatch(storeLocation(address, longitude, latitude));
+  },
+  storeRestaurants: (restaurants) => {
+    return dispatch(storeRestaurants(restaurants));
+  },
+  storeFilteredRestaurants: (restaurants) => {
+    return dispatch(storeFilteredRestaurants(restaurants));
   }
 });
 
 export const mapStateToProps = (state) => ({
-  location: state.location
+  location: state.location,
+  restaurants: state.restaurants
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

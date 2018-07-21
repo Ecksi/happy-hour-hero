@@ -20,8 +20,6 @@ class GoogleMap extends Component {
       lat: this.props.location.latitude,
       lng: this.props.location.longitude
     };
-
-    console.log(center)
     
 
     const markers = this.props.filteredRestaurants.map((restaurant, index) => {
