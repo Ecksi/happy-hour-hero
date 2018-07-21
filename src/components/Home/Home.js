@@ -4,7 +4,7 @@ import './Home.css';
 import homeLogo from './images/home-logo.png';
 import SearchBar from '../SearchBar/SearchBar';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
-import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours } from '../../actions';
+import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours, storeDrinkSpecials, storeFoodSpecials } from '../../actions';
 import geolib from 'geolib';
 
 class Home extends Component {
@@ -97,6 +97,7 @@ class Home extends Component {
     });
 
     this.props.storeFilteredRestaurants(filteredRestaurants);
+
     setTimeout(() => this.storeHappyHours(), 10);
   }
 
@@ -109,6 +110,34 @@ class Home extends Component {
       const happyHour = await response.json();
  
       this.props.storeHappyHours(happyHour);
+    });
+
+    setTimeout(() => this.storeDrinkSpecials(), 100);
+  }
+
+  storeDrinkSpecials = async () => {
+    const { happyHours } = this.props;
+  
+    await happyHours.forEach(async(happyHour) => {
+      const id = happyHour.drink_specials_id;
+      const response = await fetch(`http://localhost:3000/api/v1/drink_specials/${id}`);
+      const drinkSpecial = await response.json();
+
+      this.props.storeDrinkSpecials(drinkSpecial);
+    });
+
+    setTimeout(() => this.storeFoodSpecials(), 100);
+  }
+
+  storeFoodSpecials = async () => {
+    const { happyHours } = this.props;
+  
+    await happyHours.forEach(async(happyHour) => {
+      const id = happyHour.food_specials_id;
+      const response = await fetch(`http://localhost:3000/api/v1/food_specials/${id}`);
+      const foodSpecial = await response.json();
+
+      this.props.storeFoodSpecials(foodSpecial);
     });
 
     this.props.history.push('/HappyHours');
@@ -145,13 +174,20 @@ export const mapDispatchToProps = (dispatch) => ({
   },
   storeHappyHours: (happyHour) => {
     return dispatch(storeHappyHours(happyHour));
+  },
+  storeDrinkSpecials: (drinkSpecial) => {
+    return dispatch(storeDrinkSpecials(drinkSpecial));
+  },
+  storeFoodSpecials: (foodSpecial) => {
+    return dispatch(storeFoodSpecials(foodSpecial));
   }
 });
 
 export const mapStateToProps = (state) => ({
   location: state.location,
   restaurants: state.restaurants,
-  filteredRestaurants: state.filteredRestaurants
+  filteredRestaurants: state.filteredRestaurants,
+  happyHours: state.happyHours
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

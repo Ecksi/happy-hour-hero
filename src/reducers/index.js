@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux';
-import { location } from '../reducers/location';
-import { restaurants } from '../reducers/restaurants';
-import { filteredRestaurants } from '../reducers/filteredRestaurants';
-import { happyHours } from '../reducers/happyHours';
+import { location } from './location';
+import { restaurants } from './restaurants';
+import { filteredRestaurants } from './filteredRestaurants';
+import { happyHours } from './happyHours';
+import { drinkSpecials} from './drinkSpecials';
+import { foodSpecials} from './foodSpecials';
 
 export const rootReducer = combineReducers({
   location,
   restaurants,
   filteredRestaurants,
-  happyHours
+  happyHours,
+  drinkSpecials,
+  foodSpecials
 });
