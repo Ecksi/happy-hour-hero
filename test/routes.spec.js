@@ -9,8 +9,7 @@ chai.use(chaiHttp);
 
 describe('CLIENT routes', () => {
   it('should receive a response of html when we hit the root end point', done => {
-    chai
-      .request(server)
+    chai.request(server)
       .get('/')
       .end((error, response) => {
         response.should.have.status(200);
@@ -20,8 +19,7 @@ describe('CLIENT routes', () => {
   });
 
   it('should return a 404 for a route that does not exist', done => {
-    chai
-      .request(server)
+    chai.request(server)
       .get('/capstone')
       .end((error, response) => {
         response.should.have.status(404);
@@ -35,9 +33,9 @@ describe('CLIENT routes', () => {
         .then(() => {knex.migrate.latest()
           .then(() => {knex.seed.run()
             .then(() => done())
-          })
-        })
-    })
+          });
+        });
+    });
   });
 
   // ===========================================================
@@ -75,7 +73,7 @@ describe('CLIENT routes', () => {
           response.body[0].longitude.should.equal('-104.993984')
           done();
         });
-    })
+    });
 
     it('should return a status of 404 if the restaurant route is wrong', done => {
       chai.request(server)
@@ -84,8 +82,8 @@ describe('CLIENT routes', () => {
           response.should.have.status(404);
           done();
         });
-    })
-  })
+    });
+  });
 
   describe('GET /api/v1/drink_specials', () => {
     it('should return an array of all drink specials', done => {
@@ -103,7 +101,7 @@ describe('CLIENT routes', () => {
           response.body[9].name.should.equal('$3 Jager Bombs');
           response.body[9].best_deal.should.equal(false);
           done();
-        })
+        });
     });
 
     it('should return a status of 404 if the drink_specials route is wrong', done => {
@@ -113,8 +111,8 @@ describe('CLIENT routes', () => {
           response.should.have.status(404);
           done();
         });
-    })
-  })
+    });
+  });
 
   describe('GET /api/v1/food_specials', () => {
     it('should return an array of all food specials', done => {
@@ -163,7 +161,7 @@ describe('CLIENT routes', () => {
           response.body[0].should.have.property('restaurant_id');
           response.body[0].restaurant_id.should.equal(1);
           done();
-        })
+        });
     });
     
     it('should return a status of 404 if the happy hours route is wrong', done => {
