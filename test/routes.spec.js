@@ -140,4 +140,39 @@ describe('CLIENT routes', () => {
         });
     });
   });
+
+  describe('GET /api/v1/happy_hours', () => {
+    it('should return an array of all happy hours', done => {
+      chai.request(server)
+        .get('/api/v1/happy_hours')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(1);
+          response.body[0].should.have.property('day');
+          response.body[0].day.should.equal('Monday');
+          response.body[0].should.have.property('start_time');
+          response.body[0].start_time.should.equal('1600');
+          response.body[0].should.have.property('end_time');
+          response.body[0].end_time.should.equal('2000');
+          response.body[0].should.have.property('drink_specials_id');
+          response.body[0].drink_specials_id.should.equal(16);
+          response.body[0].should.have.property('food_specials_id');
+          response.body[0].food_specials_id.should.equal(8);
+          response.body[0].should.have.property('restaurant_id');
+          response.body[0].restaurant_id.should.equal(1);
+          done();
+        })
+    });
+    
+    it('should return a status of 404 if the happy hours route is wrong', done => {
+      chai.request(server)
+        .get('/api/v1/happyhappy')
+        .end((error, response) => {
+          response.should.have.status(404);
+          done();
+        });
+    });
+  });
 });
