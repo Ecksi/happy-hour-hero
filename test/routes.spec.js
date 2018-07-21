@@ -40,6 +40,10 @@ describe('CLIENT routes', () => {
     })
   });
 
+  // ===========================================================
+  // GET TESTS =================================================
+  // ===========================================================
+
   describe('GET /api/v1/restaurants', () => {
     it('should return an array of all restaurants', done => {
       chai.request(server)
@@ -76,6 +80,35 @@ describe('CLIENT routes', () => {
     it('should return a status of 404 if the restaurant route is wrong', done => {
       chai.request(server)
         .get('/api/v1/restoraunt')
+        .end((error, response) => {
+          response.should.have.status(404);
+          done();
+        });
+    })
+  })
+
+  describe('GET /api/v1/drink_specials', () => {
+    it('should return an array of all drink specials', done => {
+      chai.request(server)
+        .get('/api/v1/drink_specials')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(15);
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('2-for-1 drinks');
+          response.body[0].should.have.property('best_deal');
+          response.body[0].best_deal.should.equal(true);
+          response.body[9].name.should.equal('$3 Jager Bombs');
+          response.body[9].best_deal.should.equal(false);
+          done();
+        })
+    });
+
+    it('should return a status of 404 if the drink_specials route is wrong', done => {
+      chai.request(server)
+        .get('/api/v1/dranks')
         .end((error, response) => {
           response.should.have.status(404);
           done();
