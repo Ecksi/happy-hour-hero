@@ -4,7 +4,7 @@ import './Home.css';
 import homeLogo from './images/home-logo.png';
 import SearchBar from '../SearchBar/SearchBar';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
-import { storeLocation, storeRestaurants, storeFilteredRestaurants } from '../../actions';
+import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours } from '../../actions';
 import geolib from 'geolib';
 
 class Home extends Component {
@@ -37,7 +37,6 @@ class Home extends Component {
     } 
 
     this.filterRestaurants();
-    this.props.history.push('/HappyHours');
   }
 
   getMyLocation = () => {
@@ -98,6 +97,21 @@ class Home extends Component {
     });
 
     this.props.storeFilteredRestaurants(filteredRestaurants);
+    setTimeout(() => this.storeHappyHours(), 10);
+  }
+
+  storeHappyHours = async () => {
+    const { filteredRestaurants } = this.props;
+
+    await filteredRestaurants.forEach(async(restaurant) => {
+      const id = restaurant.id;
+      const response = await fetch(`http://localhost:3000/api/v1/happy_hours/${id}`);
+      const happyHour = await response.json();
+ 
+      this.props.storeHappyHours(happyHour);
+    });
+
+    this.props.history.push('/HappyHours');
   }
 
   render() {
@@ -128,12 +142,16 @@ export const mapDispatchToProps = (dispatch) => ({
   },
   storeFilteredRestaurants: (restaurants) => {
     return dispatch(storeFilteredRestaurants(restaurants));
+  },
+  storeHappyHours: (happyHour) => {
+    return dispatch(storeHappyHours(happyHour));
   }
 });
 
 export const mapStateToProps = (state) => ({
   location: state.location,
-  restaurants: state.restaurants
+  restaurants: state.restaurants,
+  filteredRestaurants: state.filteredRestaurants
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

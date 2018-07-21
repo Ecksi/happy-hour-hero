@@ -5,11 +5,12 @@ import './ResultCard.css';
 class ResultCard extends Component {
   constructor (props) {
     super(props);
-    
+
   }
 
+
   render() {
-    const { restaurantName, address, image } = this.props;
+    const { restaurantName, address, image, happyHourTimes } = this.props;
     const backgroundImage = {backgroundImage: "url(" + image + ")"};
 
     return (
@@ -19,8 +20,8 @@ class ResultCard extends Component {
         <div className="resultCardInfo">
           <h2>{ restaurantName }</h2>
           <p className="address">{ address }</p>
-          <h3>hours</h3>
-          <p className="times">mon-fri <span>3pm-6pm</span></p>
+          <h3>happy hour times</h3>
+          <p className="times">mon-fri <span>{ happyHourTimes }</span></p>
         </div>
       </article>
     );
