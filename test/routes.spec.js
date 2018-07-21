@@ -115,4 +115,29 @@ describe('CLIENT routes', () => {
         });
     })
   })
+
+  describe('GET /api/v1/food_specials', () => {
+    it('should return an array of all food specials', done => {
+      chai.request(server)
+        .get('/api/v1/food_specials')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(2);
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('25¢ wings');
+          done();
+        });
+    });
+
+    it('should return a status of 404 if the food specials route is wrong', done => {
+      chai.request(server)
+        .get('/api/v1/grub')
+        .end((error, response) => {
+          response.should.have.status(404);
+          done();
+        });
+    });
+  });
 });
