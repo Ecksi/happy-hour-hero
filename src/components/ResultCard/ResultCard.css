@@ -30,5 +30,13 @@
 .resultCardInfo h3 {
   color: #666;
   font-size: 1.5rem;
-  margin-top: 5px;
+  margin: 20px 0 2px 0;
   font-weight: 400; }
+
+.resultCardInfo .times {
+  color: #b3b3b3;
+  font-size: 1.2rem;
+  margin-top: 0; }
+
+.resultCardInfo .times span {
+  color: #fdb82a; }

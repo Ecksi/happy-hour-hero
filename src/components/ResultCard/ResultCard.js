@@ -20,7 +20,7 @@ class ResultCard extends Component {
           <h2>{ restaurantName }</h2>
           <p className="address">{ address }</p>
           <h3>hours</h3>
-          
+          <p className="times">mon-fri <span>3pm-6pm</span></p>
         </div>
       </article>
     );
