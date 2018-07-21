@@ -32,7 +32,23 @@ exports.seed = (knex, Promise) => {
             drink_specials_id: drink_specials[0].id,
             food_specials_id: food_specials[0].id,
             restaurant_id: restaurants[0].id,
-          }
+          },
+          {
+            day: 'Friday',
+            start_time: 1900,
+            end_time: 0000,
+            drink_specials_id: drink_specials[0].id,
+            food_specials_id: food_specials[0].id,
+            restaurant_id: restaurants[0].id,
+          },
+          {
+            day: 'Wednesday',
+            start_time: 2000,
+            end_time: 0200,
+            drink_specials_id: drink_specials[0].id,
+            food_specials_id: food_specials[0].id,
+            restaurant_id: restaurants[0].id,
+          },
         ])
       ])
       .then(() => console.log('Seeding complete!'))
