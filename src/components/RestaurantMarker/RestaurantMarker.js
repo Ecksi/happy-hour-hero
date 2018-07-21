@@ -9,9 +9,11 @@ class UserMarker extends Component {
   }
 
   render() {
+    const { name } = this.props;
+
     return (
       <section className="restaurantMarker">
-        <p>Restaurant</p>
+        <p>{ name }</p>
       </section>
     );
   }

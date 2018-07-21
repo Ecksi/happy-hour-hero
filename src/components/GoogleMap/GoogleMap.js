@@ -4,47 +4,36 @@ import GoogleMapReact from 'google-map-react';
 import './GoogleMap.css';
 import UserMarker from '../UserMarker/UserMarker';
 import RestaurantMarker from '../RestaurantMarker/RestaurantMarker';
-import geolib from 'geolib';
-import { storeRestaurants } from '../../actions';
+import { restaurants } from '../../reducers/restaurants';
 
 class GoogleMap extends Component {
   constructor() {
     super();
 
     this.state = {
-      zoom: 11
+      zoom: 15
     };
   }
 
-  async componentDidMount() {
-    await this.getAllRestaurants();
-  }
-
-  getAllRestaurants = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/api/v1/restaurants');
-      const restaurants = await response.json();
-
-      if (!response.ok) {
-        throw new Error(`${response.status}`);
-      }
-
-      this.props.storeRestaurants(restaurants)
-    } catch (error) {
-      throw new Error(`Network request failed. (error: ${error.message})`);
-    }
-  }
-  
   render() {
     const center = {
       lat: this.props.location.latitude,
       lng: this.props.location.longitude
     };
 
-    const distance = geolib.getDistance(
-      {latitude: 39.752912, longitude: -104.993983},
-      {latitude: 39.750801, longitude: -104.996595}
-    );
+    console.log(center)
+    
+
+    const markers = this.props.filteredRestaurants.map((restaurant, index) => {
+      const { latitude, longitude, name } = restaurant;
+
+      return ( <RestaurantMarker
+        lat={ latitude }
+        lng={ longitude }
+        key={ index }
+        name={ name }
+      />);
+    });
 
     return (
       <div className='google-map'>
@@ -55,24 +44,16 @@ class GoogleMap extends Component {
             lat={ center.lat }
             lng={ center.lng }
           />
-          <RestaurantMarker
-            lat={ center.lat + 0.02 }
-            lng={ center.lng + 0.02 }
-          />
+          { markers }
         </GoogleMapReact>
       </div>
     )
   }
 }
 
-export const mapDispatchToProps = (dispatch) => ({
-  storeRestaurants: (restaurants) => {
-    return dispatch(storeRestaurants(restaurants));
-  }
-});
-
 export const mapStateToProps = (state) => ({
-  location: state.location
+  location: state.location,
+  filteredRestaurants: state.filteredRestaurants
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GoogleMap);
+export default connect(mapStateToProps)(GoogleMap);
