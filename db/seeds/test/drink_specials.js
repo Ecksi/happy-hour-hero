@@ -1,4 +1,5 @@
 exports.seed = (knex, Promise) => {
+  knex('happy_hours').del()
   return knex('drink_specials').del()
     .then(() => {
       return Promise.all([
@@ -15,7 +16,7 @@ exports.seed = (knex, Promise) => {
             name: '$3 Vegas Bombs',
             best_deal: true
           },
-          { 
+          {
             name: '$3 U-call-its',
             best_deal: true
           },
@@ -49,7 +50,7 @@ exports.seed = (knex, Promise) => {
           },
           {
             name: '$5 32oz. Triple Wells or L.I.T.s',
-            best_deal:  false
+            best_deal: false
           },
           {
             name: 'LADIES NIGHT - Ladies drink FREE (8pm-11pm) - Wells, Domestic Drafts or House Wines',
