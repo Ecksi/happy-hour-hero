@@ -1,4 +1,5 @@
 exports.seed = (knex, Promise) => {
+  knex('happy_hours').del()
   return knex('food_specials').del()
     .then(() => {
       return Promise.all([
@@ -9,7 +10,7 @@ exports.seed = (knex, Promise) => {
           },
           {
             name: '$2 Cheeseburger',
-            best_deal:  true
+            best_deal: true
           }
         ])
           .then(() => console.log('Seeding complete!'))
