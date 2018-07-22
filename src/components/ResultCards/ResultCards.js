@@ -81,6 +81,10 @@ class ResultCards extends Component {
     const { filteredRestaurants } = this.props;
 
     if (filteredRestaurants.length > 0) {
+      filteredRestaurants.sort(function(a, b) {
+        return a.miles - b.miles;
+      });
+      
       resultCards = filteredRestaurants.map((restaurant, index) => {
         const restaurantName = restaurant.name;
         const { id, address, restaurant_image } = restaurant;

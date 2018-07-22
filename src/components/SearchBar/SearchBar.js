@@ -98,6 +98,7 @@ class SearchBar extends React.Component {
       const miles = meters * 0.000621371;
 
       if (miles < 5) {
+        Object.assign(restaurant, {miles})
         filteredRestaurants.push(restaurant);
       }
     });
@@ -111,10 +112,9 @@ class SearchBar extends React.Component {
     const { filteredRestaurants } = this.props;
     await filteredRestaurants.forEach(async(restaurant) => {
       const id = restaurant.id;
-      console.log(id)
       const response = await fetch(`http://localhost:3000/api/v1/happy_hours/${id}`);
       const happyHour = await response.json();
-      console.log(happyHour)
+
       this.props.storeHappyHours(happyHour);
     });
 
