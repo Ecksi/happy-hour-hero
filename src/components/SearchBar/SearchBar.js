@@ -110,10 +110,11 @@ class SearchBar extends React.Component {
   storeHappyHours = async () => {
     const { filteredRestaurants } = this.props;
     await filteredRestaurants.forEach(async(restaurant) => {
-      const id = 12;
+      const id = restaurant.id;
+      console.log(id)
       const response = await fetch(`http://localhost:3000/api/v1/happy_hours/${id}`);
       const happyHour = await response.json();
-
+      console.log(happyHour)
       this.props.storeHappyHours(happyHour);
     });
 

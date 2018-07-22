@@ -68,14 +68,16 @@ class ResultCard extends Component {
     const { startTime, endTime } = this.props;
     let time;
     let minutes;
+    let hours;
     let cleanMinutes;
  
-    this.state.currentlyHappyHour ? time = endTime : time = startTime;
-
-    const hours = time.slice(0, 2);
-    minutes = time.slice(2, 4);
-    
-    minutes === '00' ? cleanMinutes = null : cleanMinutes = ',' + minutes;
+    if (startTime && endTime) {
+      this.state.currentlyHappyHour ? time = endTime : time = startTime;
+      hours = time.slice(0, 2);
+      minutes = time.slice(2, 4);
+      
+      minutes === '00' ? cleanMinutes = null : cleanMinutes = ',' + minutes;
+    }
 
     const date = new Date();
     const year = date.getFullYear();
@@ -121,7 +123,7 @@ class ResultCard extends Component {
           <div className="happyHourSpecials">
             <p className="drinkSpecial">{ drinkSpecial }</p>
             <span>|</span>
-            <p className="foodSpecial">{ foodSpecial }</p>
+            { foodSpecial ? <p className="foodSpecial">{ foodSpecial }</p> : <p className="foodSpecial">No Food Specials</p> }
           </div>
         </div>
         <div className="resultCardRightInfo">
