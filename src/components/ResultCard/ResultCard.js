@@ -5,6 +5,7 @@ import  moment from 'moment';
 import PropTypes from 'prop-types';
 import { Route , withRouter} from 'react-router-dom';
 import Restaurant from '../Restaurant/Restaurant';
+import { storeRestaurantId } from '../../actions';
 moment().format();
 
 class ResultCard extends Component {
@@ -107,9 +108,12 @@ class ResultCard extends Component {
     }
   }
 
-  handleMoreInfoClick = () => {
-    this.props.history.push('/Restaurant');
+  handleMoreInfoClick = (event) => {
+    const id = event.target.closest('article').getAttribute('id');
+    
+    this.props.storeRestaurantId(id);
 
+    this.props.history.push('/Restaurant');
   }
 
   render() {
@@ -142,7 +146,7 @@ class ResultCard extends Component {
               <p className="resultCardStartTime">{this.state.time.h}hrs {this.state.time.m}mins {this.state.time.s}secs</p>
             </span>
           </div>
-          <a href="#" className="moreInfoButton" onClick={this.handleMoreInfoClick} >More Info</a>
+          <a href="#" className="moreInfoButton" onClick={(event) => this.handleMoreInfoClick(event)} >More Info</a>
         </div>
       </article>
     );
@@ -160,8 +164,14 @@ ResultCard.propTypes = {
   drinkSpecial: PropTypes.string,
 };
 
+export const mapDispatchToProps = (dispatch) => ({
+  storeRestaurantId: (id) => {
+    return dispatch(storeRestaurantId(id));
+  },
+});
+
 export const mapStateToProps = (state) => ({
   filteredRestaurants: state.filteredRestaurants
 });
 
-export default withRouter(connect(mapStateToProps)(ResultCard));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ResultCard));
