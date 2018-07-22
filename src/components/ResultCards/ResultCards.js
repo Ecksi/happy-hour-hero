@@ -47,7 +47,20 @@ class ResultCards extends Component {
 
 
     if (bestFoodSpecial) {
-      return bestFoodSpecial.name
+      return bestFoodSpecial.name;
+    }
+  }
+
+  findBestDrinkSpecial = (todaysHappyHour) => {
+    const { drinkSpecials } = this.props;
+
+    const bestDrinkSpecial = drinkSpecials.find(special => {
+      return special.id === todaysHappyHour[0].drink_specials_id && special.best_deal === true;
+    });
+
+
+    if (bestDrinkSpecial) {
+      return bestDrinkSpecial.name
     }
   }
 
@@ -57,6 +70,7 @@ class ResultCards extends Component {
     let startTime;
     let endTime;
     let bestFoodSpecial;
+    let bestDrinkSpecial;
 
     const { filteredRestaurants, happyHours } = this.props;
 
@@ -77,6 +91,7 @@ class ResultCards extends Component {
         if (todaysHappyHour[0]) {
           times = this.cleanHappyHourTimes(todaysHappyHour);
           bestFoodSpecial = this.findBestFoodSpecial(todaysHappyHour);
+          bestDrinkSpecial = this.findBestDrinkSpecial(todaysHappyHour);
         }
 
         return ( <ResultCard
@@ -84,6 +99,7 @@ class ResultCards extends Component {
           address={ address }
           happyHourTimes={ times }
           foodSpecial={ bestFoodSpecial }
+          drinkSpecial={ bestDrinkSpecial }
           startTime={ startTime }
           endTime={ endTime }
           image = { restaurant_image }
@@ -105,7 +121,8 @@ class ResultCards extends Component {
 export const mapStateToProps = (state) => ({
   filteredRestaurants: state.filteredRestaurants,
   happyHours: state.happyHours,
-  foodSpecials: state.foodSpecials
+  foodSpecials: state.foodSpecials,
+  drinkSpecials: state.drinkSpecials
 });
 
 export default connect(mapStateToProps)(ResultCards);

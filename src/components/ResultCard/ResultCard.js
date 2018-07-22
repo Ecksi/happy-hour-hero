@@ -108,7 +108,7 @@ class ResultCard extends Component {
 
 
   render() {
-    const { restaurantName, address, image, happyHourTimes, foodSpecial } = this.props;
+    const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial } = this.props;
     const backgroundImage = {backgroundImage: "url(" + image + ")"};
 
     return (
@@ -121,15 +121,22 @@ class ResultCard extends Component {
           <h3>happy hour times</h3>
           <p className="times">mon-fri <span>{ happyHourTimes }</span></p>
         </div>
-        <div className="happyHourSpecials">
-          { foodSpecial }
+        <div className="happyHourSpecialsContainer">
+          <div className="happyHourSpecials">
+            <p className="drinkSpecial">{ drinkSpecial }</p>
+            <span>|</span>
+            <p className="foodSpecial">{ foodSpecial }</p>
+          </div>
         </div>
-        <div className="resultCardClock">
-          <i class="far fa-clock"></i>
-          <span>
-            <p>{ this.state.currentlyHappyHour ? 'Ends in:' : 'Starts in:'} </p>
-            <p className="resultCardStartTime">{this.state.time.h}hrs {this.state.time.m}mins {this.state.time.s}secs</p>
-          </span>
+        <div className="resultCardRightInfo">
+          <div className="resultCardClock">
+            <i class="far fa-clock"></i>
+            <span>
+              <p>{ this.state.currentlyHappyHour ? 'Ends in:' : 'Starts in:'} </p>
+              <p className="resultCardStartTime">{this.state.time.h}hrs {this.state.time.m}mins {this.state.time.s}secs</p>
+            </span>
+          </div>
+          <a href="#" className="moreInfoButton">More Info</a>
         </div>
       </article>
     );
