@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ResultCard.css';
+import  moment from 'moment';
+moment().format();
 
 class ResultCard extends Component {
   constructor (props) {
@@ -8,9 +10,8 @@ class ResultCard extends Component {
 
     this.state = {
       time: {},
-      seconds: 8073.797,
-      timeUntil: false,
-      timeRemaining: false
+      seconds: null,
+      currentlyHappyHour: false
     }
 ,
     this.timer = 0;
@@ -39,49 +40,65 @@ class ResultCard extends Component {
     let timeLeftVar = this.secondsToTime(this.state.seconds);
     this.setState({ time: timeLeftVar });
     this.startTimer;
-    this.getTimeRemaining();
+    this.setTimeUntilRemaining();
   }
 
   startTimer = () => {
-    if (this.timer == 0) {
+    if (this.timer === 0) {
       this.timer = setInterval(this.countDown, 1000);
     }
   }
 
-  getTimeRemaining = () => {
+  setTimeUntilRemaining = () => {
+    const { startTime, endTime } = this.props;
+    const currentTime = moment().format('HHmm'); 
+
+    if (startTime < currentTime < endTime) {
+      this.setState({
+        currentlyHappyHour: true
+      }, () => this.getRemainingTime());
+    } else {
+      this.setState({
+        currentlyHappyHour: false
+      }, () => this.getRemainingTime());
+    }
+
+  }
+
+  getRemainingTime = () => {
+    const { startTime, endTime } = this.props;
+    let time;
     let minutes;
     let cleanMinutes;
 
-    const { startTime, endTime } = this.props;
+    this.state.currentlyHappyHour ? time = endTime : time = startTime;
 
-    const hours = startTime.slice(0, 2);
-    minutes = startTime.slice(2,4);
+    const hours = time.slice(0, 2);
+    minutes = time.slice(2,4);
     
-    if (minutes === '00') {
-      cleanMinutes = null
-    } else {
-      cleanMinutes = ',' + minutes
-    }
+    minutes === '00' ? cleanMinutes = null : cleanMinutes = ',' + minutes;
 
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
     const day = date.getDate();
-    const deadline = new Date(year, month, day, hours, cleanMinutes)
+    const deadline = new Date(year, month, day, hours, cleanMinutes);
     const currentTime = Date.now();
 
     const seconds = (deadline - currentTime) / 1000;
     
     this.setState({
       seconds
-    })
+    });
   }
+
+
 
   countDown = () => {
     let seconds = this.state.seconds - 1;
     this.setState({
       time: this.secondsToTime(seconds),
-      seconds: seconds,
+      seconds: seconds
     });
     
     if (seconds == 0) { 
@@ -91,7 +108,7 @@ class ResultCard extends Component {
 
 
   render() {
-    const { restaurantName, address, image, happyHourTimes } = this.props;
+    const { restaurantName, address, image, happyHourTimes, foodSpecial } = this.props;
     const backgroundImage = {backgroundImage: "url(" + image + ")"};
 
     return (
@@ -104,10 +121,13 @@ class ResultCard extends Component {
           <h3>happy hour times</h3>
           <p className="times">mon-fri <span>{ happyHourTimes }</span></p>
         </div>
+        <div className="happyHourSpecials">
+          { foodSpecial }
+        </div>
         <div className="resultCardClock">
           <i class="far fa-clock"></i>
           <span>
-            <p>Starts in:</p>
+            <p>{ this.state.currentlyHappyHour ? 'Ends in:' : 'Starts in:'} </p>
             <p className="resultCardStartTime">{this.state.time.h}hrs {this.state.time.m}mins {this.state.time.s}secs</p>
           </span>
         </div>

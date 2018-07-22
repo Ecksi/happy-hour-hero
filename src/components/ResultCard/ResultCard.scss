@@ -15,10 +15,11 @@
 }
 
 .resultCardInfo {
-  margin-left: 60px;
+  margin-left: 40px;
   display: flex;
+  -ms-flex-direction: column;
   flex-direction: column;
-  width: 50%;
+  width: 20%;
 }
 
 .resultCardInfo h2 {
@@ -54,18 +55,38 @@
 .fa-clock {
   font-size: 4rem;
   color: #fdb82a;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .resultCardClock {
   float: right;
   display: flex;
+  height: 70px;
   width: 20%;
+  align-items: center;
 }
 
 .resultCardClock p {
   color: #b3b3b3;
   font-size: 1.2rem;
+  margin: 5px;
+}
+
+.resultCardStartTime {
+  color: #666 !important;
+  font-size: 1.3rem !important;
+}
+
+.happyHourSpecials {
+  height: 50px;
+  background: #fdb82a;
+  padding: 5px 25px;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  width: 25%;
+  font-size: 1.1rem;
 }
 
 
