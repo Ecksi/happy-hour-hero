@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Header.css';
 import SearchBar from '../SearchBar/SearchBar';
+import PropTypes from 'prop-types';
+import './Header.css';
 
 class Header extends Component {
   constructor (props) {
@@ -9,8 +10,7 @@ class Header extends Component {
 
     this.state = {
       dropdownSelected: false
-    }
-    
+    };
   }
 
   handleSubmit = () => {
@@ -36,6 +36,10 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  location: PropTypes.obj,
+};
 
 export const mapStateToProps = (state) => ({
   location: state.location
