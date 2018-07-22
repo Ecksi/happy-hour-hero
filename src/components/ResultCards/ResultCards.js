@@ -9,6 +9,7 @@ class ResultCards extends Component {
     
   }
 
+
   findDay = () => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const date = new Date();
@@ -20,7 +21,6 @@ class ResultCards extends Component {
 
   cleanHappyHourTimes = (happyHour) => {
     const todaysHappyHour = happyHour[0];
-    console.log(todaysHappyHour)
     const start = todaysHappyHour.start_time;
     const end = todaysHappyHour.end_time;
     const cleanStartTime = this.getFormattedTime(start);
@@ -38,7 +38,6 @@ class ResultCards extends Component {
 
     return hours + ':' + minutes + amPm;
   };
-
 
   render() {
     let resultCards;
@@ -65,6 +64,7 @@ class ResultCards extends Component {
           restaurantName={ restaurantName }
           address={ address }
           happyHourTimes={ times }
+          timer={ this.timer }
           image = { restaurant_image }
           key={ index }
           id={ id }
