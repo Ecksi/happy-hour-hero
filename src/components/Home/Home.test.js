@@ -1,9 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { shallow } from 'enzyme';
+import Home from './Home';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('Home', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<Home />);
+  });
+
+  it('matches the snapshot', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
 });
