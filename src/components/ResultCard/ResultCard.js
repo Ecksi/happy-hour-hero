@@ -68,14 +68,16 @@ class ResultCard extends Component {
     const { startTime, endTime } = this.props;
     let time;
     let minutes;
+    let hours;
     let cleanMinutes;
  
-    this.state.currentlyHappyHour ? time = endTime : time = startTime;
-
-    const hours = time.slice(0, 2);
-    minutes = time.slice(2, 4);
-    
-    minutes === '00' ? cleanMinutes = null : cleanMinutes = ',' + minutes;
+    if (startTime && endTime) {
+      this.state.currentlyHappyHour ? time = endTime : time = startTime;
+      hours = time.slice(0, 2);
+      minutes = time.slice(2, 4);
+      
+      minutes === '00' ? cleanMinutes = null : cleanMinutes = ',' + minutes;
+    }
 
     const date = new Date();
     const year = date.getFullYear();
@@ -104,16 +106,17 @@ class ResultCard extends Component {
   }
 
   render() {
-    const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial } = this.props;
+    const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial, miles, id } = this.props;
     const backgroundImage = {backgroundImage: "url(" + image + ")"};
 
     return (
-      <article className="resultCardContainer">
+      <article className={`resultCardContainer resultCard${id}`} id={id}>
         <div className="resultCardImage" style={backgroundImage}>
         </div>
         <div className="resultCardInfo">
           <h2>{ restaurantName }</h2>
           <p className="address">{ address }</p>
+          <p className="miles">{ miles } Miles</p>
           <h3>happy hour times</h3>
           <p className="times">mon-fri <span>{ happyHourTimes }</span></p>
         </div>
@@ -121,7 +124,7 @@ class ResultCard extends Component {
           <div className="happyHourSpecials">
             <p className="drinkSpecial">{ drinkSpecial }</p>
             <span>|</span>
-            <p className="foodSpecial">{ foodSpecial }</p>
+            { foodSpecial ? <p className="foodSpecial">{ foodSpecial }</p> : <p className="foodSpecial">No Food Specials</p> }
           </div>
         </div>
         <div className="resultCardRightInfo">

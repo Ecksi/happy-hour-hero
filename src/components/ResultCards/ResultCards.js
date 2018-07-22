@@ -60,12 +60,13 @@ class ResultCards extends Component {
 
   getTodaysHappyHour = (restaurant) => {
     const { happyHours } = this.props;
+
     const todaysHappyHour = happyHours.find(happyHour => {
       const day = this.findDay();
 
       return happyHour.restaurant_id === restaurant.id && happyHour.day === day;
     });
-    
+
     return todaysHappyHour;
   }
 
@@ -80,9 +81,15 @@ class ResultCards extends Component {
     const { filteredRestaurants } = this.props;
 
     if (filteredRestaurants.length > 0) {
+      filteredRestaurants.sort(function(a, b) {
+        return a.miles - b.miles;
+      });
+
       resultCards = filteredRestaurants.map((restaurant, index) => {
         const restaurantName = restaurant.name;
+        let miles = restaurant.miles;
         const { id, address, restaurant_image } = restaurant;
+      
         const todaysHappyHour = this.getTodaysHappyHour(restaurant);
         
         if (todaysHappyHour) {
@@ -91,11 +98,13 @@ class ResultCards extends Component {
           bestDrinkSpecial = this.getBestDrinkSpecial(todaysHappyHour);
           startTime = todaysHappyHour.start_time;
           endTime = todaysHappyHour.end_time;
+          miles = miles.toFixed(2);
         }
 
         return ( <ResultCard
           restaurantName={ restaurantName }
           address={ address }
+          miles={ miles }
           happyHourTimes={ times }
           foodSpecial={ bestFoodSpecial }
           drinkSpecial={ bestDrinkSpecial }

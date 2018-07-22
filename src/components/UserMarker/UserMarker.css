@@ -1,15 +1,3 @@
-.fa-male {
-  font-size: 4rem;
-  color: #3c3a3a; }
-
-.userMarker {
-  width: 60px;
-  height: 20px;
-  background: purple;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  color: white;
-  border-radius: 4px;
-  justify-content: center;
-  text-align: center; }
+.userMarker img {
+  width: 45px;
+  height: auto; }

@@ -7,6 +7,25 @@
   box-shadow: 2px 2px 2px 2px #eee;
 }
 
+.resultCardContainer.selectedCard {
+  background: #fdb82a;
+}
+
+.selectedCard .resultCardInfo .address, .selectedCard .resultCardInfo .times span, .selectedCard .resultCardInfo h2, .selectedCard .resultCardInfo h3, .selectedCard .resultCardClock p {
+  color: #fff;
+}
+
+.selectedCard .happyHourSpecials {
+  background: #fff;
+  color: #fdb82a;
+}
+
+.selectedCard .moreInfoButton {
+  background: #e09b1f;
+  color: #fff;
+  border: 1px solid #e09b1f;
+}
+
 .resultCardImage {
   width: 250px;
   height: 150px;
@@ -121,6 +140,14 @@
   border-radius: 5px;
   justify-content: center;
 }
+
+.miles {
+  color: #999;
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: -10px 0 10px 0;
+}
+
 
 
 
