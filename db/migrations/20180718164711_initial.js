@@ -34,9 +34,12 @@ exports.up = function (knex, Promise) {
       table.string('day');
       table.string('start_time');
       table.string('end_time');
-      table.integer('restaurant_id').references('restaurants.id');
-      table.integer('food_specials_id').references('food_specials.id');
-      table.integer('drink_specials_id').references('drink_specials.id');
+      table.integer('restaurant_id').unsigned()
+      table.foreign('restaurant_id').references('restaurants.id');
+      table.integer('drink_specials_id').unsigned()
+      table.foreign('drink_specials_id').references('drink_specials.id');
+      table.integer('food_specials_id').unsigned()
+      table.foreign('food_specials_id').references('food_specials.id');
       table.timestamps(true, true);
     })
   ]);
@@ -44,9 +47,9 @@ exports.up = function (knex, Promise) {
 
 exports.down = function (knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('drink_specials'),
-    knex.schema.dropTable('food_specials'),
-    knex.schema.dropTable('restaurants'),
     knex.schema.dropTable('happy_hours'),
+    knex.schema.dropTable('food_specials'),
+    knex.schema.dropTable('drink_specials'),
+    knex.schema.dropTable('restaurants'),
   ]);
 };

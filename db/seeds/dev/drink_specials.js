@@ -1,6 +1,6 @@
 exports.seed = (knex, Promise) => {
-  knex('happy_hours').del()
-  return knex('drink_specials').del()
+  return knex('happy_hours').del()
+    .then(() => knex('drink_specials').del())
     .then(() => {
       return Promise.all([
         knex('drink_specials').insert([

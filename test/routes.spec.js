@@ -163,7 +163,7 @@ describe('CLIENT routes', () => {
   describe('GET /api/v1/drink_specials/:id', () => {
     it('should return an array of one drink special',  done => {
       chai.request(server)
-        .get('/api/v1/drink_specials/18')
+        .get('/api/v1/drink_specials/3')
         .end((error, response) => {
           response.should.have.status(200);
           response.should.be.json;
@@ -218,7 +218,7 @@ describe('CLIENT routes', () => {
   describe('GET /api/v1/food_specials/:id', () => {
     it('should return an array of one food special', done => {
       chai.request(server)
-        .get('/api/v1/food_specials/4')
+        .get('/api/v1/food_specials/2')
         .end((error, response) => {
           response.should.have.status(200);
           response.should.be.json;
@@ -261,11 +261,11 @@ describe('CLIENT routes', () => {
           response.body[0].should.have.property('end_time');
           response.body[0].end_time.should.equal('2000');
           response.body[0].should.have.property('drink_specials_id');
-          response.body[0].drink_specials_id.should.equal(16);
+          response.body[0].drink_specials_id.should.equal(1);
           response.body[0].should.have.property('food_specials_id');
-          response.body[0].food_specials_id.should.equal(4);
+          response.body[0].food_specials_id.should.equal(2);
           response.body[0].should.have.property('restaurant_id');
-          response.body[0].restaurant_id.should.equal(1);
+          response.body[0].restaurant_id.should.equal(3);
           done();
         });
     });
@@ -283,7 +283,7 @@ describe('CLIENT routes', () => {
   describe('GET /api/v1/happy_hours/:id', () => {
     it('should return an array of one happy hour', done => {
       chai.request(server)
-        .get('/api/v1/happy_hours/4')
+        .get('/api/v1/happy_hours/1')
         .end((error, response) => {
           response.should.have.status(200);
           response.should.be.json;
@@ -296,11 +296,11 @@ describe('CLIENT routes', () => {
           response.body[0].should.have.property('end_time');
           response.body[0].end_time.should.equal('2000');
           response.body[0].should.have.property('drink_specials_id');
-          response.body[0].drink_specials_id.should.equal(16);
+          response.body[0].drink_specials_id.should.equal(1);
           response.body[0].should.have.property('food_specials_id');
-          response.body[0].food_specials_id.should.equal(4);
+          response.body[0].food_specials_id.should.equal(2);
           response.body[0].should.have.property('restaurant_id');
-          response.body[0].restaurant_id.should.equal(1);
+          response.body[0].restaurant_id.should.equal(3);
           done();
         });
     });
