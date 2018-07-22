@@ -10,8 +10,9 @@
   bottom: 100px;
   position: absolute;
   height: 250px;
-  background: #eee;
-  border-radius: 20px; }
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 2px 2px 2px 2px #eee; }
 
 .restaurantImageBorder {
   height: 130px;
