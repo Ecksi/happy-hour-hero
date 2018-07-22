@@ -104,11 +104,11 @@ class ResultCard extends Component {
   }
 
   render() {
-    const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial } = this.props;
+    const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial, id } = this.props;
     const backgroundImage = {backgroundImage: "url(" + image + ")"};
 
     return (
-      <article className="resultCardContainer">
+      <article className={`resultCardContainer resultCard${id}`} id={id}>
         <div className="resultCardImage" style={backgroundImage}>
         </div>
         <div className="resultCardInfo">
