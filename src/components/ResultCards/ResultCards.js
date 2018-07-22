@@ -65,13 +65,12 @@ class ResultCards extends Component {
 
   getTodaysHappyHour = (restaurant) => {
     const { happyHours } = this.props;
-
     const todaysHappyHour = happyHours.find(happyHour => {
       const day = this.findDay();
-      
+
       return happyHour.restaurant_id === restaurant.id && happyHour.day === day;
     });
-
+    
     return todaysHappyHour;
   }
 
@@ -92,7 +91,7 @@ class ResultCards extends Component {
         const { id, address, restaurant_image } = restaurant;
         
         const todaysHappyHour = this.getTodaysHappyHour(restaurant);
-
+        
         if (todaysHappyHour) {
           times = this.cleanHappyHourTimes(todaysHappyHour);
           bestFoodSpecial = this.getBestFoodSpecial(todaysHappyHour);

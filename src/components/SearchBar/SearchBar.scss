@@ -23,6 +23,30 @@
 
 .searchInputContainer {
   margin-bottom: 30px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.happyHoursContainer .searchInputContainer {
+  margin-bottom: 30px;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.happyHoursContainer .searchBarContainer {
+  margin-top: -35px;
+  z-index: 9;
+  position: relative;
+}
+
+.happyHoursContainer .autocompleteContainer {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.happyHoursContainer .fa-search {
+  top: 20px
 }
 
 .searchInput,
@@ -38,6 +62,12 @@
     font-size: 16px;
     border-radius: 2px;
     outline: none;
+    margin-bottom: 20px;
+}
+
+.happyHoursContainer .searchInput {
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
 }
 
 .clearButton,
