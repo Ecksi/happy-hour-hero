@@ -50,11 +50,11 @@ class ResultCards extends Component {
       resultCards = filteredRestaurants.map((restaurant, index) => {
         const restaurantName = restaurant.name;
         const { id, address, restaurant_image } = restaurant;
-
+       
         const todaysHappyHour = happyHours.filter(happyHour => {
           const day = this.findDay();
-
-          return happyHour.id === restaurant.id && happyHour.day === day;
+          
+          return happyHour.restaurant_id === restaurant.id && happyHour.day === day;
         });
 
         if (todaysHappyHour.length > 0) {

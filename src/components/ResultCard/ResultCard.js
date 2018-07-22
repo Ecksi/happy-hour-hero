@@ -23,6 +23,11 @@ class ResultCard extends Component {
           <h3>happy hour times</h3>
           <p className="times">mon-fri <span>{ happyHourTimes }</span></p>
         </div>
+        <div className="resultCardClock">
+          <i class="far fa-clock"></i>
+          <p>Starts in:</p>
+          <p className="resultCardStartTime"></p>
+        </div>
       </article>
     );
   }

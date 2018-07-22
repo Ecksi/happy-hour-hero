@@ -23,13 +23,14 @@ class GoogleMap extends Component {
     
 
     const markers = this.props.filteredRestaurants.map((restaurant, index) => {
-      const { latitude, longitude, name } = restaurant;
+      const { latitude, longitude, name, id } = restaurant;
 
       return ( <RestaurantMarker
         lat={ latitude }
         lng={ longitude }
         key={ index }
         name={ name }
+        id={ id }
       />);
     });
 

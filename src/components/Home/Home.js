@@ -82,7 +82,7 @@ class Home extends Component {
     const homeLongitude = this.props.location.longitude;
    
     const filteredRestaurants = [];
-
+ 
     const markers = restaurants.forEach(restaurant => {
       const meters = geolib.getDistance(
         {latitude: homeLatitude, longitude: homeLongitude},
@@ -103,12 +103,11 @@ class Home extends Component {
 
   storeHappyHours = async () => {
     const { filteredRestaurants } = this.props;
-
     await filteredRestaurants.forEach(async(restaurant) => {
-      const id = restaurant.id;
+      const id = 12;
       const response = await fetch(`http://localhost:3000/api/v1/happy_hours/${id}`);
       const happyHour = await response.json();
- 
+
       this.props.storeHappyHours(happyHour);
     });
 
