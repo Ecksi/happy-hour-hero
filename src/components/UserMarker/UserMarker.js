@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './UserMarker.css';
+import userMarker from './assets/user-marker.png';
+
 
 class UserMarker extends Component {
   render() {
     return (
       <section className="userMarker">
-        <p>Current Location</p>
+        <img src={ userMarker } />
       </section>
     );
   }

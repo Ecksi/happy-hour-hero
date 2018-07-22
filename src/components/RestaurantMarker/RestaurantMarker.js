@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './RestaurantMarker.css';
 import PropTypes from 'prop-types';
+import restaurantMarker from './assets/restaurant-marker.png';
 
 class RestaurantMarker extends Component {
   constructor (props) {
@@ -28,7 +29,7 @@ class RestaurantMarker extends Component {
 
     return (
       <section className={`restaurantMarker marker${id}`} id={id} onClick={(event) => this.handleClick(event)}>
-        <p>{ name }</p>
+        <img src={ restaurantMarker } />
       </section>
     );
   }
