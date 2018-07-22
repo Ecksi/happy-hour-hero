@@ -1,0 +1,18 @@
+.contactBarContainer {
+  width: calc(80% - 80px);
+  margin: 0 auto;
+  background: #fdb82a;
+  margin-top: 100px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 20px 40px;
+  justify-content: space-between;
+}
+
+.contactBarContainer a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 200;
+}

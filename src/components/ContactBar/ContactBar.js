@@ -1,0 +1,40 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import './ContactBar.css';
+import PropTypes from 'prop-types';
+
+class ContactBar extends Component {
+  constructor (props) {
+    super(props);
+    
+  }
+
+  getRestaurant = () => {
+    const { restaurantId, filteredRestaurants } = this.props;
+    const id = restaurantId;
+
+    const restaurant = filteredRestaurants.find(restaurant => restaurant.id == id);
+
+    return restaurant;
+  }
+
+  render() {
+    const restaurant = this.getRestaurant();
+    const { phone, website } = restaurant;
+
+    return (
+      <section className="contactBarContainer">
+        <a href={`tel:${phone}`} className="contactPhone">Phone <i class="fas fa-phone"></i></a>
+        <a href={website} target="_blank" className="contactWebsite">Website <i class="fas fa-globe-americas"></i></a>
+      </section>
+    );
+  }
+}
+
+export const mapStateToProps = (state) => ({
+  location: state.location,
+  restaurantId: state.restaurantId,
+  filteredRestaurants: state.filteredRestaurants
+});
+
+export default connect(mapStateToProps)(ContactBar);

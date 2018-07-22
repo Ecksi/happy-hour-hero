@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import './Restaurant.css';
 import Header from '../Header/Header';
 import RestaurantInfo from '../RestaurantInfo/RestaurantInfo';
+import ContactBar from '../ContactBar/ContactBar';
 
 class Restaurant extends Component {
   constructor (props) {
@@ -18,6 +19,7 @@ class Restaurant extends Component {
       <section className="restaurantContainer">
         <Header />
         <RestaurantInfo />
+        <ContactBar />
       </section>
     );
   }
