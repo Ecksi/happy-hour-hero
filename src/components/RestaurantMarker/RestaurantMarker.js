@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './RestaurantMarker.css';
 
-class UserMarker extends Component {
+class RestaurantMarker extends Component {
   constructor (props) {
     super(props);
     
@@ -23,4 +23,4 @@ export const mapStateToProps = (state) => ({
   location: state.location
 });
 
-export default connect(mapStateToProps)(UserMarker);
+export default connect(mapStateToProps)(RestaurantMarker);

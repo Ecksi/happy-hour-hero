@@ -42,9 +42,9 @@ exports.seed = (knex, Promise) => {
             restaurant_id: restaurants[0].id,
           },
           {
-            day: 'Wednesday',
+            day: 'Saturday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 2200,
             drink_specials_id: drink_specials[0].id,
             food_specials_id: food_specials[0].id,
             restaurant_id: restaurants[0].id,

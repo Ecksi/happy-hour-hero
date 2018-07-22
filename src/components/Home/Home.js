@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Home.css';
 import homeLogo from './images/home-logo.png';
-import LocationAutocomplete from 'location-autocomplete';
 import SearchBar from '../SearchBar/SearchBar';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
-import { storeLocation } from '../../actions';
+import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours, storeDrinkSpecials, storeFoodSpecials } from '../../actions';
+import geolib from 'geolib';
 
 class Home extends Component {
   constructor (props) {
@@ -19,6 +19,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    this.getAllRestaurants();
     this.getMyLocation()
   }
 
@@ -35,7 +36,7 @@ class Home extends Component {
       this.props.storeLocation(address, longitude, latitude);
     } 
 
-    this.props.history.push('/HappyHours');
+    this.filterRestaurants();
   }
 
   getMyLocation = () => {
@@ -57,6 +58,88 @@ class Home extends Component {
     const address = data.results[0].formatted_address;
 
     return address;
+  }
+
+  getAllRestaurants = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/restaurants');
+      const restaurants = await response.json();
+
+      if (!response.ok) {
+        throw new Error(`${response.status}`);
+      }
+
+      return restaurants;
+      // this.props.storeRestaurants(restaurants)
+    } catch (error) {
+      throw new Error(`Network request failed. (error: ${error.message})`);
+    }
+  }
+
+  filterRestaurants = async () => {
+    const restaurants = await this.getAllRestaurants();
+    const homeLatitude = this.props.location.latitude;
+    const homeLongitude = this.props.location.longitude;
+   
+    const filteredRestaurants = [];
+ 
+    const markers = restaurants.forEach(restaurant => {
+      const meters = geolib.getDistance(
+        {latitude: homeLatitude, longitude: homeLongitude},
+        {latitude: restaurant.latitude, longitude: restaurant.longitude}
+      );
+
+      const miles = meters * 0.000621371;
+
+      if (miles < 5) {
+        filteredRestaurants.push(restaurant);
+      }
+    });
+
+    this.props.storeFilteredRestaurants(filteredRestaurants);
+
+    setTimeout(() => this.storeHappyHours(), 10);
+  }
+
+  storeHappyHours = async () => {
+    const { filteredRestaurants } = this.props;
+    await filteredRestaurants.forEach(async(restaurant) => {
+      const id = 12;
+      const response = await fetch(`http://localhost:3000/api/v1/happy_hours/${id}`);
+      const happyHour = await response.json();
+
+      this.props.storeHappyHours(happyHour);
+    });
+
+    setTimeout(() => this.storeDrinkSpecials(), 100);
+  }
+
+  storeDrinkSpecials = async () => {
+    const { happyHours } = this.props;
+  
+    await happyHours.forEach(async(happyHour) => {
+      const id = happyHour.drink_specials_id;
+      const response = await fetch(`http://localhost:3000/api/v1/drink_specials/${id}`);
+      const drinkSpecial = await response.json();
+
+      this.props.storeDrinkSpecials(drinkSpecial);
+    });
+
+    setTimeout(() => this.storeFoodSpecials(), 100);
+  }
+
+  storeFoodSpecials = async () => {
+    const { happyHours } = this.props;
+  
+    await happyHours.forEach(async(happyHour) => {
+      const id = happyHour.food_specials_id;
+      const response = await fetch(`http://localhost:3000/api/v1/food_specials/${id}`);
+      const foodSpecial = await response.json();
+
+      this.props.storeFoodSpecials(foodSpecial);
+    });
+
+    this.props.history.push('/HappyHours');
   }
 
   render() {
@@ -81,11 +164,29 @@ class Home extends Component {
 export const mapDispatchToProps = (dispatch) => ({
   storeLocation: (address, longitude, latitude) => {
     return dispatch(storeLocation(address, longitude, latitude));
+  },
+  storeRestaurants: (restaurants) => {
+    return dispatch(storeRestaurants(restaurants));
+  },
+  storeFilteredRestaurants: (restaurants) => {
+    return dispatch(storeFilteredRestaurants(restaurants));
+  },
+  storeHappyHours: (happyHour) => {
+    return dispatch(storeHappyHours(happyHour));
+  },
+  storeDrinkSpecials: (drinkSpecial) => {
+    return dispatch(storeDrinkSpecials(drinkSpecial));
+  },
+  storeFoodSpecials: (foodSpecial) => {
+    return dispatch(storeFoodSpecials(foodSpecial));
   }
 });
 
 export const mapStateToProps = (state) => ({
-  location: state.location
+  location: state.location,
+  restaurants: state.restaurants,
+  filteredRestaurants: state.filteredRestaurants,
+  happyHours: state.happyHours
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
