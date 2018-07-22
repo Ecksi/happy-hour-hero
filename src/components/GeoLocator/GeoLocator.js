@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { geolocated } from 'react-geolocated';
+import PropTypes from 'prop-types';
  
 class GeoLocator extends React.Component {
   render() {
@@ -13,6 +13,12 @@ class GeoLocator extends React.Component {
           : null;
   }
 }
+
+GeoLocator.propTypes = {
+  isGeolocationAvailable: PropTypes.bool,
+  isGeolocationEnabled: PropTypes.bool,
+  coords: PropTypes.number,
+};
  
 export default geolocated({
   positionOptions: {
