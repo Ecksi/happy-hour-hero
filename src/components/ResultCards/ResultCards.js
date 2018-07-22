@@ -18,8 +18,7 @@ class ResultCards extends Component {
     return day;
   }
 
-  cleanHappyHourTimes = (happyHour) => {
-    const todaysHappyHour = happyHour[0];
+  cleanHappyHourTimes = (todaysHappyHour) => {
     const start = todaysHappyHour.start_time;
     const end = todaysHappyHour.end_time;
     const cleanStartTime = this.getFormattedTime(start);
@@ -38,11 +37,11 @@ class ResultCards extends Component {
     return hours + ':' + minutes + amPm;
   };
 
-  findBestFoodSpecial = (todaysHappyHour) => {
+  getBestFoodSpecial = (todaysHappyHour) => {
     const { foodSpecials } = this.props;
 
     const bestFoodSpecial = foodSpecials.find(special => {
-      return special.id === todaysHappyHour[0].food_specials_id && special.best_deal === true;
+      return special.id === todaysHappyHour.food_specials_id && special.best_deal === true;
     });
 
 
@@ -51,11 +50,11 @@ class ResultCards extends Component {
     }
   }
 
-  findBestDrinkSpecial = (todaysHappyHour) => {
+  getBestDrinkSpecial = (todaysHappyHour) => {
     const { drinkSpecials } = this.props;
 
     const bestDrinkSpecial = drinkSpecials.find(special => {
-      return special.id === todaysHappyHour[0].drink_specials_id && special.best_deal === true;
+      return special.id === todaysHappyHour.drink_specials_id && special.best_deal === true;
     });
 
 
@@ -64,6 +63,19 @@ class ResultCards extends Component {
     }
   }
 
+  getTodaysHappyHour = (restaurant) => {
+    const { happyHours } = this.props;
+
+    const todaysHappyHour = happyHours.find(happyHour => {
+      const day = this.findDay();
+      
+      return happyHour.restaurant_id === restaurant.id && happyHour.day === day;
+    });
+
+    return todaysHappyHour;
+  }
+
+  
   render() {
     let resultCards;
     let times;
@@ -78,20 +90,15 @@ class ResultCards extends Component {
       resultCards = filteredRestaurants.map((restaurant, index) => {
         const restaurantName = restaurant.name;
         const { id, address, restaurant_image } = restaurant;
-       
-        const todaysHappyHour = happyHours.filter(happyHour => {
-          startTime = happyHour.start_time;
-          endTime = happyHour.end_time;
+        
+        const todaysHappyHour = this.getTodaysHappyHour(restaurant);
 
-          const day = this.findDay();
-          
-          return happyHour.restaurant_id === restaurant.id && happyHour.day === day;
-        });
-
-        if (todaysHappyHour[0]) {
+        if (todaysHappyHour) {
           times = this.cleanHappyHourTimes(todaysHappyHour);
-          bestFoodSpecial = this.findBestFoodSpecial(todaysHappyHour);
-          bestDrinkSpecial = this.findBestDrinkSpecial(todaysHappyHour);
+          bestFoodSpecial = this.getBestFoodSpecial(todaysHappyHour);
+          bestDrinkSpecial = this.getBestDrinkSpecial(todaysHappyHour);
+          startTime = todaysHappyHour.start_time;
+          endTime = todaysHappyHour.end_time;
         }
 
         return ( <ResultCard

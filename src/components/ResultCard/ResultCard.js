@@ -70,7 +70,7 @@ class ResultCard extends Component {
     let time;
     let minutes;
     let cleanMinutes;
-
+ 
     this.state.currentlyHappyHour ? time = endTime : time = startTime;
 
     const hours = time.slice(0, 2);
