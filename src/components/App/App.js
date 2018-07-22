@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'; 
 import Home from '../Home/Home';
 import HappyHours from '../HappyHours/HappyHours';
+import PropTypes from 'prop-types';
 import './App.css';
 
 class App extends Component {
@@ -18,5 +19,9 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  history: PropTypes.array,
+};
 
 export default App;
