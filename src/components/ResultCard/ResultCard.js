@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ResultCard.css';
 import  moment from 'moment';
+import PropTypes from 'prop-types';
 moment().format();
 
 class ResultCard extends Component {
@@ -21,18 +22,16 @@ class ResultCard extends Component {
 
   secondsToTime(secs){
     let hours = Math.floor(secs / (60 * 60));
-
     let divisor_for_minutes = secs % (60 * 60);
     let minutes = Math.floor(divisor_for_minutes / 60);
-
     let divisor_for_seconds = divisor_for_minutes % 60;
     let seconds = Math.ceil(divisor_for_seconds);
-
     let obj = {
       "h": hours,
       "m": minutes,
       "s": seconds
     };
+
     return obj;
   }
 
@@ -139,6 +138,17 @@ class ResultCard extends Component {
     );
   }
 }
+
+ResultCard.propTypes = {
+  startTime: PropTypes.number,
+  endTime: PropTypes.number,
+  restaurantName: PropTypes.string,
+  address: PropTypes.string,
+  image: PropTypes.string,
+  happyHourTimes: PropTypes.string,
+  foodSpecial: PropTypes.string,
+  drinkSpecial: PropTypes.string,
+};
 
 export const mapStateToProps = (state) => ({
   filteredRestaurants: state.filteredRestaurants
