@@ -5,6 +5,7 @@ import './GoogleMap.css';
 import UserMarker from '../UserMarker/UserMarker';
 import RestaurantMarker from '../RestaurantMarker/RestaurantMarker';
 import { restaurants } from '../../reducers/restaurants';
+import PropTypes from 'prop-types';
 
 class GoogleMap extends Component {
   constructor() {
@@ -46,9 +47,14 @@ class GoogleMap extends Component {
           { markers }
         </GoogleMapReact>
       </div>
-    )
+    );
   }
 }
+
+GoogleMap.propTypes = {
+  location: PropTypes.string,
+  filteredRestaurants: PropTypes.array,
+};
 
 export const mapStateToProps = (state) => ({
   location: state.location,
