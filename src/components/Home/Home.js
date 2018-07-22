@@ -18,8 +18,7 @@ class Home extends Component {
       <section className="homeContainer">
         <img src={homeLogo} className="homeLogo" alt="Happy Hour Hero Logo" />
         <h2>Find your happy hour:</h2>
-          {/* <i className="fas fa-search"></i> */}
-          <SearchBar />
+        <SearchBar />
       </section>
     );
   }

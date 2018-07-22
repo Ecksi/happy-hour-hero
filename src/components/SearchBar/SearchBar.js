@@ -34,7 +34,7 @@ class SearchBar extends React.Component {
 
     const { latitude, longitude } = this.state;
     const { address } = this.props.location;
-    console.log(address)
+
     if (!address) {
       const location = `${latitude} + ${longitude}`;
       const address = await this.getAddress(location);
