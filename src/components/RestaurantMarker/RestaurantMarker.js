@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import './RestaurantMarker.css';
 
 class RestaurantMarker extends Component {
-  constructor (props) {
-    super(props);
-    
-  }
-
   render() {
     const { name } = this.props;
 

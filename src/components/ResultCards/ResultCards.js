@@ -4,11 +4,6 @@ import ResultCard from '../ResultCard/ResultCard';
 import './ResultCards.css';
 
 class ResultCards extends Component {
-  constructor (props) {
-    super(props);
-    
-  }
-
   findDay = () => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const date = new Date();
@@ -56,7 +51,6 @@ class ResultCards extends Component {
     const bestDrinkSpecial = drinkSpecials.find(special => {
       return special.id === todaysHappyHour.drink_specials_id && special.best_deal === true;
     });
-
 
     if (bestDrinkSpecial) {
       return bestDrinkSpecial.name

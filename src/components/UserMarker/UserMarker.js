@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import './UserMarker.css';
 
 class UserMarker extends Component {
-  constructor (props) {
-    super(props);
-    
-  }
-
   render() {
     return (
       <section className="userMarker">

@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './Home.css';
 import homeLogo from './images/home-logo.png';
 import SearchBar from '../SearchBar/SearchBar';
 
 class Home extends Component {
-  constructor (props) {
-    super(props);
-
-    this.state = {
-
-    };
-  }
-
   render() {
     return (
       <section className="homeContainer">

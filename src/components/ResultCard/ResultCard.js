@@ -12,8 +12,8 @@ class ResultCard extends Component {
       time: {},
       seconds: null,
       currentlyHappyHour: false
-    }
-,
+    };
+
     this.timer = 0;
     this.startTimer = this.startTimer();
     this.countDown = this.countDown();
@@ -74,7 +74,7 @@ class ResultCard extends Component {
     this.state.currentlyHappyHour ? time = endTime : time = startTime;
 
     const hours = time.slice(0, 2);
-    minutes = time.slice(2,4);
+    minutes = time.slice(2, 4);
     
     minutes === '00' ? cleanMinutes = null : cleanMinutes = ',' + minutes;
 
@@ -92,8 +92,6 @@ class ResultCard extends Component {
     });
   }
 
-
-
   countDown = () => {
     let seconds = this.state.seconds - 1;
     this.setState({
@@ -101,11 +99,10 @@ class ResultCard extends Component {
       seconds: seconds
     });
     
-    if (seconds == 0) { 
+    if (seconds === 0) { 
       clearInterval(this.timer);
     }
   }
-
 
   render() {
     const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial } = this.props;
@@ -130,7 +127,7 @@ class ResultCard extends Component {
         </div>
         <div className="resultCardRightInfo">
           <div className="resultCardClock">
-            <i class="far fa-clock"></i>
+            <i className="far fa-clock"></i>
             <span>
               <p>{ this.state.currentlyHappyHour ? 'Ends in:' : 'Starts in:'} </p>
               <p className="resultCardStartTime">{this.state.time.h}hrs {this.state.time.m}mins {this.state.time.s}secs</p>

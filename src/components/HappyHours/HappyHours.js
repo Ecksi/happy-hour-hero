@@ -9,11 +9,6 @@ import { storeRestaurants, storeFilteredRestaurants } from '../../actions';
 
 
 class HappyHours extends Component {
-  constructor (props) {
-    super(props);
-    
-  }
-
   render() {
     return (
       <section className="happyHoursContainer">
