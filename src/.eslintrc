@@ -45,11 +45,6 @@
         "allowSingleLine": true
       }
     ],
-    "camelcase": "warn",
-    "comma-dangle": [
-      "error",
-      "never"
-    ],
     "comma-spacing": [
       "error",
       {
@@ -83,17 +78,10 @@
         "after": true
       }
     ],
-    "max-len": [
-      "warn",
-      80
-    ],
     "no-duplicate-imports": "error",
-    "id-length": "error",
     "id-blacklist": [
       "error",
-      "data",
       "err",
-      "e",
       "cb",
       "callback",
       "payload",
