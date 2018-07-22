@@ -51,9 +51,16 @@ app.get('/api/v1/food_specials/:id', (request, response) => {
 });
 
 app.get('/api/v1/happy_hours', (request, response) => {
-  database('happy_hours').select()
-    .then(happy_hour => response.status(200).json(happy_hour))
-    .catch(error => response.status(500).json({ error }));
+  if (request.query.restaurant_id) {
+    database('happy_hours').select()
+      .where('restaurant_id', request.query.restaurant_id)
+      .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id])
+      .catch(error => response.status(500).json({ error }));
+  } else {
+    database('happy_hours').select()
+      .then(happy_hour => response.status(200).json(happy_hour))
+      .catch(error => response.status(500).json({ error }));
+  }
 });
 
 app.get('/api/v1/happy_hours/:id', (request, response) => {
