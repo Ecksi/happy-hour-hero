@@ -6,11 +6,11 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import { classnames } from '../../helpers';
 import { withRouter } from 'react-router-dom';
-import './SearchBar.css';
 import geolib from 'geolib';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
 import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours, storeDrinkSpecials, storeFoodSpecials } from '../../actions';
-
+import PropTypes from 'prop-types';
+import './SearchBar.css';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -55,7 +55,7 @@ class SearchBar extends React.Component {
           longitude: position.coords.longitude
         });
       });
-    };
+    }
   }
 
   getAddress = async (location) => {
@@ -76,7 +76,7 @@ class SearchBar extends React.Component {
       }
 
       return restaurants;
-      // this.props.storeRestaurants(restaurants)
+
     } catch (error) {
       throw new Error(`Network request failed. (error: ${error.message})`);
     }
@@ -261,6 +261,13 @@ class SearchBar extends React.Component {
   }
 }
 
+SearchBar.propTypes = {
+  location: PropTypes.obj,
+  storeLocation: PropTypes.obj,
+  storeFilteredRestaurants: PropTypes.array,
+  history: PropTypes.array,
+};
+
 export const mapDispatchToProps = (dispatch) => ({
   storeLocation: (address, longitude, latitude) => {
     return dispatch(storeLocation(address, longitude, latitude));
@@ -286,7 +293,7 @@ export const mapStateToProps = (state) => ({
   location: state.location,
   restaurants: state.restaurants,
   filteredRestaurants: state.filteredRestaurants,
-  happyHours: state.happyHours
+  happyHours: state.happyHours,
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar));
