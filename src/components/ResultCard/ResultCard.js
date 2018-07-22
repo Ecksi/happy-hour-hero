@@ -49,11 +49,25 @@ class ResultCard extends Component {
   }
 
   getTimeRemaining = () => {
+    let minutes;
+    let cleanMinutes;
+
+    const { startTime, endTime } = this.props;
+
+    const hours = startTime.slice(0, 2);
+    minutes = startTime.slice(2,4);
+    
+    if (minutes === '00') {
+      cleanMinutes = null
+    } else {
+      cleanMinutes = ',' + minutes
+    }
+
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
-    const day = date.getDate()
-    const deadline = new Date(year, month, day, 21, 30)
+    const day = date.getDate();
+    const deadline = new Date(year, month, day, hours, cleanMinutes)
     const currentTime = Date.now();
 
     const seconds = (deadline - currentTime) / 1000;
@@ -77,7 +91,7 @@ class ResultCard extends Component {
 
 
   render() {
-    const { restaurantName, address, image, happyHourTimes, timer } = this.props;
+    const { restaurantName, address, image, happyHourTimes } = this.props;
     const backgroundImage = {backgroundImage: "url(" + image + ")"};
 
     return (
@@ -92,8 +106,10 @@ class ResultCard extends Component {
         </div>
         <div className="resultCardClock">
           <i class="far fa-clock"></i>
-          <p>Starts in:</p><br />
-          <p className="resultCardStartTime">h: {this.state.time.h} m: {this.state.time.m} s: {this.state.time.s}</p>
+          <span>
+            <p>Starts in:</p>
+            <p className="resultCardStartTime">{this.state.time.h}hrs {this.state.time.m}mins {this.state.time.s}secs</p>
+          </span>
         </div>
       </article>
     );

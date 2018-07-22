@@ -9,7 +9,6 @@ class ResultCards extends Component {
     
   }
 
-
   findDay = () => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const date = new Date();
@@ -42,6 +41,8 @@ class ResultCards extends Component {
   render() {
     let resultCards;
     let times;
+    let startTime;
+    let endTime;
 
     const { filteredRestaurants, happyHours } = this.props;
 
@@ -51,6 +52,9 @@ class ResultCards extends Component {
         const { id, address, restaurant_image } = restaurant;
        
         const todaysHappyHour = happyHours.filter(happyHour => {
+          startTime = happyHour.start_time;
+          endTime = happyHour.end_time;
+
           const day = this.findDay();
           
           return happyHour.restaurant_id === restaurant.id && happyHour.day === day;
@@ -60,11 +64,14 @@ class ResultCards extends Component {
           times = this.cleanHappyHourTimes(todaysHappyHour);
         }
 
+        
+
         return ( <ResultCard
           restaurantName={ restaurantName }
           address={ address }
           happyHourTimes={ times }
-          timer={ this.timer }
+          startTime={ startTime }
+          endTime={ endTime }
           image = { restaurant_image }
           key={ index }
           id={ id }
