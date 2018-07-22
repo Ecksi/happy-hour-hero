@@ -1,6 +1,6 @@
 exports.seed = (knex, Promise) => {
-  knex('happy_hours').del()
-  return knex('restaurants').del()
+  return knex('happy_hours').del()
+    .then(() => knex('restaurants').del())
     .then(() => {
       return Promise.all([
         knex('restaurants').insert([
@@ -26,7 +26,7 @@ exports.seed = (knex, Promise) => {
           zip_code: 80202,
           restaurant_image: 'https://cdn.shopify.com/s/files/1/1540/0729/t/3/assets/logo.png',
           latitude: '39.7498',
-          longitude: '104.9999'
+          longitude: '-104.9999'
         },
         {
           name: 'Falling Rock Tap House',
@@ -38,7 +38,7 @@ exports.seed = (knex, Promise) => {
           zip_code: 80202,
           restaurant_image: 'http://fallingrocktaphouse.com/wp-content/uploads/2016/05/FallingRockLogo.png',
           latitude: '39.7539',
-          longitude: '104.9955'
+          longitude: '-104.9955'
         },
       ])
       .then(() => console.log('Seeding complete!'))
