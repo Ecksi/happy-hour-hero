@@ -7,21 +7,19 @@ import restaurantMarker from './assets/restaurant-marker.png';
 class RestaurantMarker extends Component {
   constructor (props) {
     super(props);
-    
   }
 
   handleClick = (event) => {
     const allCards = document.querySelectorAll('.resultCardContainer');
-    allCards.forEach(card => {
-      card.classList.remove('selectedCard');
-    });
+
+    allCards.forEach(card => card.classList.remove('selectedCard'));
 
     const id = event.target.closest('section').getAttribute('id');
     const selectedSelector = `.resultCard${id}`;
     const selectedCard = document.querySelector(selectedSelector);
-    selectedCard.classList.add('selectedCard')
 
-    selectedCard.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    selectedCard.classList.add('selectedCard');
+    selectedCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   render() {
@@ -36,6 +34,7 @@ class RestaurantMarker extends Component {
 }
 
 RestaurantMarker.propTypes = {
+  id: PropTypes.number,
   name: PropTypes.string,
 };
 
