@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ResultCard from '../ResultCard/ResultCard';
+import PropTypes from 'prop-types';
 import './ResultCards.css';
 
 class ResultCards extends Component {
-  constructor (props) {
-    super(props);
-    
-  }
-
   findDay = () => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const date = new Date();
@@ -29,10 +25,10 @@ class ResultCards extends Component {
   }
 
   getFormattedTime = (military) => {
-    var hours24 = parseInt(military.substring(0, 2), 10);
-    var hours = ((hours24 + 11) % 12) + 1;
-    var amPm = hours24 > 11 ? 'pm' : 'am';
-    var minutes = military.substring(2);
+    let hours24 = parseInt(military.substring(0, 2), 10);
+    let hours = ((hours24 + 11) % 12) + 1;
+    let amPm = hours24 > 11 ? 'pm' : 'am';
+    let minutes = military.substring(2);
 
     return hours + ':' + minutes + amPm;
   };
@@ -57,9 +53,8 @@ class ResultCards extends Component {
       return special.id === todaysHappyHour.drink_specials_id && special.best_deal === true;
     });
 
-
     if (bestDrinkSpecial) {
-      return bestDrinkSpecial.name
+      return bestDrinkSpecial.name;
     }
   }
 
@@ -74,7 +69,6 @@ class ResultCards extends Component {
     return todaysHappyHour;
   }
 
-  
   render() {
     let resultCards;
     let times;
@@ -83,13 +77,12 @@ class ResultCards extends Component {
     let bestFoodSpecial;
     let bestDrinkSpecial;
 
-    const { filteredRestaurants, happyHours } = this.props;
+    const { filteredRestaurants } = this.props;
 
     if (filteredRestaurants.length > 0) {
       resultCards = filteredRestaurants.map((restaurant, index) => {
         const restaurantName = restaurant.name;
         const { id, address, restaurant_image } = restaurant;
-        
         const todaysHappyHour = this.getTodaysHappyHour(restaurant);
         
         if (todaysHappyHour) {
@@ -113,7 +106,6 @@ class ResultCards extends Component {
           id={ id }
         />);
       });
-
     }
 
     return (
@@ -123,6 +115,13 @@ class ResultCards extends Component {
     );
   }
 }
+
+ResultCards.propTypes = {
+  foodSpecials: PropTypes.array,
+  drinkSpecials: PropTypes.array,
+  happyHours:  PropTypes.array,
+  filteredRestaurants: PropTypes.array,
+};
 
 export const mapStateToProps = (state) => ({
   filteredRestaurants: state.filteredRestaurants,

@@ -2,16 +2,10 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'; 
 import Home from '../Home/Home';
 import HappyHours from '../HappyHours/HappyHours';
+import PropTypes from 'prop-types';
 import './App.css';
-import homeLogo from './images/home-logo.png';
-
 
 class App extends Component {
-  constructor (props) {
-    super(props);
-
-  }
-
   handleSubmit = () => {
     this.props.history.push('/HappyHourResults');
   }
@@ -25,5 +19,9 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  history: PropTypes.array,
+};
 
 export default App;

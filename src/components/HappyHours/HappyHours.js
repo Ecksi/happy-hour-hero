@@ -4,16 +4,10 @@ import Header from '../Header/Header';
 import ResultCards from '../ResultCards/ResultCards';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import SearchBar from '../SearchBar/SearchBar';
-import './HappyHours.css';
 import { storeRestaurants, storeFilteredRestaurants } from '../../actions';
-
+import './HappyHours.css';
 
 class HappyHours extends Component {
-  constructor (props) {
-    super(props);
-    
-  }
-
   render() {
     return (
       <section className="happyHoursContainer">

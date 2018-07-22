@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ResultCard.css';
 import  moment from 'moment';
+import PropTypes from 'prop-types';
 moment().format();
 
 class ResultCard extends Component {
@@ -12,8 +13,8 @@ class ResultCard extends Component {
       time: {},
       seconds: null,
       currentlyHappyHour: false
-    }
-,
+    };
+
     this.timer = 0;
     this.startTimer = this.startTimer();
     this.countDown = this.countDown();
@@ -21,18 +22,16 @@ class ResultCard extends Component {
 
   secondsToTime(secs){
     let hours = Math.floor(secs / (60 * 60));
-
     let divisor_for_minutes = secs % (60 * 60);
     let minutes = Math.floor(divisor_for_minutes / 60);
-
     let divisor_for_seconds = divisor_for_minutes % 60;
     let seconds = Math.ceil(divisor_for_seconds);
-
     let obj = {
       "h": hours,
       "m": minutes,
       "s": seconds
     };
+
     return obj;
   }
 
@@ -74,7 +73,7 @@ class ResultCard extends Component {
     this.state.currentlyHappyHour ? time = endTime : time = startTime;
 
     const hours = time.slice(0, 2);
-    minutes = time.slice(2,4);
+    minutes = time.slice(2, 4);
     
     minutes === '00' ? cleanMinutes = null : cleanMinutes = ',' + minutes;
 
@@ -92,8 +91,6 @@ class ResultCard extends Component {
     });
   }
 
-
-
   countDown = () => {
     let seconds = this.state.seconds - 1;
     this.setState({
@@ -101,11 +98,10 @@ class ResultCard extends Component {
       seconds: seconds
     });
     
-    if (seconds == 0) { 
+    if (seconds === 0) { 
       clearInterval(this.timer);
     }
   }
-
 
   render() {
     const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial } = this.props;
@@ -130,7 +126,7 @@ class ResultCard extends Component {
         </div>
         <div className="resultCardRightInfo">
           <div className="resultCardClock">
-            <i class="far fa-clock"></i>
+            <i className="far fa-clock"></i>
             <span>
               <p>{ this.state.currentlyHappyHour ? 'Ends in:' : 'Starts in:'} </p>
               <p className="resultCardStartTime">{this.state.time.h}hrs {this.state.time.m}mins {this.state.time.s}secs</p>
@@ -142,6 +138,17 @@ class ResultCard extends Component {
     );
   }
 }
+
+ResultCard.propTypes = {
+  startTime: PropTypes.number,
+  endTime: PropTypes.number,
+  restaurantName: PropTypes.string,
+  address: PropTypes.string,
+  image: PropTypes.string,
+  happyHourTimes: PropTypes.string,
+  foodSpecial: PropTypes.string,
+  drinkSpecial: PropTypes.string,
+};
 
 export const mapStateToProps = (state) => ({
   filteredRestaurants: state.filteredRestaurants
