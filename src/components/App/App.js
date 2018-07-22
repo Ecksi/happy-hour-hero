@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'; 
 import Home from '../Home/Home';
 import HappyHours from '../HappyHours/HappyHours';
+import Restaurant from '../Restaurant/Restaurant';
 import PropTypes from 'prop-types';
 import './App.css';
 
@@ -15,6 +16,7 @@ class App extends Component {
       <div className="App">
         <Route exact path='/' component={Home} />
         <Route exact path='/happyHours' component={HappyHours} />
+        <Route exact path='/restaurant' component={Restaurant} />
       </div>
     );
   }

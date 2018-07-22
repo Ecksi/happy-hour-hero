@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import './ResultCard.css';
 import  moment from 'moment';
 import PropTypes from 'prop-types';
+import { Route , withRouter} from 'react-router-dom';
+import Restaurant from '../Restaurant/Restaurant';
 moment().format();
 
 class ResultCard extends Component {
@@ -105,6 +107,11 @@ class ResultCard extends Component {
     }
   }
 
+  handleMoreInfoClick = () => {
+    this.props.history.push('/Restaurant');
+
+  }
+
   render() {
     const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial, miles, id } = this.props;
     const backgroundImage = {backgroundImage: "url(" + image + ")"};
@@ -135,7 +142,7 @@ class ResultCard extends Component {
               <p className="resultCardStartTime">{this.state.time.h}hrs {this.state.time.m}mins {this.state.time.s}secs</p>
             </span>
           </div>
-          <a href="#" className="moreInfoButton">More Info</a>
+          <a href="#" className="moreInfoButton" onClick={this.handleMoreInfoClick} >More Info</a>
         </div>
       </article>
     );
@@ -157,4 +164,4 @@ export const mapStateToProps = (state) => ({
   filteredRestaurants: state.filteredRestaurants
 });
 
-export default connect(mapStateToProps)(ResultCard);
+export default withRouter(connect(mapStateToProps)(ResultCard));
