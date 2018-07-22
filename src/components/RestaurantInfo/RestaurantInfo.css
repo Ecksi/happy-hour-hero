@@ -1,0 +1,20 @@
+.restaurantInfoContainer {
+  height: 350px;
+  background-size: cover;
+  background-position-y: center; }
+
+.restaurantInfo {
+  width: 80%;
+  left: 10%;
+  top: 200px;
+  bottom: 100px;
+  position: absolute;
+  height: 250px;
+  background: #eee;
+  border-radius: 20px; }
+
+.restaurantImageBorder {
+  height: 130px;
+  position: absolute;
+  top: 300px;
+  width: 100%; }

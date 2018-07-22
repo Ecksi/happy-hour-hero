@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Restaurant.css';
 import Header from '../Header/Header';
+import RestaurantInfo from '../RestaurantInfo/RestaurantInfo';
 
 class Restaurant extends Component {
   constructor (props) {
@@ -16,6 +17,7 @@ class Restaurant extends Component {
     return (
       <section className="restaurantContainer">
         <Header />
+        <RestaurantInfo />
       </section>
     );
   }
