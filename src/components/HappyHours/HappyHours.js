@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import ResultCards from '../ResultCards/ResultCards';
 import GoogleMap from '../GoogleMap/GoogleMap';
+import SearchBar from '../SearchBar/SearchBar';
 import './HappyHours.css';
 import { storeRestaurants, storeFilteredRestaurants } from '../../actions';
 
@@ -18,6 +19,7 @@ class HappyHours extends Component {
       <section className="happyHoursContainer">
         <Header />
         <GoogleMap />
+        <SearchBar />
         <ResultCards />
       </section>
     );

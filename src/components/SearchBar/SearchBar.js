@@ -84,9 +84,10 @@ class SearchBar extends React.Component {
             return (
               <div className="searchBarContainer">
                 <div className="searchInputContainer">
+                  <i className="fas fa-search"></i>
                   <input
                     {...getInputProps({
-                      placeholder: 'Search Places...',
+                      placeholder: 'Enter a restaurant or location',
                       className: 'searchInput'
                     })}
                   />

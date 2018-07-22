@@ -148,7 +148,7 @@ class Home extends Component {
         <img src={homeLogo} className="homeLogo" alt="Happy Hour Hero Logo" />
         <h2>Find your happy hour:</h2>
         <form className="homeSearchForm" onSubmit={this.handleSubmit}>
-          <i className="fas fa-search"></i>
+          {/* <i className="fas fa-search"></i> */}
           <SearchBar />
           <div className="findLocationDropdown" style={{display: this.state.latitude ? 'block' : 'none' }}>
             <i className="fas fa-map-marker-alt" onClick={this.handleSubmit} ></i>
