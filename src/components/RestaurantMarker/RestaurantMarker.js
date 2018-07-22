@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './RestaurantMarker.css';
+import PropTypes from 'prop-types';
 
 class RestaurantMarker extends Component {
   render() {
@@ -13,6 +14,10 @@ class RestaurantMarker extends Component {
     );
   }
 }
+
+RestaurantMarker.propTypes = {
+  name: PropTypes.string,
+};
 
 export const mapStateToProps = (state) => ({
   location: state.location
