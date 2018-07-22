@@ -1,0 +1,7 @@
+.happyHoursContainer .findLocationDropdown {
+  display: block;
+  margin: -20px auto 20px auto;
+  width: 68%; }
+
+.happyHoursContainer .homeSearchSubmit {
+  display: none; }
