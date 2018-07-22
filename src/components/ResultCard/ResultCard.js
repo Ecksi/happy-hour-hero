@@ -106,7 +106,7 @@ class ResultCard extends Component {
   }
 
   render() {
-    const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial, id } = this.props;
+    const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial, miles, id } = this.props;
     const backgroundImage = {backgroundImage: "url(" + image + ")"};
 
     return (
@@ -116,6 +116,7 @@ class ResultCard extends Component {
         <div className="resultCardInfo">
           <h2>{ restaurantName }</h2>
           <p className="address">{ address }</p>
+          <p className="miles">{ miles } Miles</p>
           <h3>happy hour times</h3>
           <p className="times">mon-fri <span>{ happyHourTimes }</span></p>
         </div>
