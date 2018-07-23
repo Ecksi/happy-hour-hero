@@ -21,12 +21,18 @@ class SearchBar extends React.Component {
       latitude: null,
       longitude: null,
       findLocationDropdown: false,
-      autoDetectLocation: false
+      autoDetectLocation: false,
+      resultsPage: false
     };
   }
 
   componentDidMount() {
     this.getMyLocation();
+    this.resultsPageToggle();
+  }
+
+  resultsPageToggle = () => {
+    this.props.filteredRestaurants ? this.setState({resultsPage: true}) : null;
   }
 
   getMyLocation = () => {
@@ -43,9 +49,7 @@ class SearchBar extends React.Component {
     }
   }
 
-  handleSubmit = async (event) => {
-    event.preventDefault();
- 
+  handleSubmit = async () => {
     const { latitude, longitude } = this.state;
     const { address } = this.props.location;
 
@@ -73,29 +77,29 @@ class SearchBar extends React.Component {
   storeRestaurants = async (minLat, maxLat, minLong, maxLong) => {
     const response = await fetch(`http://localhost:3000/api/v1/restaurants/${minLat}/${maxLat}/${minLong}/${maxLong}`);
     const restaurants = await response.json();
-    console.log(restaurants)
-    // const homeLatitude = this.state.latitude;
-    // const homeLongitude = this.state.longitude;
 
-    // const filteredRestaurants = [];
+    const homeLatitude = this.state.latitude;
+    const homeLongitude = this.state.longitude;
+
+    const filteredRestaurants = [];
  
-    // const markers = restaurants.forEach(restaurant => {
-    //   const meters = geolib.getDistance(
-    //     {latitude: homeLatitude, longitude: homeLongitude},
-    //     {latitude: restaurant.latitude, longitude: restaurant.longitude}
-    //   );
+    restaurants.forEach(restaurant => {
+      const meters = geolib.getDistance(
+        {latitude: homeLatitude, longitude: homeLongitude},
+        {latitude: restaurant.latitude, longitude: restaurant.longitude}
+      );
 
-    //   const miles = meters * 0.000621371;
+      const miles = meters * 0.000621371;
 
-    //   if (miles < 5) {
-    //     Object.assign(restaurant, {miles})
-    //     filteredRestaurants.push(restaurant);
-    //   }
-    // });
+      if (miles < 5) {
+        Object.assign(restaurant, {miles})
+        filteredRestaurants.push(restaurant);
+      }
+    });
 
-    // this.props.storeFilteredRestaurants(filteredRestaurants);
+    this.props.storeFilteredRestaurants(filteredRestaurants);
     
-    // setTimeout(() => this.storeHappyHours(), 10);
+    setTimeout(() => this.storeHappyHours(), 10);
   }
 
   storeHappyHours = async () => {
@@ -141,7 +145,7 @@ class SearchBar extends React.Component {
 
   handleAutolocateSubmit = async (event) => {
     event.preventDefault();
-    this.props.handleSelected();
+
     const { latitude, longitude } = this.state;
     const location = `${latitude} + ${longitude}`;
     const address = await this.getAddress(location);
@@ -152,7 +156,7 @@ class SearchBar extends React.Component {
 
     this.props.storeLocation(address, longitude, latitude);
     
-    this.filterRestaurants();
+    this.storeRestaurants();
   } 
 
   getAddress = async (location) => {
@@ -201,6 +205,7 @@ class SearchBar extends React.Component {
         const { address, latitude, longitude } = this.state;
         
         this.props.storeLocation(address, longitude, latitude);
+        this.handleSubmit();
       })
       .catch(error => {
         this.setState({ isGeocoding: false });
@@ -228,7 +233,7 @@ class SearchBar extends React.Component {
 
     return (
       <div>
-        <form className="homeSearchForm" onSubmit={this.handleSubmit}>
+        <section className="homeSearchForm" >
           <PlacesAutocomplete
             onChange={this.handleChange}
             value={address}
@@ -281,7 +286,7 @@ class SearchBar extends React.Component {
             <a onClick={this.handleAutolocateSubmit}>Current Location</a>
           </div>
           <input className="homeSearchSubmit" type="submit" value="Submit" />
-        </form>
+        </section>
       </div>
     );
   }

@@ -18,15 +18,13 @@ class Home extends Component {
 
     this.props.storeDay(day);
   }
-  handleSelected = () => {
-  }
 
   render() {
     return (
       <section className="homeContainer">
         <img src={homeLogo} className="homeLogo" alt="Happy Hour Hero Logo" />
         <h2>Find your happy hour:</h2>
-        <SearchBar handleSelected={this.handleSelected}/>
+        <SearchBar />
       </section>
     );
   }
