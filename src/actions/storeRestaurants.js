@@ -1,4 +1,4 @@
-export const storeRestaurants = (restaurants) => ({
+export const storeRestaurants = (restaurant) => ({
   type: 'STORE_RESTAURANTS',
-  restaurants
+  restaurant
 });
