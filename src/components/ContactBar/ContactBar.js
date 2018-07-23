@@ -18,14 +18,23 @@ class ContactBar extends Component {
     return restaurant;
   }
 
+  formatAddress = (address) => {
+    return address.replace(/\s+/g, '+').toLowerCase().replace(',', '');
+  }
+
   render() {
     const restaurant = this.getRestaurant();
-    const { phone, website } = restaurant;
+    const { phone, website, name } = restaurant;
+    const { address } = this.props.location;
+
+    const currentLocation = this.formatAddress(address);
+    const restaurantLocation = this.formatAddress(name);
 
     return (
       <section className="contactBarContainer">
         <a href={`tel:${phone}`} className="contactPhone">Phone <i class="fas fa-phone"></i></a>
         <a href={website} target="_blank" className="contactWebsite">Website <i class="fas fa-globe-americas"></i></a>
+        <a href={`https://www.google.com/maps/dir/${currentLocation}/${restaurantLocation}`} target="_blank">Directions <i class="fas fa-compass"></i></a>
       </section>
     );
   }
