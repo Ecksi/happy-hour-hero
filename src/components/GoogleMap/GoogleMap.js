@@ -7,7 +7,7 @@ import RestaurantMarker from '../RestaurantMarker/RestaurantMarker';
 import { restaurants } from '../../reducers/restaurants';
 import PropTypes from 'prop-types';
 
-class GoogleMap extends Component {
+export class GoogleMap extends Component {
   constructor() {
     super();
 

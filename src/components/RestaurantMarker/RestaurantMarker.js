@@ -4,7 +4,7 @@ import './RestaurantMarker.css';
 import PropTypes from 'prop-types';
 import restaurantMarker from './assets/restaurant-marker.png';
 
-class RestaurantMarker extends Component {
+export class RestaurantMarker extends Component {
   constructor (props) {
     super(props);
   }

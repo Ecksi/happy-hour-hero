@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import PropTypes from 'prop-types';
 import './Header.css';
 
-class Header extends Component {
+export class Header extends Component {
   constructor (props) {
     super(props);
 

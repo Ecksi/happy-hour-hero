@@ -7,7 +7,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import { storeRestaurants, storeFilteredRestaurants } from '../../actions';
 import './HappyHours.css';
 
-class HappyHours extends Component {
+export class HappyHours extends Component {
   render() {
     return (
       <section className="happyHoursContainer">

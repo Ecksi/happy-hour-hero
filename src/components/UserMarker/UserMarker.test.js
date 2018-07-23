@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import UserMarker from './UserMarker';
+import { UserMarker } from './UserMarker';
 
 describe('UserMarker', () => {
   let wrapper;
