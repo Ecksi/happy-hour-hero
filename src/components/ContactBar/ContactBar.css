@@ -1,0 +1,29 @@
+.contactBarContainer {
+  width: calc(80% - 80px);
+  margin: 0 auto;
+  background: #fdb82a;
+  margin-top: 100px;
+  border-radius: 20px;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 20px 40px;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly; }
+
+.contactBarContainer a {
+  color: #fff;
+  border-right: 1px solid;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: flex;
+  width: 25%;
+  align-items: center;
+  font-weight: 200;
+  justify-content: center; }
+
+.contactBarContainer i {
+  margin-left: 20px; }
+
+a.contactShare {
+  border: none; }

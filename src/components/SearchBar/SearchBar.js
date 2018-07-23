@@ -112,7 +112,7 @@ class SearchBar extends React.Component {
     const { filteredRestaurants } = this.props;
     await filteredRestaurants.forEach(async(restaurant) => {
       const id = restaurant.id;
-      const response = await fetch(`http://localhost:3000/api/v1/happy_hours/${id}`);
+      const response = await fetch(`http://localhost:3000/api/v1/happy_hours?restaurant_id=${id}`);
       const happyHour = await response.json();
 
       this.props.storeHappyHours(happyHour);
@@ -263,10 +263,9 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-  location: PropTypes.obj,
-  storeLocation: PropTypes.obj,
-  storeFilteredRestaurants: PropTypes.array,
-  history: PropTypes.array,
+  storeLocation: PropTypes.func,
+  storeFilteredRestaurants: PropTypes.func,
+  history: PropTypes.obj,
 };
 
 export const mapDispatchToProps = (dispatch) => ({
