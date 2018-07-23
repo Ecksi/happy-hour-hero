@@ -1,0 +1,45 @@
+.restaurantInfoContainer {
+  height: 350px;
+  background-size: cover;
+  background-position-y: center; }
+
+.restaurantInfo {
+  width: calc(80% - 100px);
+  padding: 50px;
+  left: 10%;
+  top: 200px;
+  bottom: 100px;
+  position: absolute;
+  height: 175px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 2px 1px 1px #eee; }
+
+.restaurantInfo h1 {
+  color: #666;
+  margin: 0;
+  font-size: 2rem;
+  line-height: 2rem; }
+
+.restaurantInfo h3 {
+  color: #666;
+  font-size: 1.1rem;
+  margin: 80px 0 2px 0;
+  font-weight: 400; }
+
+.restaurantInfo .times {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-top: 0; }
+
+.restaurantImageBorder {
+  height: 130px;
+  position: absolute;
+  top: 300px;
+  width: 100%; }
+
+.restaurantAddress {
+  color: #b3b3b3;
+  font-size: 1.2rem;
+  font-weight: 100;
+  margin-top: 5px; }

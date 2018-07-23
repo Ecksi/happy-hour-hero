@@ -3,8 +3,11 @@ import { location } from './location';
 import { restaurants } from './restaurants';
 import { filteredRestaurants } from './filteredRestaurants';
 import { happyHours } from './happyHours';
-import { drinkSpecials} from './drinkSpecials';
-import { foodSpecials} from './foodSpecials';
+import { drinkSpecials } from './drinkSpecials';
+import { foodSpecials } from './foodSpecials';
+import { restaurantId } from './restaurantId';
+import { day } from './day';
+
 
 export const rootReducer = combineReducers({
   location,
@@ -12,5 +15,7 @@ export const rootReducer = combineReducers({
   filteredRestaurants,
   happyHours,
   drinkSpecials,
-  foodSpecials
+  foodSpecials,
+  restaurantId,
+  day
 });

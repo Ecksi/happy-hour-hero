@@ -4,6 +4,8 @@ import { storeFilteredRestaurants } from './storeFilteredRestaurants';
 import { storeHappyHours } from './storeHappyHours';
 import { storeDrinkSpecials } from './storeDrinkSpecials';
 import { storeFoodSpecials } from './storeFoodSpecials';
+import { storeRestaurantId } from './storeRestaurantId';
+import { storeDay } from './storeDay';
 
 export {
   storeLocation,
@@ -11,5 +13,7 @@ export {
   storeFilteredRestaurants,
   storeHappyHours,
   storeDrinkSpecials,
-  storeFoodSpecials
+  storeFoodSpecials,
+  storeRestaurantId,
+  storeDay
 };

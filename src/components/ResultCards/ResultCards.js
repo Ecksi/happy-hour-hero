@@ -5,15 +5,6 @@ import PropTypes from 'prop-types';
 import './ResultCards.css';
 
 class ResultCards extends Component {
-  findDay = () => {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const date = new Date();
-    const dayIndex = date.getDay();
-    const day = days[dayIndex];
-
-    return day;
-  }
-
   cleanHappyHourTimes = (todaysHappyHour) => {
     const start = todaysHappyHour.start_time;
     const end = todaysHappyHour.end_time;
@@ -59,10 +50,9 @@ class ResultCards extends Component {
   }
 
   getTodaysHappyHour = (restaurant) => {
-    const { happyHours } = this.props;
+    const { happyHours, day } = this.props;
 
     const todaysHappyHour = happyHours.find(happyHour => {
-      const day = this.findDay();
 
       return happyHour.restaurant_id === restaurant.id && happyHour.day === day;
     });
@@ -136,7 +126,8 @@ export const mapStateToProps = (state) => ({
   filteredRestaurants: state.filteredRestaurants,
   happyHours: state.happyHours,
   foodSpecials: state.foodSpecials,
-  drinkSpecials: state.drinkSpecials
+  drinkSpecials: state.drinkSpecials,
+  day: state.day
 });
 
 export default connect(mapStateToProps)(ResultCards);
