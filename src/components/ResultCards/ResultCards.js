@@ -54,8 +54,10 @@ class ResultCards extends Component {
 
     const todaysHappyHour = happyHours.find(happyHour => {
 
-      return happyHour.restaurant_id === restaurant.id && happyHour.day === day;
+      return happyHour.restaurant_id == restaurant.id && happyHour.day === day;
     });
+
+    console.log(todaysHappyHour)
 
     return todaysHappyHour;
   }
