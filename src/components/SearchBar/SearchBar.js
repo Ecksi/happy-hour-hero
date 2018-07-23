@@ -20,42 +20,14 @@ class SearchBar extends React.Component {
       errorMessage: '',
       latitude: null,
       longitude: null,
-      findLocationDropdown: false
+      findLocationDropdown: false,
+      autoDetectLocation: false
     };
   }
 
   componentDidMount() {
-    this.getAllRestaurants();
     this.getMyLocation();
   }
-
-  handleSubmit = async (event) => {
-    event.preventDefault();
-    
-    const { latitude, longitude } = this.state;
-    const { address } = this.props.location;
-
-    if (!address) {
-      const location = `${latitude} + ${longitude}`;
-      const address = await this.getAddress(location);
-      
-      this.props.storeLocation(address, longitude, latitude);
-    } 
-
-    this.filterRestaurants();
-  }
-
-  handleAutolocateSubmit = async (event) => {
-    event.preventDefault();
-    this.props.handleSelected();
-    const { latitude, longitude } = this.state;
-    const location = `${latitude} + ${longitude}`;
-    const address = await this.getAddress(location);
-    
-    this.props.storeLocation(address, longitude, latitude);
-
-    this.filterRestaurants();
-  } 
 
   getMyLocation = () => {
     const location = window.navigator && window.navigator.geolocation;
@@ -71,54 +43,59 @@ class SearchBar extends React.Component {
     }
   }
 
-  getAddress = async (location) => {
-    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
-    const data = await response.json();
-    const address = data.results[0].formatted_address;
-
-    return address;
-  }
-
-  getAllRestaurants = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/api/v1/restaurants');
-      const restaurants = await response.json();
-
-      if (!response.ok) {
-        throw new Error(`${response.status}`);
-      }
-
-      return restaurants;
-
-    } catch (error) {
-      throw new Error(`Network request failed. (error: ${error.message})`);
-    }
-  }
-
-  filterRestaurants = async () => {
-    const restaurants = await this.getAllRestaurants();
-    const homeLatitude = this.props.location.latitude;
-    const homeLongitude = this.props.location.longitude;
-   
-    const filteredRestaurants = [];
+  handleSubmit = async (event) => {
+    event.preventDefault();
  
-    const markers = restaurants.forEach(restaurant => {
-      const meters = geolib.getDistance(
-        {latitude: homeLatitude, longitude: homeLongitude},
-        {latitude: restaurant.latitude, longitude: restaurant.longitude}
-      );
+    const { latitude, longitude } = this.state;
+    const { address } = this.props.location;
 
-      const miles = meters * 0.000621371;
+    if (!address) {
+      const location = `${latitude} + ${longitude}`;
+      const address = await this.getAddress(location);
+      
+      this.props.storeLocation(address, longitude, latitude);
+    } 
 
-      if (miles < 5) {
-        Object.assign(restaurant, {miles})
-        filteredRestaurants.push(restaurant);
-      }
-    });
+    this.findRadius();
+  }
 
-    this.props.storeFilteredRestaurants(filteredRestaurants);
+  findRadius = () => {
+    const miles = 2.5;
+    const degreesDiff = miles / 69;
+    const minLat = this.state.latitude - degreesDiff;
+    const maxLat = this.state.latitude + degreesDiff;
+    const minLong = this.state.longitude + degreesDiff;
+    const maxLong = this.state.longitude - degreesDiff;
 
-    setTimeout(() => this.storeHappyHours(), 10);
+    this.storeRestaurants(minLat, maxLat, minLong, maxLong);
+  }
+
+  storeRestaurants = async (minLat, maxLat, minLong, maxLong) => {
+    const response = await fetch(`http://localhost:3000/api/v1/restaurants/${minLat}/${maxLat}/${minLong}/${maxLong}`);
+    const restaurants = await response.json();
+    console.log(restaurants)
+    // const homeLatitude = this.state.latitude;
+    // const homeLongitude = this.state.longitude;
+
+    // const filteredRestaurants = [];
+ 
+    // const markers = restaurants.forEach(restaurant => {
+    //   const meters = geolib.getDistance(
+    //     {latitude: homeLatitude, longitude: homeLongitude},
+    //     {latitude: restaurant.latitude, longitude: restaurant.longitude}
+    //   );
+
+    //   const miles = meters * 0.000621371;
+
+    //   if (miles < 5) {
+    //     Object.assign(restaurant, {miles})
+    //     filteredRestaurants.push(restaurant);
+    //   }
+    // });
+
+    // this.props.storeFilteredRestaurants(filteredRestaurants);
+    
+    // setTimeout(() => this.storeHappyHours(), 10);
   }
 
   storeHappyHours = async () => {
@@ -130,7 +107,7 @@ class SearchBar extends React.Component {
 
       this.props.storeHappyHours(happyHour);
     });
-
+    
     setTimeout(() => this.storeDrinkSpecials(), 100);
   }
 
@@ -159,7 +136,47 @@ class SearchBar extends React.Component {
       this.props.storeFoodSpecials(foodSpecial);
     });
 
-    this.props.history.push('/HappyHours');
+    this.state.autoDetectLocation ? null : this.props.history.push('/HappyHours');
+  }
+
+  handleAutolocateSubmit = async (event) => {
+    event.preventDefault();
+    this.props.handleSelected();
+    const { latitude, longitude } = this.state;
+    const location = `${latitude} + ${longitude}`;
+    const address = await this.getAddress(location);
+    
+    this.setState({
+      autoDetectLocation: true
+    });
+
+    this.props.storeLocation(address, longitude, latitude);
+    
+    this.filterRestaurants();
+  } 
+
+  getAddress = async (location) => {
+    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
+    const data = await response.json();
+    const address = data.results[0].formatted_address;
+
+    return address;
+  }
+
+  getAllRestaurants = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/restaurants');
+      const restaurants = await response.json();
+
+      if (!response.ok) {
+        throw new Error(`${response.status}`);
+      }
+
+      return restaurants;
+
+    } catch (error) {
+      throw new Error(`Network request failed. (error: ${error.message})`);
+    }
   }
 
   handleChange = address => {
@@ -182,7 +199,7 @@ class SearchBar extends React.Component {
         });
 
         const { address, latitude, longitude } = this.state;
-
+        
         this.props.storeLocation(address, longitude, latitude);
       })
       .catch(error => {
