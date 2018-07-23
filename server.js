@@ -24,6 +24,16 @@ app.get('/api/v1/restaurants/:id', (request, response) => {
     .catch(error => response.status(500).json({ error }));
 });
 
+app.get('/api/v1/restaurants/:minLat/:maxLat/:minLong/:maxLong', (request, response) => {
+  const { minLat, maxLat, minLong, maxLong } = request.params;
+
+  database('restaurants').select()
+    .whereBetween('latitude', [minLat, maxLat])
+    .whereBetween('longitude', [minLong, maxLong])
+    .then(restaurant => response.status(200).json(restaurant))
+    .catch((error) => response.status(500).json({ error }));
+});
+
 app.get('/api/v1/drink_specials', (request, response) => {
   database('drink_specials').select()
     .then(drink_special => response.status(200).json(drink_special))
