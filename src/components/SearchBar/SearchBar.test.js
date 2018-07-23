@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ResultCard } from './ResultCard';
+import SearchBar from './SearchBar';
 
-describe('ResultCard', () => {
-  let wrapper;
+describe('SearchBar', () => {
+  let  wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<ResultCard />);
+    wrapper = shallow(<SearchBar />);
   });
 
   it('matches the snapshot', () => {

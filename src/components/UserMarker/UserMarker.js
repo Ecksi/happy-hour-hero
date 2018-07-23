@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import './UserMarker.css';
 import userMarker from './assets/user-marker.png';
 
-
-class UserMarker extends Component {
+export class UserMarker extends Component {
   render() {
     return (
       <section className="userMarker">

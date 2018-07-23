@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ResultCard } from './ResultCard';
+import { RestaurantMarker } from './RestaurantMarker';
 
-describe('ResultCard', () => {
-  let wrapper;
+describe('RestaurantMarker', () => {
+  let  wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<ResultCard />);
+    wrapper = shallow(<RestaurantMarker />);
   });
 
   it('matches the snapshot', () => {

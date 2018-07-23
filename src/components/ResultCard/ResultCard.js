@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import './ResultCard.css';
 import  moment from 'moment';
 import PropTypes from 'prop-types';
-import { Route , withRouter} from 'react-router-dom';
+import { Route, withRouter} from 'react-router-dom';
 import Restaurant from '../Restaurant/Restaurant';
 import { storeRestaurantId } from '../../actions';
 moment().format();
 
-class ResultCard extends Component {
+export class ResultCard extends Component {
   constructor (props) {
     super(props);
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ResultCard } from './ResultCard';
+import { GoogleMap } from './GoogleMap';
 
-describe('ResultCard', () => {
+describe('GoogleMap', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<ResultCard />);
+    wrapper = shallow(<GoogleMap latitude='1' />);
   });
 
   it('matches the snapshot', () => {

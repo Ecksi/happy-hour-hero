@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ResultCard } from './ResultCard';
+import GeoLocator from './GeoLocator';
 
-describe('ResultCard', () => {
+describe('GeoLocator', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<ResultCard />);
+    wrapper = shallow(<GeoLocator />);
   });
 
   it('matches the snapshot', () => {

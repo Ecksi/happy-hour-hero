@@ -4,7 +4,16 @@ import ResultCard from '../ResultCard/ResultCard';
 import PropTypes from 'prop-types';
 import './ResultCards.css';
 
-class ResultCards extends Component {
+export class ResultCards extends Component {
+  findDay = () => {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const date = new Date();
+    const dayIndex = date.getDay();
+    const day = days[dayIndex];
+
+    return day;
+  }
+
   cleanHappyHourTimes = (todaysHappyHour) => {
     const start = todaysHappyHour.start_time;
     const end = todaysHappyHour.end_time;
