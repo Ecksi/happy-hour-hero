@@ -37,9 +37,6 @@ class Header extends Component {
   }
 }
 
-Header.propTypes = {
-  location: PropTypes.obj,
-};
 
 export const mapStateToProps = (state) => ({
   location: state.location

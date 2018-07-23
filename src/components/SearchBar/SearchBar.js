@@ -263,10 +263,9 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-  location: PropTypes.obj,
-  storeLocation: PropTypes.obj,
-  storeFilteredRestaurants: PropTypes.array,
-  history: PropTypes.array,
+  storeLocation: PropTypes.func,
+  storeFilteredRestaurants: PropTypes.func,
+  history: PropTypes.obj,
 };
 
 export const mapDispatchToProps = (dispatch) => ({

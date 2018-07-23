@@ -32,9 +32,10 @@ class ContactBar extends Component {
 
     return (
       <section className="contactBarContainer">
-        <a href={`tel:${phone}`} className="contactPhone">Phone <i class="fas fa-phone"></i></a>
-        <a href={website} target="_blank" className="contactWebsite">Website <i class="fas fa-globe-americas"></i></a>
-        <a href={`https://www.google.com/maps/dir/${currentLocation}/${restaurantLocation}`} target="_blank">Directions <i class="fas fa-compass"></i></a>
+        <a href={`tel:${phone}`} className="contactPhone">Phone <i className="fas fa-phone"></i></a>
+        <a href={website} target="_blank" className="contactWebsite">Website <i className="fas fa-globe-americas"></i></a>
+        <a href={`https://www.google.com/maps/dir/${currentLocation}/${restaurantLocation}`} target="_blank" className="contactDirections">Directions <i className="fas fa-compass"></i></a>
+        <a href="#" className="contactShare">Share <i className="fas fa-share-alt"></i></a>
       </section>
     );
   }

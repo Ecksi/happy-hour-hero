@@ -154,8 +154,8 @@ class ResultCard extends Component {
 }
 
 ResultCard.propTypes = {
-  startTime: PropTypes.number,
-  endTime: PropTypes.number,
+  startTime: PropTypes.string,
+  endTime: PropTypes.string,
   restaurantName: PropTypes.string,
   address: PropTypes.string,
   image: PropTypes.string,
