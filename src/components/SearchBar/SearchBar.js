@@ -31,7 +31,7 @@ class SearchBar extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     const { latitude, longitude } = this.state;
     const { address } = this.props.location;
 
@@ -45,6 +45,18 @@ class SearchBar extends React.Component {
     this.filterRestaurants();
   }
 
+  handleAutolocateSubmit = async (event) => {
+    event.preventDefault();
+    this.props.handleSelected();
+    const { latitude, longitude } = this.state;
+    const location = `${latitude} + ${longitude}`;
+    const address = await this.getAddress(location);
+    
+    this.props.storeLocation(address, longitude, latitude);
+
+    this.filterRestaurants();
+  } 
+
   getMyLocation = () => {
     const location = window.navigator && window.navigator.geolocation;
 
@@ -52,7 +64,8 @@ class SearchBar extends React.Component {
       location.getCurrentPosition((position) => {
         this.setState({
           latitude: position.coords.latitude,
-          longitude: position.coords.longitude
+          longitude: position.coords.longitude,
+          findLocationDropdown: true
         });
       });
     }
@@ -159,7 +172,7 @@ class SearchBar extends React.Component {
   };
 
   handleSelect = (selected) => {
-    this.setState({ isGeocoding: true, address: selected });
+    this.setState({ isGeocoding: true, address: selected, findLocationDropdown: false });
     geocodeByAddress(selected)
       .then(res => getLatLng(res[0]))
       .then(({ lat, lng }) => {
@@ -194,12 +207,7 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    const {
-      address,
-      errorMessage,
-      latitude,
-      longitude
-    } = this.state;
+    const { address } = this.state;
 
     return (
       <div>
@@ -251,9 +259,9 @@ class SearchBar extends React.Component {
               );
             }}
           </PlacesAutocomplete>
-          <div className="findLocationDropdown" style={{display: this.state.latitude ? 'block' : 'none' }}>
-            <i className="fas fa-map-marker-alt" onClick={this.handleSubmit} ></i>
-            <a onClick={this.handleSubmit}>Current Location</a>
+          <div className="findLocationDropdown" style={{display: this.state.findLocationDropdown ? 'block' : 'none' }}>
+            <i className="fas fa-map-marker-alt" onClick={this.handleAutolocateSubmit} ></i>
+            <a onClick={this.handleAutolocateSubmit}>Current Location</a>
           </div>
           <input className="homeSearchSubmit" type="submit" value="Submit" />
         </form>
