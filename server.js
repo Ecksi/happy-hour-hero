@@ -61,22 +61,49 @@ app.get('/api/v1/food_specials/:id', (request, response) => {
 });
 
 app.get('/api/v1/happy_hours', (request, response) => {
-  console.log(request.query)
-  if (request.query.restaurant_id && request.query.combined_times) {
+  const restaurant_id = request.query.restaurant_id;
+  const combined_times = request.query.combined_times;
+  const day = request.query.day;
+
+  if (restaurant_id && combined_times && day) {
     database('happy_hours').select()
-      .where('restaurant_id', request.query.restaurant_id)
-      .andWhere('combined_times', request.query.combined_times)
+      .where('restaurant_id', restaurant_id)
+      .andWhere('combined_times', combined_times)
+      .andWhere('day', day)
+      .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id, combined_times, day])
+      .catch(error => response.status(500).json({ error }));
+  } else if (restaurant_id && combined_times) {
+    database('happy_hours').select()
+      .where('restaurant_id', restaurant_id)
+      .andWhere('combined_times', combined_times)
       .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id, combined_times])
       .catch(error => response.status(500).json({ error }));
-  } else if (request.query.restaurant_id) {
+  } else if (restaurant_id && day) {
     database('happy_hours').select()
-      .where('restaurant_id', request.query.restaurant_id)
-      .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id, combined_times])
+      .where('restaurant_id', restaurant_id)
+      .andWhere('day', day)
+      .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id, day])
       .catch(error => response.status(500).json({ error }));
-  } else if (request.query.combined_times) {
+  } else if (combined_times && day) {
     database('happy_hours').select()
-      .where('combined_times', request.query.combined_times)
-      .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id, combined_times])
+      .where('combined_times', combined_times)
+      .andWhere('day', day)
+      .then(happy_hour => response.status(200).json(happy_hour)[combined_times, day])
+      .catch(error => response.status(500).json({ error }));
+  } else if (restaurant_id) {
+    database('happy_hours').select()
+      .where('restaurant_id', restaurant_id)
+      .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id])
+      .catch(error => response.status(500).json({ error }));
+  } else if (combined_times) {
+    database('happy_hours').select()
+      .where('combined_times', combined_times)
+      .then(happy_hour => response.status(200).json(happy_hour)[combined_times])
+      .catch(error => response.status(500).json({ error }));
+  } else if (day) {
+    database('happy_hours').select()
+      .where('day', day)
+      .then(happy_hour => response.status(200).json(happy_hour)[day])
       .catch(error => response.status(500).json({ error }));
   } else {
     database('happy_hours').select()
