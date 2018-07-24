@@ -27,7 +27,6 @@ export class ResultCards extends Component {
       return special.id === todaysHappyHour.food_specials_id && special.best_deal === true;
     });
 
-
     if (bestFoodSpecial) {
       return bestFoodSpecial.name;
     }
@@ -50,7 +49,7 @@ export class ResultCards extends Component {
 
     const todaysHappyHour = happyHours.find(happyHour => {
 
-      return happyHour.restaurant_id == restaurant.id && happyHour.day === day;
+      return happyHour.restaurant_id === restaurant.id && happyHour.day === day;
     });
   
     return todaysHappyHour;
@@ -72,10 +71,9 @@ export class ResultCards extends Component {
       });
 
       resultCards = filteredRestaurants.map((restaurant, index) => {
-        const restaurantName = restaurant.name;
         let miles = restaurant.miles;
+        const restaurantName = restaurant.name;
         const { id, address, restaurant_image } = restaurant;
-      
         const todaysHappyHour = this.getTodaysHappyHour(restaurant);
  
         if (todaysHappyHour) {
@@ -99,7 +97,7 @@ export class ResultCards extends Component {
           image = { restaurant_image }
           key={ index }
           id={ id }
-        />);
+        /> );
       });
     }
 
@@ -116,6 +114,7 @@ ResultCards.propTypes = {
   drinkSpecials: PropTypes.array,
   happyHours:  PropTypes.array,
   filteredRestaurants: PropTypes.array,
+  day: PropTypes.string,
 };
 
 export const mapDispatchToProps = (dispatch) => ({
