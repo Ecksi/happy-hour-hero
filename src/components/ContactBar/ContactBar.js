@@ -4,29 +4,20 @@ import './ContactBar.css';
 import PropTypes from 'prop-types';
 
 class ContactBar extends Component {
-  constructor (props) {
-    super(props);
-    
-  }
-
   getRestaurant = () => {
     const { restaurantId, filteredRestaurants } = this.props;
     const id = restaurantId;
-
-    const restaurant = filteredRestaurants.find(restaurant => restaurant.id == id);
+    const restaurant = filteredRestaurants.find(restaurant => restaurant.id === id);
 
     return restaurant;
   }
 
-  formatAddress = (address) => {
-    return address.replace(/\s+/g, '+').toLowerCase().replace(',', '');
-  }
+  formatAddress = (address) => address.replace(/\s+/g, '+').toLowerCase().replace(',', '');
 
   render() {
     const restaurant = this.getRestaurant();
     const { phone, website, name } = restaurant;
     const { address } = this.props.location;
-
     const currentLocation = this.formatAddress(address);
     const restaurantLocation = this.formatAddress(name);
 
@@ -40,6 +31,12 @@ class ContactBar extends Component {
     );
   }
 }
+
+ContactBar.propTypes = {
+  location: PropTypes.string,
+  filteredRestaurants: PropTypes.array,
+  restaurantId: PropTypes.number,
+};
 
 export const mapStateToProps = (state) => ({
   location: state.location,
