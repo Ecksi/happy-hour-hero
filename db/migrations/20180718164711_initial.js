@@ -32,8 +32,9 @@ exports.up = function (knex, Promise) {
     knex.schema.createTable('happy_hours', table => {
       table.increments('id').primary();
       table.string('day');
-      table.string('start_time');
-      table.string('end_time');
+      table.integer('start_time');
+      table.integer('end_time');
+      table.string('combined_times');
       table.integer('restaurant_id').unsigned()
       table.foreign('restaurant_id').references('restaurants.id');
       table.integer('drink_specials_id').unsigned()

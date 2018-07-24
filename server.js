@@ -24,6 +24,16 @@ app.get('/api/v1/restaurants/:id', (request, response) => {
     .catch(error => response.status(500).json({ error }));
 });
 
+app.get('/api/v1/restaurants/:minLat/:maxLat/:minLong/:maxLong', (request, response) => {
+  const { minLat, maxLat, minLong, maxLong } = request.params;
+
+  database('restaurants').select()
+    .whereBetween('latitude', [minLat, maxLat])
+    .whereBetween('longitude', [minLong, maxLong])
+    .then(restaurant => response.status(200).json(restaurant))
+    .catch((error) => response.status(500).json({ error }));
+});
+
 app.get('/api/v1/drink_specials', (request, response) => {
   database('drink_specials').select()
     .then(drink_special => response.status(200).json(drink_special))
@@ -51,10 +61,12 @@ app.get('/api/v1/food_specials/:id', (request, response) => {
 });
 
 app.get('/api/v1/happy_hours', (request, response) => {
-  if (request.query.restaurant_id) {
+  console.log(request.query)
+  if (request.query.restaurant_id || request.query.combined_times) {
     database('happy_hours').select()
       .where('restaurant_id', request.query.restaurant_id)
-      .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id])
+      .andWhere('combined_times', request.query.combined_times)
+      .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id, combined_times])
       .catch(error => response.status(500).json({ error }));
   } else {
     database('happy_hours').select()
