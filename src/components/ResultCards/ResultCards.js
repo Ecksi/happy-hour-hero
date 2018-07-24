@@ -3,16 +3,22 @@ import { connect } from 'react-redux';
 import ResultCard from '../ResultCard/ResultCard';
 import PropTypes from 'prop-types';
 import './ResultCards.css';
+import { storeDay } from '../../actions';
 
 export class ResultCards extends Component {
+  componentDidMount() {
+    this.findDay();
+  }
+
   findDay = () => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const date = new Date();
     const dayIndex = date.getDay();
     const day = days[dayIndex];
 
-    return day;
+    this.props.storeDay(day);
   }
+
 
   getBestFoodSpecial = (todaysHappyHour) => {
     const { foodSpecials } = this.props;
@@ -46,7 +52,7 @@ export class ResultCards extends Component {
 
       return happyHour.restaurant_id == restaurant.id && happyHour.day === day;
     });
-
+  
     return todaysHappyHour;
   }
 
@@ -71,7 +77,7 @@ export class ResultCards extends Component {
         const { id, address, restaurant_image } = restaurant;
       
         const todaysHappyHour = this.getTodaysHappyHour(restaurant);
-        
+ 
         if (todaysHappyHour) {
           times = todaysHappyHour.combined_times;
           bestFoodSpecial = this.getBestFoodSpecial(todaysHappyHour);
@@ -80,6 +86,8 @@ export class ResultCards extends Component {
           endTime = todaysHappyHour.end_time;
           miles = miles.toFixed(2);
         }
+
+        console.log(startTime)
 
         return ( <ResultCard
           restaurantName={ restaurantName }
@@ -112,6 +120,12 @@ ResultCards.propTypes = {
   filteredRestaurants: PropTypes.array,
 };
 
+export const mapDispatchToProps = (dispatch) => ({
+  storeDay: (day) => {
+    return dispatch(storeDay(day));
+  },
+});
+
 export const mapStateToProps = (state) => ({
   filteredRestaurants: state.filteredRestaurants,
   happyHours: state.happyHours,
@@ -120,4 +134,4 @@ export const mapStateToProps = (state) => ({
   day: state.day
 });
 
-export default connect(mapStateToProps)(ResultCards);
+export default connect(mapStateToProps, mapDispatchToProps)(ResultCards);
