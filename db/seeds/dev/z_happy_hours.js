@@ -37,7 +37,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Monday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[3].id,
             food_specials_id: null,
@@ -46,7 +46,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Monday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[4].id,
             food_specials_id: null,
@@ -64,7 +64,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Tuesday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[5].id,
             food_specials_id: null,
@@ -73,7 +73,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Tuesday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[2].id,
             food_specials_id: null,
@@ -82,7 +82,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Tuesday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[6].id,
             food_specials_id: null,
@@ -100,7 +100,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Wednesday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[7].id,
             food_specials_id: food_specials_id[0].id,
@@ -109,7 +109,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Wednesday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[8].id,
             food_specials_id: food_specials_id[0].id,
@@ -118,7 +118,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Wednesday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[9].id,
             food_specials_id: food_specials_id[0].id,
@@ -136,7 +136,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Thursday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[10].id,
             food_specials_id: food_specials_id[1].id,
@@ -145,7 +145,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Thursday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[2].id,
             food_specials_id: food_specials_id[1].id,
@@ -154,7 +154,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Thursday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[9].id,
             food_specials_id: food_specials_id[1].id,
@@ -163,7 +163,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Thursday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[11].id,
             food_specials_id: food_specials_id[1].id,
@@ -181,7 +181,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Friday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[12].id,
             food_specials_id: null,
@@ -190,7 +190,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Friday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[13].id,
             food_specials_id: null,
@@ -199,7 +199,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Friday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[14].id,
             food_specials_id: null,
@@ -208,7 +208,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Saturday',
             start_time: 1100,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '11:00AM-2:00AM',
             drink_specials_id: drink_specials_id[1].id,
             food_specials_id: null,
@@ -217,7 +217,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Sunday',
             start_time: 1100,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '11:00PM-2:00AM',
             drink_specials_id: drink_specials_id[2].id,
             food_specials_id: null,
@@ -227,7 +227,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Monday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[12].id,
             food_specials_id: null,
@@ -236,7 +236,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Tuesday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[8].id,
             food_specials_id: food_specials_id[1].id,
@@ -245,7 +245,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Wednesday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[6].id,
             food_specials_id: food_specials_id[0].id,
@@ -254,7 +254,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Thursday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[1].id,
             food_specials_id: null,
@@ -263,7 +263,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Friday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[8].id,
             food_specials_id: null,
@@ -272,7 +272,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Saturday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[4].id,
             food_specials_id: food_specials_id[1].id,
@@ -281,7 +281,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Sunday',
             start_time: 2000,
-            end_time: 0200,
+            end_time: 200,
             combined_times: '8:00PM-2:00AM',
             drink_specials_id: drink_specials_id[9].id,
             food_specials_id: food_specials_id[1].id,
@@ -290,7 +290,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Monday',
             start_time: 1600,
-            end_time: 0100,
+            end_time: 100,
             combined_times: '4:00PM-1:00AM',
             drink_specials_id: drink_specials_id[2].id,
             food_specials_id: null,
@@ -299,7 +299,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Tuesday',
             start_time: 1600,
-            end_time: 0100,
+            end_time: 100,
             combined_times: '4:00PM-1:00AM',
             drink_specials_id: drink_specials_id[5].id,
             food_specials_id: food_specials_id[0].id,
@@ -308,7 +308,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Wednesday',
             start_time: 1600,
-            end_time: 0100,
+            end_time: 100,
             combined_times: '4:00PM-1:00AM',
             drink_specials_id: drink_specials_id[12].id,
             food_specials_id: food_specials_id[0].id,
@@ -317,7 +317,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Thursday',
             start_time: 1600,
-            end_time: 0100,
+            end_time: 100,
             combined_times: '4:00PM-1:00AM',
             drink_specials_id: drink_specials_id[9].id,
             food_specials_id: null,
@@ -326,7 +326,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Friday',
             start_time: 1600,
-            end_time: 0100,
+            end_time: 100,
             combined_times: '4:00PM-1:00AM',
             drink_specials_id: drink_specials_id[1].id,
             food_specials_id: food_specials_id[1].id,
@@ -335,7 +335,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Saturday',
             start_time: 1600,
-            end_time: 0100,
+            end_time: 100,
             combined_times: '4:00PM-1:00AM',
             drink_specials_id: drink_specials_id[7].id,
             food_specials_id: null,
@@ -344,7 +344,7 @@ exports.seed = function (knex, Promise) {
           {
             day: 'Sunday',
             start_time: 1600,
-            end_time: 0100,
+            end_time: 100,
             combined_times: '4:00PM-1:00AM',
             drink_specials_id: drink_specials_id[4].id,
             food_specials_id: food_specials_id[1].id,
