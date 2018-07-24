@@ -143,7 +143,7 @@ class SearchBar extends React.Component {
 
   handleAutolocateSubmit = async (event) => {
     event.preventDefault();
-console.log('hello?')
+
     const { latitude, longitude } = this.state;
     const location = `${latitude} + ${longitude}`;
     const address = await this.getAddress(location);
@@ -295,7 +295,7 @@ SearchBar.propTypes = {
   storeFilteredRestaurants: PropTypes.func,
   filteredRestaurants: PropTypes.array,
   location: PropTypes.object,
-  history: PropTypes.array,
+  history: PropTypes.object,
 };
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -324,7 +324,6 @@ export const mapStateToProps = (state) => ({
   restaurants: state.restaurants,
   filteredRestaurants: state.filteredRestaurants,
   happyHours: state.happyHours,
-  history: state.obj
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar));

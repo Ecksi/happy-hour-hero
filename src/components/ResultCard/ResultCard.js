@@ -68,18 +68,11 @@ export class ResultCard extends Component {
 
   getRemainingTime = () => {
     const { startTime, endTime } = this.props;
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
-    const deadline = new Date(year, month, day, hours, cleanMinutes);
-    const currentTime = Date.now();
-    const seconds = (deadline - currentTime) / 1000;
     let time;
     let minutes;
     let hours;
     let cleanMinutes;
- 
+
     if (startTime && endTime) {
       this.state.currentlyHappyHour ? time = endTime : time = startTime;
 
@@ -88,6 +81,14 @@ export class ResultCard extends Component {
       
       minutes === '00' ? cleanMinutes = null : cleanMinutes = ',' + minutes;
     }
+
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+    const deadline = new Date(year, month, day, hours, cleanMinutes);
+    const currentTime = Date.now();
+    const seconds = (deadline - currentTime) / 1000;
 
     this.setState({
       seconds
