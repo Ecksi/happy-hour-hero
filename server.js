@@ -60,31 +60,22 @@ app.get('/api/v1/food_specials/:id', (request, response) => {
     .catch(error => response.status(500).json({ error }));
 });
 
-app.get('/api/v1/restaurants/:minLat/:maxLat/:minLong/:maxLong', (request, response) => {
-  const {minLat, maxLat, minLong, maxLong} = request.params;
-
-  // for (let requiredParameter of ['minLat', 'maxLat', 'minLong', 'maxLong']) {
-  //   if (!request.body[requiredParameter]) {
-  //     return response
-  //       .status(422)
-  //       .send({error: 'Expected lat and long to be passed into the body'});
-  //   }
-  // }
-
-  database('restaurants').select()
-    .whereBetween('latitude', [minLat, maxLat])
-    .whereBetween('longitude', [minLong, maxLong])
-    .then(restaurant => response.status(200).json(restaurant))
-    .catch((error) => response.status(500).json({ error }));
-});
-
-
 app.get('/api/v1/happy_hours', (request, response) => {
   console.log(request.query)
-  if (request.query.restaurant_id || request.query.combined_times) {
+  if (request.query.restaurant_id && request.query.combined_times) {
     database('happy_hours').select()
       .where('restaurant_id', request.query.restaurant_id)
       .andWhere('combined_times', request.query.combined_times)
+      .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id, combined_times])
+      .catch(error => response.status(500).json({ error }));
+  } else if (request.query.restaurant_id) {
+    database('happy_hours').select()
+      .where('restaurant_id', request.query.restaurant_id)
+      .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id, combined_times])
+      .catch(error => response.status(500).json({ error }));
+  } else if (request.query.combined_times) {
+    database('happy_hours').select()
+      .where('combined_times', request.query.combined_times)
       .then(happy_hour => response.status(200).json(happy_hour)[restaurant_id, combined_times])
       .catch(error => response.status(500).json({ error }));
   } else {
