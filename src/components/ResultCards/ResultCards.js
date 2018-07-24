@@ -14,25 +14,6 @@ export class ResultCards extends Component {
     return day;
   }
 
-  cleanHappyHourTimes = (todaysHappyHour) => {
-    const start = todaysHappyHour.start_time;
-    const end = todaysHappyHour.end_time;
-    const cleanStartTime = this.getFormattedTime(start);
-    const cleanEndTime = this.getFormattedTime(end);
-    const cleanTime = cleanStartTime + '-' + cleanEndTime;
-
-    return cleanTime;
-  }
-
-  getFormattedTime = (military) => {
-    let hours24 = parseInt(military.substring(0, 2), 10);
-    let hours = ((hours24 + 11) % 12) + 1;
-    let amPm = hours24 > 11 ? 'pm' : 'am';
-    let minutes = military.substring(2);
-
-    return hours + ':' + minutes + amPm;
-  };
-
   getBestFoodSpecial = (todaysHappyHour) => {
     const { foodSpecials } = this.props;
 
@@ -92,7 +73,7 @@ export class ResultCards extends Component {
         const todaysHappyHour = this.getTodaysHappyHour(restaurant);
         
         if (todaysHappyHour) {
-          times = this.cleanHappyHourTimes(todaysHappyHour);
+          times = todaysHappyHour.combined_times;
           bestFoodSpecial = this.getBestFoodSpecial(todaysHappyHour);
           bestDrinkSpecial = this.getBestDrinkSpecial(todaysHappyHour);
           startTime = todaysHappyHour.start_time;
