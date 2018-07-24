@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ResultCard.css';
-import  moment from 'moment';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Route, withRouter} from 'react-router-dom';
 import Restaurant from '../Restaurant/Restaurant';

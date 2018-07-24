@@ -145,7 +145,7 @@ class SearchBar extends React.Component {
 
   handleAutolocateSubmit = async (event) => {
     event.preventDefault();
-
+console.log('hello?')
     const { latitude, longitude } = this.state;
     const location = `${latitude} + ${longitude}`;
     const address = await this.getAddress(location);
