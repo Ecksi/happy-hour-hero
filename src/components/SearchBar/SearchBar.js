@@ -31,9 +31,8 @@ class SearchBar extends React.Component {
     this.resultsPageToggle();
   }
 
-  resultsPageToggle = () => {
-    this.props.filteredRestaurants ? this.setState({resultsPage: true}) : null;
-  }
+  resultsPageToggle = () => this.props.filteredRestaurants ? this.setState({resultsPage: true}) : null;
+  
 
   getMyLocation = () => {
     const location = window.navigator && window.navigator.geolocation;
@@ -296,6 +295,7 @@ SearchBar.propTypes = {
   storeFilteredRestaurants: PropTypes.func,
   filteredRestaurants: PropTypes.array,
   location: PropTypes.object,
+  history: PropTypes.array,
 };
 
 export const mapDispatchToProps = (dispatch) => ({
