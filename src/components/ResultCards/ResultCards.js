@@ -66,8 +66,6 @@ export class ResultCards extends Component {
       return happyHour.restaurant_id == restaurant.id && happyHour.day === day;
     });
 
-    console.log(todaysHappyHour)
-
     return todaysHappyHour;
   }
 

@@ -19,6 +19,13 @@ export class Header extends Component {
     });
   }
 
+  handleSelected = () => {
+    console.log('selected')
+    this.setState({
+      dropdownSelected: false
+    });
+  }
+
   render() {
     const { address } = this.props.location;
 
@@ -29,7 +36,7 @@ export class Header extends Component {
           <div className="headerLocation">
             <p>{ address }</p>
             <i className="fas fa-caret-down" onClick={ this.handleSubmit }></i>
-            { this.state.dropdownSelected ? <SearchBar /> : null }
+            { this.state.dropdownSelected ? <SearchBar handleSelected={this.handleSelected} /> : null }
           </div>
         </section>
       </header>
