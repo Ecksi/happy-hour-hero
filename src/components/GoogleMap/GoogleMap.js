@@ -12,7 +12,7 @@ export class GoogleMap extends Component {
     super();
 
     this.state = {
-      zoom: 15
+      zoom: 12
     };
   }
 

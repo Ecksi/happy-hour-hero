@@ -140,7 +140,7 @@ class SearchBar extends React.Component {
       this.props.storeFoodSpecials(foodSpecial);
     });
 
-    this.state.autoDetectLocation ? null : this.props.history.push('/HappyHours');
+    this.props.history.push('/HappyHours');
   }
 
   handleAutolocateSubmit = async (event) => {
@@ -156,7 +156,7 @@ class SearchBar extends React.Component {
 
     this.props.storeLocation(address, longitude, latitude);
     
-    this.storeRestaurants();
+    this.findRadius();
   } 
 
   getAddress = async (location) => {
