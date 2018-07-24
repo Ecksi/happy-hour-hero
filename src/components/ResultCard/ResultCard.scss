@@ -8,23 +8,9 @@
 }
 
 .resultCardContainer.selectedCard {
-  box-shadow: 2px 2px 2px 2px #fdb82a;
+  border: 4px solid #fdb82a;
+  box-shadow: none;
 }
-
-// .selectedCard .resultCardInfo .address, .selectedCard .resultCardInfo .times span, .selectedCard .resultCardInfo h2, .selectedCard .resultCardInfo h3, .selectedCard .resultCardClock p {
-//   color: #fff;
-// }
-
-// .selectedCard .happyHourSpecials {
-//   background: #fff;
-//   color: #fdb82a;
-// }
-
-// .selectedCard .moreInfoButton {
-//   background: #e09b1f;
-//   color: #fff;
-//   border: 1px solid #e09b1f;
-// }
 
 .resultCardImage {
   width: 250px;
