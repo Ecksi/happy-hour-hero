@@ -4,7 +4,6 @@ import Header from '../Header/Header';
 import ResultCards from '../ResultCards/ResultCards';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import SearchBar from '../SearchBar/SearchBar';
-import { storeRestaurants, storeFilteredRestaurants } from '../../actions';
 import './HappyHours.css';
 
 export class HappyHours extends Component {

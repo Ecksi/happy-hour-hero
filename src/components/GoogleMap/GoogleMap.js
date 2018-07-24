@@ -4,7 +4,6 @@ import GoogleMapReact from 'google-map-react';
 import './GoogleMap.css';
 import UserMarker from '../UserMarker/UserMarker';
 import RestaurantMarker from '../RestaurantMarker/RestaurantMarker';
-import { restaurants } from '../../reducers/restaurants';
 import PropTypes from 'prop-types';
 
 export class GoogleMap extends Component {
@@ -21,7 +20,6 @@ export class GoogleMap extends Component {
       lat: this.props.location.latitude,
       lng: this.props.location.longitude
     };
-    
 
     const markers = this.props.filteredRestaurants.map((restaurant, index) => {
       const { latitude, longitude, name, id } = restaurant;
