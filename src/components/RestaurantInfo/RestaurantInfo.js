@@ -75,6 +75,7 @@ class Restaurant extends Component {
           <h3>happy hour times</h3>
           <p className="times">{ happyHourTimes }</p>
           <div className="bestDeals">
+            <p><em>best deal</em></p>
             { bestDrinkSpecial ? <p> {bestDrinkSpecial} </p> : null }
             { bestFoodSpecial ? <p> {bestFoodSpecial} </p> : null }
           </div>
