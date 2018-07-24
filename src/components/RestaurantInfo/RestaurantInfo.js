@@ -26,23 +26,42 @@ class Restaurant extends Component {
     return restaurant;
   }
 
-  getTodaysHappyHours = (restaurant) => {
-    const { happyHours, day } = this.props;
+  getBestFoodSpecial = (todaysHappyHour) => {
+    const { foodSpecials } = this.props;
 
-    const todaysHappyHours = happyHours.reduce((happyHourTimes, happyHour) => {
-      if (happyHour.restaurant_id === restaurant.id && happyHour.day === day) {
-        happyHourTimes.push(happyHour)
-      }
-      return happyHourTimes;
-    }, []);
+    const bestFoodSpecial = foodSpecials.find(special => {
+      return special.id === todaysHappyHour.food_specials_id && special.best_deal === true;
+    });
 
-    return todaysHappyHours;
+
+    if (bestFoodSpecial) {
+      return bestFoodSpecial.name;
+    } else {
+      return null;
+    }
+  }
+
+  getBestDrinkSpecial = (todaysHappyHour) => {
+    const { drinkSpecials } = this.props;
+
+    const bestDrinkSpecial = drinkSpecials.find(special => {
+      return special.id === todaysHappyHour.drink_specials_id && special.best_deal === true;
+    });
+
+    if (bestDrinkSpecial) {
+      return bestDrinkSpecial.name;
+    } else {
+      return null;
+    }
   }
 
   render() {
     const restaurant = this.getRestaurant();
-    const happyHours = this.getTodaysHappyHours(restaurant);
-    console.log(happyHours)
+    const happyHours = this.props.getTodaysHappyHours(restaurant);
+    const happyHourTimes = this.props.cleanHappyHourTimes(happyHours);
+    const bestDrinkSpecial = this.getBestDrinkSpecial(happyHours[0]);
+    const bestFoodSpecial = this.getBestFoodSpecial(happyHours[0]);
+    
     const { name, address, restaurant_image, miles, id } = restaurant;
     const backgroundImage = {backgroundImage: "url(" + restaurant_image + ")"};
     const borderBackground = {backgroundImage: "url(" + borderImg + ")"};
@@ -54,7 +73,11 @@ class Restaurant extends Component {
           <h1>{ name }</h1>
           <p className="restaurantAddress">{ address }</p>
           <h3>happy hour times</h3>
-          <p className="times">mon-fri <span>{  }</span></p>
+          <p className="times">{ happyHourTimes }</p>
+          <div className="bestDeals">
+            { bestDrinkSpecial ? <p> {bestDrinkSpecial} </p> : null }
+            { bestFoodSpecial ? <p> {bestFoodSpecial} </p> : null }
+          </div>
         </section>
       </section>
     );
@@ -65,7 +88,9 @@ export const mapStateToProps = (state) => ({
   restaurantId: state.restaurantId,
   filteredRestaurants: state.filteredRestaurants,
   happyHours: state.happyHours,
-  day: state.day
+  day: state.day,
+  drinkSpecials: state.drinkSpecials,
+  foodSpecials: state.foodSpecials
 });
 
 export default connect(mapStateToProps)(Restaurant);

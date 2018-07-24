@@ -87,8 +87,6 @@ export class ResultCards extends Component {
           miles = miles.toFixed(2);
         }
 
-        console.log(startTime)
-
         return ( <ResultCard
           restaurantName={ restaurantName }
           address={ address }
