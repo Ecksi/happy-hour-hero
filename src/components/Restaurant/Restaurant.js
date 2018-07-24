@@ -5,11 +5,21 @@ import PropTypes from 'prop-types';
 import './Restaurant.css';
 import Header from '../Header/Header';
 import RestaurantInfo from '../RestaurantInfo/RestaurantInfo';
+import RestaurantHappyHours from '../RestaurantHappyHours/RestaurantHappyHours';
 import ContactBar from '../ContactBar/ContactBar';
 
 class Restaurant extends Component {
   constructor (props) {
     super(props);
+  }
+  
+  getRestaurant = () => {
+    const { restaurantId, filteredRestaurants } = this.props;
+    const id = restaurantId;
+    console.log(filteredRestaurants)
+    const restaurant = filteredRestaurants.find(restaurant => restaurant.id == id);
+
+    return restaurant;
   }
 
   getTodaysHappyHours = (restaurant) => {
@@ -46,8 +56,14 @@ class Restaurant extends Component {
         <RestaurantInfo 
           getTodaysHappyHours={this.getTodaysHappyHours} 
           cleanHappyHourTimes={this.cleanHappyHourTimes}
+          getRestaurant={this.getRestaurant}
         />
         <ContactBar />
+        <RestaurantHappyHours 
+          getTodaysHappyHours={this.getTodaysHappyHours} 
+          cleanHappyHourTimes={this.cleanHappyHourTimes}
+          getRestaurant={this.getRestaurant}
+        />
       </section>
     );
   }
@@ -57,7 +73,8 @@ export const mapStateToProps = (state) => ({
   location: state.location,
   happyHours: state.happyHours,
   restaurantId: state.restaurantId,
-  day: state.day
+  day: state.day,
+  filteredRestaurants: state.filteredRestaurants
 });
 
 export default withRouter(connect(mapStateToProps)(Restaurant));

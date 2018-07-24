@@ -9,23 +9,29 @@ class RestaurantHappyHours extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.getTodaysHappyHours();
-  }
-
-  getTodaysHappyHours = async () => {
-    const { day, restaurantId, happyHours } = this.props;
-
-    const todaysHappyHours = happyHours.filter(happyHour => {
-      return happyHour.restaurant_id === restaurantId;
+  getHappyHourSpecialsForTime = (happyHourTimes) => {
+    const drinkSpecials = happyHourTimes.map((time, index) => {
+      return (
+        <div key={index}>
+          <h3>Food Specials</h3>
+          <p>Food 1</p>
+        </div>
+      );
     });
-  
-    console.log(todaysHappyHours)
+
+    return drinkSpecials;
   }
 
   render() {
+    const restaurant = this.props.getRestaurant();
+    const happyHours = this.props.getTodaysHappyHours(restaurant);
+    const happyHourTimes = this.props.cleanHappyHourTimes(happyHours);
+    const drinkSpecials = this.getHappyHourSpecialsForTime(happyHours);
+
     return (
       <section className="restaurantHappyHoursContainer">
+        <h2>4:00pm - 8:00pm</h2>
+        {drinkSpecials}
       </section>
     );
   }

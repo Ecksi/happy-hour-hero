@@ -13,19 +13,6 @@ class Restaurant extends Component {
 
   }
 
-  componentDidMount() {
-    this.getRestaurant();
-  }
-
-  getRestaurant = () => {
-    const { restaurantId, filteredRestaurants } = this.props;
-    const id = restaurantId;
-
-    const restaurant = filteredRestaurants.find(restaurant => restaurant.id == id);
-
-    return restaurant;
-  }
-
   getBestFoodSpecial = (todaysHappyHour) => {
     const { foodSpecials } = this.props;
 
@@ -56,7 +43,7 @@ class Restaurant extends Component {
   }
 
   render() {
-    const restaurant = this.getRestaurant();
+    const restaurant = this.props.getRestaurant();
     const happyHours = this.props.getTodaysHappyHours(restaurant);
     const happyHourTimes = this.props.cleanHappyHourTimes(happyHours);
     const bestDrinkSpecial = this.getBestDrinkSpecial(happyHours[0]);

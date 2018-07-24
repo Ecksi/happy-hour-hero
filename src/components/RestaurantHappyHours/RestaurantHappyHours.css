@@ -1,0 +1,16 @@
+.restaurantHappyHoursContainer {
+  width: 80%;
+  padding: 50px;
+  margin: 0 auto; }
+
+.restaurantHappyHoursContainer h2 {
+  color: #666;
+  font-size: 2rem; }
+
+.restaurantHappyHoursContainer h3 {
+  font-size: 1.3rem;
+  color: #999; }
+
+.restaurantHappyHoursContainer p {
+  color: #666;
+  font-size: 1.1rem; }

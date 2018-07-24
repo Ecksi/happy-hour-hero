@@ -1,5 +1,5 @@
 .restaurantInfoContainer {
-  height: 350px;
+  height: 375px;
   background-size: cover;
   background-position-y: center; }
 
@@ -35,7 +35,7 @@
 .restaurantImageBorder {
   height: 130px;
   position: absolute;
-  top: 300px;
+  top: 350px;
   width: 100%; }
 
 .restaurantAddress {
