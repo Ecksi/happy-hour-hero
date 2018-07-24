@@ -76,6 +76,7 @@ export class ResultCard extends Component {
  
     if (startTime && endTime) {
       this.state.currentlyHappyHour ? time = endTime : time = startTime;
+
       hours = time.slice(0, 2);
       minutes = time.slice(2, 4);
       
