@@ -77,10 +77,8 @@ class SearchBar extends React.Component {
   storeRestaurants = async (minLat, maxLat, minLong, maxLong) => {
     const response = await fetch(`http://localhost:3000/api/v1/restaurants/${minLat}/${maxLat}/${minLong}/${maxLong}`);
     const restaurants = await response.json();
-
     const homeLatitude = this.state.latitude;
     const homeLongitude = this.state.longitude;
-
     const filteredRestaurants = [];
  
     restaurants.forEach(restaurant => {
@@ -92,7 +90,7 @@ class SearchBar extends React.Component {
       const miles = meters * 0.000621371;
 
       if (miles < 5) {
-        Object.assign(restaurant, {miles})
+        Object.assign(restaurant, {miles});
         filteredRestaurants.push(restaurant);
       }
     });
@@ -104,6 +102,7 @@ class SearchBar extends React.Component {
 
   storeHappyHours = async () => {
     const { filteredRestaurants } = this.props;
+    
     await filteredRestaurants.forEach(async(restaurant) => {
       const id = restaurant.id;
       const response = await fetch(`http://localhost:3000/api/v1/happy_hours?restaurant_id=${id}`);
@@ -181,7 +180,7 @@ console.log('hello?')
     } catch (error) {
       throw new Error(`Network request failed. (error: ${error.message})`);
     }
-  }
+  };
 
   handleChange = address => {
     this.setState({
@@ -295,7 +294,8 @@ console.log('hello?')
 SearchBar.propTypes = {
   storeLocation: PropTypes.func,
   storeFilteredRestaurants: PropTypes.func,
-  history: PropTypes.obj,
+  filteredRestaurants: PropTypes.array,
+  location: PropTypes.object,
 };
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -316,7 +316,7 @@ export const mapDispatchToProps = (dispatch) => ({
   },
   storeFoodSpecials: (foodSpecial) => {
     return dispatch(storeFoodSpecials(foodSpecial));
-  }
+  },
 });
 
 export const mapStateToProps = (state) => ({
@@ -324,6 +324,7 @@ export const mapStateToProps = (state) => ({
   restaurants: state.restaurants,
   filteredRestaurants: state.filteredRestaurants,
   happyHours: state.happyHours,
+  history: state.obj
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar));
