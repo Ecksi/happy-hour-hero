@@ -1,33 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import './Restaurant.css';
 import Header from '../Header/Header';
 import RestaurantInfo from '../RestaurantInfo/RestaurantInfo';
 import RestaurantHappyHours from '../RestaurantHappyHours/RestaurantHappyHours';
 import ContactBar from '../ContactBar/ContactBar';
+import PropTypes from 'prop-types';
+import './Restaurant.css';
 
 class Restaurant extends Component {
-  constructor (props) {
-    super(props);
-  }
-  
-  getRestaurant = () => {
-    const { restaurantId, filteredRestaurants } = this.props;
-    const id = restaurantId;
-    console.log(filteredRestaurants)
-    const restaurant = filteredRestaurants.find(restaurant => restaurant.id == id);
+    getRestaurant = () => {
+      const { restaurantId, filteredRestaurants } = this.props;
+      const id = restaurantId;
+      const restaurant = filteredRestaurants.find(restaurant => restaurant.id == id);
 
-    return restaurant;
-  }
+      return restaurant;
+    }
 
   getTodaysHappyHours = (restaurant) => {
     const { happyHours, day } = this.props;
 
     const todaysHappyHours = happyHours.reduce((happyHourTimes, happyHour) => {
       if (happyHour.restaurant_id === restaurant.id && happyHour.day === day) {
-        happyHourTimes.push(happyHour)
+        happyHourTimes.push(happyHour);
       }
       return happyHourTimes;
     }, []);
@@ -69,12 +64,19 @@ class Restaurant extends Component {
   }
 }
 
+Restaurant.propTypes = {
+  restaurantId: PropTypes.number,
+  filteredRestaurants: PropTypes.array,
+  happyHours: PropTypes.string,
+  day: PropTypes.string,
+};
+
 export const mapStateToProps = (state) => ({
   location: state.location,
   happyHours: state.happyHours,
   restaurantId: state.restaurantId,
+  filteredRestaurants: state.filteredRestaurants,
   day: state.day,
-  filteredRestaurants: state.filteredRestaurants
 });
 
 export default withRouter(connect(mapStateToProps)(Restaurant));
