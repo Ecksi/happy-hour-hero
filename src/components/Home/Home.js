@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './Home.css';
 import homeLogo from './images/home-logo.png';
 import SearchBar from '../SearchBar/SearchBar';
+import { storeDay } from '../../actions';
 
 class Home extends Component {
+  componentDidMount() {
+    this.findDay();
+  }
+
+  findDay = () => {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const date = new Date();
+    const dayIndex = date.getDay();
+    const day = days[dayIndex];
+
+    this.props.storeDay(day);
+  }
+
   render() {
     return (
       <section className="homeContainer">
@@ -15,4 +30,11 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export const mapDispatchToProps = (dispatch) => ({
+  storeDay: (day) => {
+    return dispatch(storeDay(day));
+  },
+});
+
+
+export default connect(null, mapDispatchToProps)(Home);

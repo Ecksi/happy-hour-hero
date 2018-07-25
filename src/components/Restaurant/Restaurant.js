@@ -21,14 +21,12 @@ class Restaurant extends Component {
     const restaurant = this.getRestaurant();
     const { happyHours, day } = this.props;
     
-
     const todaysHappyHours = happyHours.reduce((happyHourTimes, happyHour) => {
       if (happyHour.restaurant_id === restaurant.id && happyHour.day === day) {
         happyHourTimes.push(happyHour);
       }
       return happyHourTimes;
     }, []);
-    
     return todaysHappyHours;
   }
 
