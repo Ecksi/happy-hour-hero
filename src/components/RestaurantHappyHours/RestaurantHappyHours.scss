@@ -1,14 +1,19 @@
+.restaurantSpecialsContainer {
+  width: calc(80% - 60px);
+  padding: 30px;
+  box-shadow: 1px 1px 1px 1px #cccc;
+  margin: 50px auto 50px auto;
+  border-radius: 20px;
+}
+
 .restaurantHappyHoursContainer {
-  width: 80%;
-  padding: 0px 50px 50px 50px;
-  margin: 0 auto;
+  padding: 40px 0 20px 0;
 }
 
 .restaurantContainer h2 {
   color: #666;
-  width: 80%;
   font-size: 2rem;
-  margin: 50px auto 50px auto;
+  margin: 10px 0 0 0;
 }
 
 .restaurantHappyHoursContainer h3 {
@@ -23,7 +28,7 @@
 .restaurantHappyHoursContainer h4 {
   font-size: 1.6rem;
   color: #999;
-  margin-top: 15px;
+  margin: 0px 0 15px 0;
 }
 
 .restaurantHappyHoursContainer p {
