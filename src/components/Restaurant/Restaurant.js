@@ -12,13 +12,15 @@ class Restaurant extends Component {
     getRestaurant = () => {
       const { restaurantId, filteredRestaurants } = this.props;
       const id = restaurantId;
-      const restaurant = filteredRestaurants.find(restaurant => restaurant.id === id);
+      const restaurant = filteredRestaurants.find(restaurant => restaurant.id == id);
 
       return restaurant;
     }
 
-  getTodaysHappyHours = (restaurant) => {
+  getTodaysHappyHours = () => {
+    const restaurant = this.getRestaurant();
     const { happyHours, day } = this.props;
+    
 
     const todaysHappyHours = happyHours.reduce((happyHourTimes, happyHour) => {
       if (happyHour.restaurant_id === restaurant.id && happyHour.day === day) {
@@ -44,7 +46,30 @@ class Restaurant extends Component {
     return cleanTimes.join(" & ");
   }
 
+  getHappyHourSpecialsForTime = () => {
+    const happyHours = this.getTodaysHappyHours();
+    let times = [];
+
+    const specials = happyHours.map(happyHour => {
+      const { combined_times } = happyHour;
+
+      if (!times.includes(combined_times)) {
+        times.push(combined_times);
+        return (
+          <RestaurantHappyHours 
+            times={ combined_times } 
+            getTodaysHappyHours={ this.getTodaysHappyHours}
+          />
+        );
+      }
+    });
+
+    console.log(times)
+    return specials;
+  }
+
   render() {
+    const times = this.getHappyHourSpecialsForTime();
     return (
       <section className="restaurantContainer">
         <Header />
@@ -54,11 +79,7 @@ class Restaurant extends Component {
           getRestaurant={this.getRestaurant}
         />
         <ContactBar />
-        <RestaurantHappyHours 
-          getTodaysHappyHours={this.getTodaysHappyHours} 
-          cleanHappyHourTimes={this.cleanHappyHourTimes}
-          getRestaurant={this.getRestaurant}
-        />
+        { times }
       </section>
     );
   }

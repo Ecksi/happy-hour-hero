@@ -7,7 +7,7 @@ class ContactBar extends Component {
   getRestaurant = () => {
     const { restaurantId, filteredRestaurants } = this.props;
     const id = restaurantId;
-    const restaurant = filteredRestaurants.find(restaurant => restaurant.id === id);
+    const restaurant = filteredRestaurants.find(restaurant => restaurant.id == id);
 
     return restaurant;
   }
