@@ -49,10 +49,7 @@ class RestaurantHappyHours extends Component {
         <section className="restaurantSpecials">
           <article className="restaurantDrinkSpecials special">
             <h3>Drinks</h3>
-            { drinkSpecials.map((special, index) => {
-              return <p key={index}>{special}</p>;
-            })  
-            }
+            { drinkSpecials.length ? drinkSpecials.map((special, index) => <p key={index}>{special}</p>) : <p>No drink specials</p> }
           </article>
           <article className="restaurantFoodSpecials special">
             <h3>Food</h3>
