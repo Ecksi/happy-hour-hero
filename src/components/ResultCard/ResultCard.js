@@ -41,7 +41,6 @@ export class ResultCard extends Component {
     let timeLeftVar = this.secondsToTime(this.state.seconds);
 
     this.setState({ time: timeLeftVar });
-    this.startTimer;
     this.setTimeUntilRemaining();
   }
 
