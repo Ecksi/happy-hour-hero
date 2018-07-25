@@ -4,29 +4,56 @@ import PropTypes from 'prop-types';
 import './RestaurantHappyHours.css';
 
 class RestaurantHappyHours extends Component {
-  getHappyHourSpecialsForTime = (happyHourTimes) => {
-    const drinkSpecials = happyHourTimes.map((time, index) => {
-      return (
-        <div key={index}>
-          <h3>Food Specials</h3>
-          <p>Food 1</p>
-        </div>
-      );
+  getDrinkSpecials = (happyHours) => {
+    const drinkSpecials = happyHours.map(happyHour => {
+      if (happyHour.combined_times === this.props.times) {
+        const allSpecials = this.props.drinkSpecials.reduce((specials, drinkSpecial) => {
+          if (drinkSpecial.id === happyHour.drink_specials_id && !specials.includes(drinkSpecial.name)) {
+            specials.push(drinkSpecial.name);
+          }
+
+          return specials;
+        }, []);
+
+        return allSpecials;
+      }
     });
 
     return drinkSpecials;
   }
 
+  getFoodSpecials = (happyHours) => {
+    const foodSpecials = happyHours.map(happyHour => {
+      if (happyHour.combined_times === this.props.times) {
+        const allSpecials = this.props.foodSpecials.reduce((specials, foodSpecial) => {
+          if (foodSpecial.id === happyHour.food_specials_id && !specials.includes(foodSpecial.name)) {
+            specials.push(foodSpecial.name);
+          }
+
+          return specials;
+        }, []);
+
+        return allSpecials;
+      }
+    });
+
+    return foodSpecials;
+  }
+
   render() {
-    const restaurant = this.props.getRestaurant();
-    const happyHours = this.props.getTodaysHappyHours(restaurant);
-    const happyHourTimes = this.props.cleanHappyHourTimes(happyHours);
-    const drinkSpecials = this.getHappyHourSpecialsForTime(happyHours);
+    const { times } = this.props;
+    const happyHours = this.props.getTodaysHappyHours();
+    const drinkSpecials = this.getDrinkSpecials(happyHours);
+    const foodSpecials = this.getFoodSpecials(happyHours);
 
     return (
       <section className="restaurantHappyHoursContainer">
-        <h2>4:00pm - 8:00pm</h2>
-        {drinkSpecials}
+        <h2>{ this.props.times }</h2>
+        <h3>Drinks</h3>
+        <p>{ drinkSpecials} </p>
+        <h3>Food</h3>
+        <p>{ foodSpecials} </p>
+
       </section>
     );
   }
@@ -39,7 +66,9 @@ RestaurantHappyHours.propTypes = {
 };
 
 export const mapStateToProps = (state) => ({
-  location: state.location
+  location: state.location,
+  drinkSpecials: state.drinkSpecials,
+  foodSpecials: state.foodSpecials
 });
 
 export default connect(mapStateToProps)(RestaurantHappyHours);
