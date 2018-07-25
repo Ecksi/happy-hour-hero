@@ -4,22 +4,15 @@ import PropTypes from 'prop-types';
 import './RestaurantInfo.css';
 import borderImg from './assets/main-img-border.png';
 import moment from 'moment';
-import * as timeFormat from '../ResultCards/ResultCards';
 moment().format();
 
 class Restaurant extends Component {
-  constructor (props) {
-    super(props);
-
-  }
-
   getBestFoodSpecial = (todaysHappyHour) => {
     const { foodSpecials } = this.props;
 
     const bestFoodSpecial = foodSpecials.find(special => {
       return special.id === todaysHappyHour.food_specials_id && special.best_deal === true;
     });
-
 
     if (bestFoodSpecial) {
       return bestFoodSpecial.name;
@@ -48,8 +41,7 @@ class Restaurant extends Component {
     const happyHourTimes = this.props.cleanHappyHourTimes(happyHours);
     const bestDrinkSpecial = this.getBestDrinkSpecial(happyHours[0]);
     const bestFoodSpecial = this.getBestFoodSpecial(happyHours[0]);
-    
-    const { name, address, restaurant_image, miles, id } = restaurant;
+    const { name, address, restaurant_image } = restaurant;
     const backgroundImage = {backgroundImage: "url(" + restaurant_image + ")"};
     const borderBackground = {backgroundImage: "url(" + borderImg + ")"};
 
@@ -71,6 +63,14 @@ class Restaurant extends Component {
     );
   }
 }
+
+Restaurant.propTypes = {
+  foodSpecials: PropTypes.string,
+  drinkSpecials: PropTypes.string,
+  getRestaurant: PropTypes.func,
+  getTodaysHappyHours: PropTypes.func,
+  cleanHappyHourTimes: PropTypes.func,
+};
 
 export const mapStateToProps = (state) => ({
   restaurantId: state.restaurantId,
