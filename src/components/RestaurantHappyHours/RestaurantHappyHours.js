@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './RestaurantHappyHours.css';
 
 class RestaurantHappyHours extends Component {
-  constructor (props) {
-    super(props);
-  }
-
   getHappyHourSpecialsForTime = (happyHourTimes) => {
     const drinkSpecials = happyHourTimes.map((time, index) => {
       return (
@@ -36,6 +31,12 @@ class RestaurantHappyHours extends Component {
     );
   }
 }
+
+RestaurantHappyHours.propTypes = {
+  getRestaurant: PropTypes.func,
+  getTodaysHappyHours: PropTypes.func,
+  cleanHappyHourTimes: PropTypes.func,
+};
 
 export const mapStateToProps = (state) => ({
   location: state.location
