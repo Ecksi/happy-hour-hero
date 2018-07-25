@@ -20,7 +20,6 @@ export class Header extends Component {
   }
 
   handleSelected = () => {
-    console.log('selected')
     this.setState({
       dropdownSelected: false
     });
@@ -44,6 +43,9 @@ export class Header extends Component {
   }
 }
 
+Header.propTypes = {
+  location: PropTypes.string,
+};
 
 export const mapStateToProps = (state) => ({
   location: state.location

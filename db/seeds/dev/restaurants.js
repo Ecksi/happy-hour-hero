@@ -24,7 +24,7 @@ exports.seed = (knex, Promise) => {
           city: 'Denver',
           state: 'CO',
           zip_code: 80202,
-          restaurant_image: 'https://cdn.shopify.com/s/files/1/1540/0729/t/3/assets/logo.png',
+          restaurant_image: 'https://images2.westword.com/imager/photos-hapa-sushi-grill-and-sake-bar-roll/u/original/6450005/hapa_sushi_05.jpg',
           latitude: '39.7498',
           longitude: '-104.9999'
         },
@@ -36,7 +36,7 @@ exports.seed = (knex, Promise) => {
           city: 'Denver',
           state: 'CO',
           zip_code: 80202,
-          restaurant_image: 'http://fallingrocktaphouse.com/wp-content/uploads/2016/05/FallingRockLogo.png',
+          restaurant_image: 'https://www.hereforthebeer.com/wp-content/uploads/2018/03/150-1.jpg',
           latitude: '39.7539',
           longitude: '-104.9955'
         },

@@ -31,9 +31,8 @@ class SearchBar extends React.Component {
     this.resultsPageToggle();
   }
 
-  resultsPageToggle = () => {
-    this.props.filteredRestaurants ? this.setState({resultsPage: true}) : null;
-  }
+  resultsPageToggle = () => this.props.filteredRestaurants ? this.setState({resultsPage: true}) : null;
+  
 
   getMyLocation = () => {
     const location = window.navigator && window.navigator.geolocation;
@@ -77,10 +76,8 @@ class SearchBar extends React.Component {
   storeRestaurants = async (minLat, maxLat, minLong, maxLong) => {
     const response = await fetch(`http://localhost:3000/api/v1/restaurants/${minLat}/${maxLat}/${minLong}/${maxLong}`);
     const restaurants = await response.json();
-
     const homeLatitude = this.state.latitude;
     const homeLongitude = this.state.longitude;
-
     const filteredRestaurants = [];
  
     restaurants.forEach(restaurant => {
@@ -92,7 +89,7 @@ class SearchBar extends React.Component {
       const miles = meters * 0.000621371;
 
       if (miles < 5) {
-        Object.assign(restaurant, {miles})
+        Object.assign(restaurant, {miles});
         filteredRestaurants.push(restaurant);
       }
     });
@@ -104,6 +101,7 @@ class SearchBar extends React.Component {
 
   storeHappyHours = async () => {
     const { filteredRestaurants } = this.props;
+    
     await filteredRestaurants.forEach(async(restaurant) => {
       const id = restaurant.id;
       const response = await fetch(`http://localhost:3000/api/v1/happy_hours?restaurant_id=${id}`);
@@ -145,7 +143,7 @@ class SearchBar extends React.Component {
 
   handleAutolocateSubmit = async (event) => {
     event.preventDefault();
-console.log('hello?')
+
     const { latitude, longitude } = this.state;
     const location = `${latitude} + ${longitude}`;
     const address = await this.getAddress(location);
@@ -181,7 +179,7 @@ console.log('hello?')
     } catch (error) {
       throw new Error(`Network request failed. (error: ${error.message})`);
     }
-  }
+  };
 
   handleChange = address => {
     this.setState({
@@ -295,7 +293,9 @@ console.log('hello?')
 SearchBar.propTypes = {
   storeLocation: PropTypes.func,
   storeFilteredRestaurants: PropTypes.func,
-  history: PropTypes.obj,
+  filteredRestaurants: PropTypes.array,
+  location: PropTypes.object,
+  history: PropTypes.object,
 };
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -316,7 +316,7 @@ export const mapDispatchToProps = (dispatch) => ({
   },
   storeFoodSpecials: (foodSpecial) => {
     return dispatch(storeFoodSpecials(foodSpecial));
-  }
+  },
 });
 
 export const mapStateToProps = (state) => ({

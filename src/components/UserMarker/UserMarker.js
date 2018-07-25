@@ -7,7 +7,7 @@ export class UserMarker extends Component {
   render() {
     return (
       <section className="userMarker">
-        <img src={ userMarker } />
+        <img src={ userMarker } alt="User Pin"/>
       </section>
     );
   }

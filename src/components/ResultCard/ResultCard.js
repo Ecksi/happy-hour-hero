@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import './ResultCard.css';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { Route, withRouter} from 'react-router-dom';
-import Restaurant from '../Restaurant/Restaurant';
+import { withRouter} from 'react-router-dom';
 import { storeRestaurantId } from '../../actions';
 moment().format();
 
@@ -40,8 +39,8 @@ export class ResultCard extends Component {
 
   componentDidMount() {
     let timeLeftVar = this.secondsToTime(this.state.seconds);
+
     this.setState({ time: timeLeftVar });
-    this.startTimer;
     this.setTimeUntilRemaining();
   }
 
@@ -64,7 +63,6 @@ export class ResultCard extends Component {
         currentlyHappyHour: false
       }, () => this.getRemainingTime());
     }
-
   }
 
   getRemainingTime = () => {
@@ -73,7 +71,7 @@ export class ResultCard extends Component {
     let minutes;
     let hours;
     let cleanMinutes;
- 
+
     if (startTime && endTime) {
       this.state.currentlyHappyHour ? time = endTime : time = startTime;
 
@@ -89,9 +87,8 @@ export class ResultCard extends Component {
     const day = date.getDate();
     const deadline = new Date(year, month, day, hours, cleanMinutes);
     const currentTime = Date.now();
-
     const seconds = (deadline - currentTime) / 1000;
-    
+
     this.setState({
       seconds
     });
@@ -99,6 +96,7 @@ export class ResultCard extends Component {
 
   countDown = () => {
     let seconds = this.state.seconds - 1;
+
     this.setState({
       time: this.secondsToTime(seconds),
       seconds: seconds
@@ -113,7 +111,6 @@ export class ResultCard extends Component {
     const id = event.target.closest('article').getAttribute('id');
     
     this.props.storeRestaurantId(id);
-
     this.props.history.push('/Restaurant');
   }
 
@@ -163,6 +160,10 @@ ResultCard.propTypes = {
   happyHourTimes: PropTypes.string,
   foodSpecial: PropTypes.string,
   drinkSpecial: PropTypes.string,
+  history: PropTypes.array,
+  id: PropTypes.number,
+  miles: PropTypes.number,
+  storeRestaurantId: PropTypes.func,
 };
 
 export const mapDispatchToProps = (dispatch) => ({
