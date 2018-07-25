@@ -5,17 +5,15 @@ import './RestaurantHappyHours.css';
 
 class RestaurantHappyHours extends Component {
   getDrinkSpecials = (happyHours) => {
-    const drinkSpecials = happyHours.map(happyHour => {
+    let drinkSpecials = [];
+
+    happyHours.forEach(happyHour => {
       if (happyHour.combined_times === this.props.times) {
-        const allSpecials = this.props.drinkSpecials.reduce((specials, drinkSpecial) => {
-          if (drinkSpecial.id === happyHour.drink_specials_id && !specials.includes(drinkSpecial.name)) {
-            specials.push(drinkSpecial.name);
+        this.props.drinkSpecials.forEach(drinkSpecial => {
+          if (drinkSpecial.id === happyHour.drink_specials_id && !drinkSpecials.includes(drinkSpecial.name)) {
+            drinkSpecials.push(drinkSpecial.name);
           }
-
-          return specials;
-        }, []);
-
-        return allSpecials;
+        });
       }
     });
 
@@ -23,17 +21,15 @@ class RestaurantHappyHours extends Component {
   }
 
   getFoodSpecials = (happyHours) => {
-    const foodSpecials = happyHours.map(happyHour => {
+    let foodSpecials = [];
+
+    happyHours.forEach(happyHour => {
       if (happyHour.combined_times === this.props.times) {
-        const allSpecials = this.props.foodSpecials.reduce((specials, foodSpecial) => {
-          if (foodSpecial.id === happyHour.food_specials_id && !specials.includes(foodSpecial.name)) {
-            specials.push(foodSpecial.name);
+        this.props.foodSpecials.forEach(foodSpecial => {
+          if (foodSpecial.id === happyHour.food_specials_id && !foodSpecials.includes(foodSpecial.name)) {
+            foodSpecials.push(foodSpecial.name);
           }
-
-          return specials;
-        }, []);
-
-        return allSpecials;
+        });
       }
     });
 
@@ -45,15 +41,20 @@ class RestaurantHappyHours extends Component {
     const happyHours = this.props.getTodaysHappyHours();
     const drinkSpecials = this.getDrinkSpecials(happyHours);
     const foodSpecials = this.getFoodSpecials(happyHours);
-
+    
     return (
       <section className="restaurantHappyHoursContainer">
-        <h2>{ this.props.times }</h2>
-        <h3>Drinks</h3>
-        <p>{ drinkSpecials} </p>
-        <h3>Food</h3>
-        <p>{ foodSpecials} </p>
-
+        <h3>{ this.props.times }</h3>
+        <section className="restaurantSpecials">
+          <article className="restaurantDrinkSpecials special">
+            <h4>Drinks</h4>
+            { drinkSpecials.length ? drinkSpecials.map((special, index) => <p key={index}>{special}</p>) : <p>No drink specials</p> }
+          </article>
+          <article className="restaurantFoodSpecials special">
+            <h4>Food</h4>
+            { foodSpecials.length ? foodSpecials.map((special, index) => <p key={index}>{special}</p>) : <p>No food specials</p> }
+          </article>
+        </section>
       </section>
     );
   }

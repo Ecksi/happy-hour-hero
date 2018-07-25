@@ -1,20 +1,44 @@
 .restaurantHappyHoursContainer {
   width: 80%;
-  padding: 50px;
+  padding: 0px 50px 50px 50px;
   margin: 0 auto;
 }
 
-.restaurantHappyHoursContainer h2 {
+.restaurantContainer h2 {
   color: #666;
+  width: 80%;
   font-size: 2rem;
+  margin: 50px auto 50px auto;
 }
 
 .restaurantHappyHoursContainer h3 {
-  font-size: 1.3rem;
+  color: #fdb82a;
+  width: auto;
+  font-size: 1.6rem;
+  display: inline-block;
+  border-radius: 5px;
+  margin-top: 0;
+}
+
+.restaurantHappyHoursContainer h4 {
+  font-size: 1.6rem;
   color: #999;
+  margin-top: 15px;
 }
 
 .restaurantHappyHoursContainer p {
   color: #666;
   font-size: 1.1rem;
+  margin: 10px 0 10px 0;
+}
+
+.restaurantSpecials {
+  display: flex;
+  justify-content: space-between;
+}
+
+.special {
+  flex-direction: column;
+  width: 46%;
+  display: flex;
 }
