@@ -53,7 +53,7 @@ export class ResultCard extends Component {
   setTimeUntilRemaining = () => {
     const { startTime, endTime } = this.props;
     const currentTime = moment().format('HHmm'); 
- 
+
     if (startTime < currentTime && currentTime < endTime) {
       this.setState({
         currentlyHappyHour: true
