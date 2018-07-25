@@ -64,7 +64,6 @@ class Restaurant extends Component {
       }
     });
 
-    console.log(times)
     return specials;
   }
 
