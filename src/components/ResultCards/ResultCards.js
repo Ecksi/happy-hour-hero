@@ -48,10 +48,9 @@ export class ResultCards extends Component {
     const { happyHours, day } = this.props;
 
     const todaysHappyHour = happyHours.find(happyHour => {
-
-      return happyHour.restaurant_id === restaurant.id && happyHour.day === day;
+      return happyHour.restaurant_id == restaurant.id && happyHour.day == day;
     });
-  
+
     return todaysHappyHour;
   }
 
@@ -75,7 +74,7 @@ export class ResultCards extends Component {
         const restaurantName = restaurant.name;
         const { id, address, restaurant_image } = restaurant;
         const todaysHappyHour = this.getTodaysHappyHour(restaurant);
- 
+      
         if (todaysHappyHour) {
           times = todaysHappyHour.combined_times;
           bestFoodSpecial = this.getBestFoodSpecial(todaysHappyHour);
@@ -83,21 +82,21 @@ export class ResultCards extends Component {
           startTime = todaysHappyHour.start_time;
           endTime = todaysHappyHour.end_time;
           miles = miles.toFixed(2);
-        }
 
-        return ( <ResultCard
-          restaurantName={ restaurantName }
-          address={ address }
-          miles={ miles }
-          happyHourTimes={ times }
-          foodSpecial={ bestFoodSpecial }
-          drinkSpecial={ bestDrinkSpecial }
-          startTime={ startTime }
-          endTime={ endTime }
-          image = { restaurant_image }
-          key={ index }
-          id={ id }
-        /> );
+          return ( <ResultCard
+            restaurantName={ restaurantName }
+            address={ address }
+            miles={ miles }
+            happyHourTimes={ times }
+            foodSpecial={ bestFoodSpecial }
+            drinkSpecial={ bestDrinkSpecial }
+            startTime={ startTime }
+            endTime={ endTime }
+            image = { restaurant_image }
+            key={ index }
+            id={ id }
+          /> );
+        }
       });
     }
 
