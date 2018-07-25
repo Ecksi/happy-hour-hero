@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './Home.css';
 import homeLogo from './images/home-logo.png';
 import SearchBar from '../SearchBar/SearchBar';
