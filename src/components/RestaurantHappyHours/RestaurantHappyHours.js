@@ -41,18 +41,17 @@ class RestaurantHappyHours extends Component {
     const happyHours = this.props.getTodaysHappyHours();
     const drinkSpecials = this.getDrinkSpecials(happyHours);
     const foodSpecials = this.getFoodSpecials(happyHours);
-    console.log(foodSpecials)
+    
     return (
       <section className="restaurantHappyHoursContainer">
-        <h1>Happy Hours</h1>
-        <h2>{ this.props.times }</h2>
+        <h3>{ this.props.times }</h3>
         <section className="restaurantSpecials">
           <article className="restaurantDrinkSpecials special">
-            <h3>Drinks</h3>
+            <h4>Drinks</h4>
             { drinkSpecials.length ? drinkSpecials.map((special, index) => <p key={index}>{special}</p>) : <p>No drink specials</p> }
           </article>
           <article className="restaurantFoodSpecials special">
-            <h3>Food</h3>
+            <h4>Food</h4>
             { foodSpecials.length ? foodSpecials.map((special, index) => <p key={index}>{special}</p>) : <p>No food specials</p> }
           </article>
         </section>

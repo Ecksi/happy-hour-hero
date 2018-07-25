@@ -69,6 +69,7 @@ class Restaurant extends Component {
 
   render() {
     const times = this.getHappyHourSpecialsForTime();
+
     return (
       <section className="restaurantContainer">
         <Header />
@@ -78,6 +79,7 @@ class Restaurant extends Component {
           getRestaurant={this.getRestaurant}
         />
         <ContactBar />
+        <h2>Happy Hours</h2>
         { times }
       </section>
     );
