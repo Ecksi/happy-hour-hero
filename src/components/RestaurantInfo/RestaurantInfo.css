@@ -13,7 +13,7 @@
   height: 175px;
   background: #fff;
   border-radius: 20px;
-  box-shadow: 0px 2px 1px 1px #eee; }
+  box-shadow: 1px 1px 1px 1px #cccc; }
 
 .restaurantInfo h1 {
   color: #666;
@@ -46,7 +46,7 @@
 
 .bestDeals {
   background: #fdb82a;
-  padding: 25px 45px;
+  padding: 25px 60px 25px 40px;
   position: absolute;
   right: 0;
   top: 40px;

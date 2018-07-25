@@ -79,8 +79,10 @@ class Restaurant extends Component {
           getRestaurant={this.getRestaurant}
         />
         <ContactBar />
-        <h2>Happy Hours</h2>
-        { times }
+        <section className="restaurantSpecialsContainer">
+          <h2>Happy Hours</h2>
+          { times }
+        </section>
       </section>
     );
   }
