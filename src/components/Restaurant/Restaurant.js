@@ -17,7 +17,9 @@ class Restaurant extends Component {
       restaurant: null,
       todaysHappyHours: [],
       day: null,
-      drinkSpecials: []
+      drinkSpecials: [],
+      foodSpecials: [],
+      cleanTimes: ''
     };
     
   }
@@ -126,12 +128,13 @@ class Restaurant extends Component {
 
     this.setState({
       foodSpecials
-    });
-    debugger;
+    }, this.cleanHappyHourTimes);
   }
 
 
-  cleanHappyHourTimes = (todaysHappyHours) => {
+  cleanHappyHourTimes = () => {
+    const { todaysHappyHours } = this.state;
+
     const cleanTimes = todaysHappyHours.reduce((times, happyHour) => {
       const { combined_times} = happyHour;
 
@@ -141,11 +144,17 @@ class Restaurant extends Component {
 
       return times;
     }, []);
+ 
+    cleanTimes.join(" & ");
 
-    return cleanTimes.join(" & ");
+    this.setState({
+      cleanTimes
+    }, this.getHappyHourSpecialsForTime);
   }
 
-  getHappyHourSpecialsForTime = (todaysHappyHours) => {
+  getHappyHourSpecialsForTime = () => {
+    const { todaysHappyHours, drinkSpecials, foodSpecials } = this.state;
+
     let times = [];
 
     const specials = todaysHappyHours.map(happyHour => {
@@ -156,7 +165,9 @@ class Restaurant extends Component {
         return (
           <RestaurantHappyHours 
             times={ combined_times } 
-            todaysHappyHours={ this.state.todaysHappyHours}
+            todaysHappyHours={ todaysHappyHours}
+            hourlyDrinkSpecials={ drinkSpecials }
+            hourlyFoodSpecials= { foodSpecials }
           />
         );
       }
@@ -223,9 +234,8 @@ class Restaurant extends Component {
       todaysHappyHours = this.state.todaysHappyHours;
 
       if (this.state.todaysHappyHours) {
-        console.log(drinkSpecials)
         times = this.getHappyHourSpecialsForTime(todaysHappyHours); 
-        combinedTimes = this.cleanHappyHourTimes(todaysHappyHours);
+        combinedTimes = this.state.cleanTimes
         bestDrinkSpecial = this.getBestDrinkSpecial();
         bestFoodSpecial = this.getBestFoodSpecial(todaysHappyHours);
       }
