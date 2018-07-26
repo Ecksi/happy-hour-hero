@@ -17,12 +17,12 @@ class Restaurant extends Component {
       restaurant: null,
       todaysHappyHours: [],
       day: null,
-      drinkSpecials: null
+      drinkSpecials: []
     };
     
   }
 
-  componentWillMount() {
+  componentWillMount = async () => {
     this.getRestaurantBySlug();
     this.findDay();
   }
@@ -70,8 +70,66 @@ class Restaurant extends Component {
     
     this.setState({
       todaysHappyHours
-    });
+    }, this.getDrinkSpecials);
   }
+
+  getDrinkSpecials = async () => {
+    const { todaysHappyHours } = this.state;
+    let drinkIds = [];
+
+    const allDrinkSpecials = todaysHappyHours.map( async (happyHour) => {
+      const id = happyHour.drink_specials_id;
+      const response = await fetch(`http://localhost:3000/api/v1/drink_specials/${id}`);
+      const drinkSpecial = await response.json();
+
+      return drinkSpecial[0];
+    });
+
+    const result = await Promise.all(allDrinkSpecials);
+    const drinkSpecials = result.reduce((specials, special) => {
+
+      if (special !== undefined && !drinkIds.includes(special.id)) {
+        drinkIds.push(special.id);
+        specials.push(special);
+      }
+
+      return specials;
+    }, []);
+
+    this.setState({
+      drinkSpecials
+    }, this.getFoodSpecials);
+  }
+
+  getFoodSpecials = async () => {
+    const { todaysHappyHours } = this.state;
+    let foodIds = [];
+
+    const allFoodSpecials = todaysHappyHours.map( async (happyHour) => {
+      const id = happyHour.food_specials_id;
+      const response = await fetch(`http://localhost:3000/api/v1/food_specials/${id}`);
+      const foodSpecial = await response.json();
+
+      return foodSpecial[0];
+    });
+
+    const result = await Promise.all(allFoodSpecials);
+    const foodSpecials = result.reduce((specials, special) => {
+
+      if (special !== undefined && !foodIds.includes(special.id)) {
+        foodIds.push(special.id);
+        specials.push(special);
+      }
+
+      return specials;
+    }, []);
+
+    this.setState({
+      foodSpecials
+    });
+    debugger;
+  }
+
 
   cleanHappyHourTimes = (todaysHappyHours) => {
     const cleanTimes = todaysHappyHours.reduce((times, happyHour) => {
@@ -107,26 +165,13 @@ class Restaurant extends Component {
     return specials;
   }
 
-  getDrinkSpecials = async () => {
-    const { todaysHappyHours } = this.state;
-    let drinkSpecials = [];
-
-    todaysHappyHours.forEach( async (happyHour) => {
-      const id = happyHour.drink_specials_id;
-      const response = await fetch(`http://localhost:3000/api/v1/drink_specials/${id}`);
-      const drinkSpecial = await response.json();
-
-      drinkSpecials.push(...drinkSpecial);
-    });
-
-  }
 
   getBestDrinkSpecial = () => {
-    const { todaysHappyHours } = this.state;
+    // const { todaysHappyHours } = this.state;
 
-    const bestDeal = todaysHappyHours.find(happyHour => {
+    // const bestDeal = todaysHappyHours.find(happyHour => {
 
-    });
+    // });
 
     // const { drinkSpecials } = this.props;
 
@@ -178,7 +223,6 @@ class Restaurant extends Component {
       todaysHappyHours = this.state.todaysHappyHours;
 
       if (this.state.todaysHappyHours) {
-        drinkSpecials = this.getDrinkSpecials();
         console.log(drinkSpecials)
         times = this.getHappyHourSpecialsForTime(todaysHappyHours); 
         combinedTimes = this.cleanHappyHourTimes(todaysHappyHours);
