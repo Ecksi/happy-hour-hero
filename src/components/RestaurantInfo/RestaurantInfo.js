@@ -6,41 +6,11 @@ import borderImg from './assets/main-img-border.png';
 import moment from 'moment';
 moment().format();
 
-class Restaurant extends Component {
-  getBestFoodSpecial = (todaysHappyHour) => {
-    const { foodSpecials } = this.props;
-
-    const bestFoodSpecial = foodSpecials.find(special => {
-      return special.id === todaysHappyHour.food_specials_id && special.best_deal === true;
-    });
-
-    if (bestFoodSpecial) {
-      return bestFoodSpecial.name;
-    } else {
-      return null;
-    }
-  }
-
-  getBestDrinkSpecial = (todaysHappyHour) => {
-    const { drinkSpecials } = this.props;
-
-    const bestDrinkSpecial = drinkSpecials.find(special => {
-      return special.id === todaysHappyHour.drink_specials_id && special.best_deal === true;
-    });
-
-    if (bestDrinkSpecial) {
-      return bestDrinkSpecial.name;
-    } else {
-      return null;
-    }
-  }
-
+class RestaurantInfo extends Component {  
   render() {
-    const restaurant = this.props.getRestaurant();
-    const happyHours = this.props.getTodaysHappyHours(restaurant);
-    const happyHourTimes = this.props.cleanHappyHourTimes(happyHours);
-    const bestDrinkSpecial = this.getBestDrinkSpecial(happyHours[0]);
-    const bestFoodSpecial = this.getBestFoodSpecial(happyHours[0]);
+    const { restaurant , todaysHappyHours, combinedTimes, bestDrinkSpecial } = this.props;
+
+    // const bestFoodSpecial = this.getBestFoodSpecial(happyHours[0]);
     const { name, address, restaurant_image } = restaurant;
     const backgroundImage = {backgroundImage: "url(" + restaurant_image + ")"};
     const borderBackground = {backgroundImage: "url(" + borderImg + ")"};
@@ -52,11 +22,11 @@ class Restaurant extends Component {
           <h1>{ name }</h1>
           <p className="restaurantAddress">{ address }</p>
           <h3>happy hour times</h3>
-          <p className="times">{ happyHourTimes }</p>
+          <p className="times">{ combinedTimes }</p>
           <div className="bestDeals">
             <p><em>best deal</em></p>
-            { bestDrinkSpecial ? <p> {bestDrinkSpecial} </p> : null }
-            { bestFoodSpecial ? <p> {bestFoodSpecial} </p> : null }
+            {/* { bestDrinkSpecial ? <p> {bestDrinkSpecial} </p> : null }
+            { bestFoodSpecial ? <p> {bestFoodSpecial} </p> : null } */}
           </div>
         </section>
       </section>
@@ -64,7 +34,7 @@ class Restaurant extends Component {
   }
 }
 
-Restaurant.propTypes = {
+RestaurantInfo.propTypes = {
   foodSpecials: PropTypes.string,
   drinkSpecials: PropTypes.string,
   getRestaurant: PropTypes.func,
@@ -81,4 +51,4 @@ export const mapStateToProps = (state) => ({
   foodSpecials: state.foodSpecials
 });
 
-export default connect(mapStateToProps)(Restaurant);
+export default connect(mapStateToProps)(RestaurantInfo);

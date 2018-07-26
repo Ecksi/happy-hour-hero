@@ -11,9 +11,19 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get('/api/v1/restaurants', (request, response) => {
-  database('restaurants').select()
+  const name = request.query.name;
+
+  if (name) {
+    database('restaurants')
+    .select()
+    .where('name', name)
+    .then(restaurant => response.status(200).json(restaurant)[id])
+    .catch(error => response.status(500).json({ error }));
+  } else {
+    database('restaurants').select()
     .then(restaurant => response.status(200).json(restaurant))
     .catch((error) => response.status(500).json({ error }));
+  }
 });
 
 app.get('/api/v1/restaurants/:id', (request, response) => {

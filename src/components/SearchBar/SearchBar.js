@@ -144,26 +144,19 @@ class SearchBar extends React.Component {
   pageRedirect = async () => {
     const restaurantName = this.state.address.trim().split(" ");
     const shortName = restaurantName.slice(0, 2);
+    const restaurantInDb = this.props.filteredRestaurants.find(restaurant => {
+      return restaurant.name.includes(shortName[0] && shortName[1])
+    });
 
-    try {
-      const response = await fetch('http://localhost:3000/api/v1/restaurants/');
-      const restaurants = await response.json();
-      const restaurantInDb = restaurants.find(restaurant => {
-        return restaurant.name.includes(shortName[0] && shortName[1])
-      });
+    if (restaurantInDb) {
+      this.props.storeRestaurantId(restaurantInDb.id);
+      const restaurantName = restaurantInDb.name;
+      const name = restaurantName.replace(/\s+/g, '+').replace(',', '');
+      this.props.history.push(`/restaurant/${name}`);
+    } else {
 
-      if (restaurantInDb) {
-        this.props.storeRestaurantId(restaurantInDb.id);
-        const restaurantName = restaurantInDb.name;
-        this.props.history.push(`/restaurant/${restaurantName}`);
-      } else {
-
-        this.props.history.push('/happy-hours/');
-      }
-    } catch (error) {
-      console.log(error)
+      this.props.history.push('/happy-hours/');
     }
-    
   }
 
   handleAutolocateSubmit = async (event) => {
