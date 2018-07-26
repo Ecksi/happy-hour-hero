@@ -8,9 +8,8 @@ moment().format();
 
 class RestaurantInfo extends Component {  
   render() {
-    const { restaurant , todaysHappyHours, combinedTimes, bestDrinkSpecial } = this.props;
+    const { restaurant , todaysHappyHours, joinedTimes, bestDrinkSpecial, bestFoodSpecial } = this.props;
 
-    // const bestFoodSpecial = this.getBestFoodSpecial(happyHours[0]);
     const { name, address, restaurant_image } = restaurant;
     const backgroundImage = {backgroundImage: "url(" + restaurant_image + ")"};
     const borderBackground = {backgroundImage: "url(" + borderImg + ")"};
@@ -22,11 +21,11 @@ class RestaurantInfo extends Component {
           <h1>{ name }</h1>
           <p className="restaurantAddress">{ address }</p>
           <h3>happy hour times</h3>
-          <p className="times">{ combinedTimes }</p>
+          <p className="times">{ joinedTimes }</p>
           <div className="bestDeals">
             <p><em>best deal</em></p>
-            {/* { bestDrinkSpecial ? <p> {bestDrinkSpecial} </p> : null }
-            { bestFoodSpecial ? <p> {bestFoodSpecial} </p> : null } */}
+            { bestDrinkSpecial ? <p> {bestDrinkSpecial} </p> : null }
+            { bestFoodSpecial ? <p> {bestFoodSpecial} </p> : null }
           </div>
         </section>
       </section>

@@ -19,7 +19,10 @@ class Restaurant extends Component {
       day: null,
       drinkSpecials: [],
       foodSpecials: [],
-      joinedTimes: ''
+      joinedTimes: '',
+      specials: [],
+      bestDrinkSpecial: '',
+      bestFoodSpecial: ''
     };
     
   }
@@ -173,80 +176,63 @@ class Restaurant extends Component {
       }
     });
 
-    return specials;
+    this.setState({
+      specials
+    }, this.getBestDrinkSpecial);
   }
 
 
   getBestDrinkSpecial = () => {
-    // const { todaysHappyHours } = this.state;
+    const { drinkSpecials } = this.state;
 
-    // const bestDeal = todaysHappyHours.find(happyHour => {
+    const bestDrinkSpecial = drinkSpecials.find(special => {
+      return special.best_deal === true;
+    });
 
-    // });
-
-    // const { drinkSpecials } = this.props;
-
-    // const bestDrinkSpecial = drinkSpecials.find(special => {
-    //   return special.id === todaysHappyHour.drink_specials_id && special.best_deal === true;
-    // });
-
-    // if (bestDrinkSpecial) {
-    //   return bestDrinkSpecial.name;
-    // } else {
-    //   return null;
-    // }
+    if (bestDrinkSpecial) {
+      this.setState({
+        bestDrinkSpecial: bestDrinkSpecial.name
+      }, this.getBestFoodSpecial);
+    } else {
+      this.getBestFoodSpecial();
+      return null;
+    }
   }
 
   getBestFoodSpecial = () => {
-    // const { foodSpecials } = this.props;
+    const { foodSpecials } = this.state;
 
-    // const bestDrinkSpecial = foodSpecials.find(special => {
-    //   return special.id === todaysHappyHour.drink_specials_id && special.best_deal === true;
-    // });
+    const bestFoodSpecial = foodSpecials.find(special => {
+      return special.best_deal === true;
+    });
 
-    // if (bestDrinkSpecial) {
-    //   return bestDrinkSpecial.name;
-    // } else {
-    //   return null;
-    // }
+    if (bestFoodSpecial) {
+      this.setState({
+        bestFoodSpecial: bestFoodSpecial.name
+      });
+    } else {
+      return null;
+    }
   }
 
   render () {
     const { restaurant } = this.state;
 
     if (restaurant) {
+      const { todaysHappyHours, joinedTimes, specials, bestDrinkSpecial, bestFoodSpecial } = this.state;
+      const { address } = this.props.location;
+
       let currentLocation;
-      let combinedTimes;
-      let times;
-      let drinkSpecials;
-      let bestDrinkSpecial;
-      let bestFoodSpecial;
-      let todaysHappyHours;
       let restaurantLocation = this.formatAddress(restaurant.name);
-      let address = this.props.location.address;
 
-      if (address) {
-        currentLocation = this.formatAddress(address);
-      } else {
-        currentLocation = 'Denver, CO';
-      }
-      
-      todaysHappyHours = this.state.todaysHappyHours;
-
-      if (this.state.todaysHappyHours) {
-        times = this.getHappyHourSpecialsForTime(todaysHappyHours); 
-        combinedTimes = this.state.joinedTimes;
-        bestDrinkSpecial = this.getBestDrinkSpecial();
-        bestFoodSpecial = this.getBestFoodSpecial(todaysHappyHours);
-      }
-
+      address ? currentLocation = this.formatAddress(address) : currentLocation = 'Turing School of Software & Design';
 
       return (
         <section className="restaurantContainer">
           <Header />
           <RestaurantInfo 
             todaysHappyHours={todaysHappyHours} 
-            combinedTimes={combinedTimes}
+            joinedTimes={joinedTimes}
             restaurant={restaurant}
             bestDrinkSpecial={bestDrinkSpecial}
             bestFoodSpecial={bestFoodSpecial}
@@ -258,7 +244,7 @@ class Restaurant extends Component {
           />
           <section className="restaurantSpecialsContainer">
             <h2>Happy Hours</h2>
-            { times }
+            { specials }
           </section>
         </section>
       );
