@@ -135,7 +135,7 @@ export class ResultCard extends Component {
         </div>
         <div className="happyHourSpecialsContainer">
           <div className="happyHourSpecials">
-            <p className="drinkSpecial">{ drinkSpecial }</p>
+            { foodSpecial ? <p className="drinkSpecial">{ drinkSpecial }</p> : <p className="drinkSpecial">No Drink Specials</p> }
             <span>|</span>
             { foodSpecial ? <p className="foodSpecial">{ foodSpecial }</p> : <p className="foodSpecial">No Food Specials</p> }
           </div>
