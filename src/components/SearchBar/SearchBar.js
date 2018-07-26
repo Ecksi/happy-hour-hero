@@ -142,19 +142,22 @@ class SearchBar extends React.Component {
   }
 
   pageRedirect = async () => {
+    let restaurantInDb;
     const restaurantName = this.state.address.trim().split(" ");
     const shortName = restaurantName.slice(0, 2);
-    const restaurantInDb = this.props.filteredRestaurants.find(restaurant => {
-      return restaurant.name.includes(shortName[0] && shortName[1])
-    });
+
+    if (shortName.length > 1) {
+      restaurantInDb = this.props.filteredRestaurants.find(restaurant => {
+        return restaurant.name.includes(shortName[0] && shortName[1])
+      });
+    }
 
     if (restaurantInDb) {
       this.props.storeRestaurantId(restaurantInDb.id);
       const restaurantName = restaurantInDb.name;
       const name = restaurantName.replace(/\s+/g, '+').replace(',', '');
-      this.props.history.push(`/restaurant/${name}`);
+      this.props.history.push(`/restaurant?name=${name}`);
     } else {
-
       this.props.history.push('/happy-hours/');
     }
   }
