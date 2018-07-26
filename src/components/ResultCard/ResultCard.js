@@ -120,6 +120,7 @@ export class ResultCard extends Component {
 
   render() {
     const { restaurantName, address, image, happyHourTimes, foodSpecial, drinkSpecial, miles, id } = this.props;
+
     const backgroundImage = {backgroundImage: "url(" + image + ")"};
 
     return (
@@ -135,7 +136,7 @@ export class ResultCard extends Component {
         </div>
         <div className="happyHourSpecialsContainer">
           <div className="happyHourSpecials">
-            { foodSpecial ? <p className="drinkSpecial">{ drinkSpecial }</p> : <p className="drinkSpecial">No Drink Specials</p> }
+            { drinkSpecial ? <p className="drinkSpecial">{ drinkSpecial }</p> : <p className="drinkSpecial">No Drink Specials</p> }
             <span>|</span>
             { foodSpecial ? <p className="foodSpecial">{ foodSpecial }</p> : <p className="foodSpecial">No Food Specials</p> }
           </div>
