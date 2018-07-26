@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 import './RestaurantHappyHours.css';
 
 class RestaurantHappyHours extends Component {
-  getDrinkSpecials = (happyHours) => {
-    let drinkSpecials = [];
+  constructor(props) {
+    super(props);
+  }
 
-    happyHours.forEach(happyHour => {
+  getDrinkSpecials = () => {
+    let drinkSpecials = [];
+  
+    this.props.todaysHappyHours.forEach(happyHour => {
       if (happyHour.combined_times === this.props.times) {
-        this.props.drinkSpecials.forEach(drinkSpecial => {
+        this.props.hourlyDrinkSpecials.forEach(drinkSpecial => {
           if (drinkSpecial.id === happyHour.drink_specials_id && !drinkSpecials.includes(drinkSpecial.name)) {
             drinkSpecials.push(drinkSpecial.name);
           }
@@ -20,12 +24,12 @@ class RestaurantHappyHours extends Component {
     return drinkSpecials;
   }
 
-  getFoodSpecials = (happyHours) => {
+  getFoodSpecials = () => {
     let foodSpecials = [];
-
-    happyHours.forEach(happyHour => {
+  
+    this.props.todaysHappyHours.forEach(happyHour => {
       if (happyHour.combined_times === this.props.times) {
-        this.props.foodSpecials.forEach(foodSpecial => {
+        this.props.hourlyFoodSpecials.forEach(foodSpecial => {
           if (foodSpecial.id === happyHour.food_specials_id && !foodSpecials.includes(foodSpecial.name)) {
             foodSpecials.push(foodSpecial.name);
           }
@@ -37,11 +41,9 @@ class RestaurantHappyHours extends Component {
   }
 
   render() {
-    const { times } = this.props;
-    const happyHours = this.props.getTodaysHappyHours();
-    const drinkSpecials = this.getDrinkSpecials(happyHours);
-    const foodSpecials = this.getFoodSpecials(happyHours);
-    
+    const drinkSpecials = this.getDrinkSpecials();
+    const foodSpecials = this.getFoodSpecials();
+
     return (
       <section className="restaurantHappyHoursContainer">
         <h3>{ this.props.times }</h3>

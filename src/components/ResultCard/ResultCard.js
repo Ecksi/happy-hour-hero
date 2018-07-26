@@ -108,10 +108,14 @@ export class ResultCard extends Component {
   }
 
   handleMoreInfoClick = (event) => {
+    const { restaurantName } = this.props;
+    const name = restaurantName.replace(/\s+/g, '+').replace(',', '');
+
     const id = event.target.closest('article').getAttribute('id');
     
     this.props.storeRestaurantId(id);
-    this.props.history.push('/Restaurant');
+
+    this.props.history.push(`/restaurant?name=${name}`);
   }
 
   render() {

@@ -4,22 +4,10 @@ import './ContactBar.css';
 import PropTypes from 'prop-types';
 
 class ContactBar extends Component {
-  getRestaurant = () => {
-    const { restaurantId, filteredRestaurants } = this.props;
-    const id = restaurantId;
-    const restaurant = filteredRestaurants.find(restaurant => restaurant.id == id);
-
-    return restaurant;
-  }
-
-  formatAddress = (address) => address.replace(/\s+/g, '+').toLowerCase().replace(',', '');
-
   render() {
-    const restaurant = this.getRestaurant();
+    const restaurant = this.props.restaurant
     const { phone, website, name } = restaurant;
-    const { address } = this.props.location;
-    const currentLocation = this.formatAddress(address);
-    const restaurantLocation = this.formatAddress(name);
+    const { currentLocation, restaurantLocation } = this.props;
 
     return (
       <section className="contactBarContainer">

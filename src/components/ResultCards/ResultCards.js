@@ -3,23 +3,8 @@ import { connect } from 'react-redux';
 import ResultCard from '../ResultCard/ResultCard';
 import PropTypes from 'prop-types';
 import './ResultCards.css';
-import { storeDay } from '../../actions';
 
 export class ResultCards extends Component {
-  componentDidMount() {
-    this.findDay();
-  }
-
-  findDay = () => {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const date = new Date();
-    const dayIndex = date.getDay();
-    const day = days[dayIndex];
-
-    this.props.storeDay(day);
-  }
-
-
   getBestFoodSpecial = (todaysHappyHour) => {
     const { foodSpecials } = this.props;
 
@@ -116,12 +101,6 @@ ResultCards.propTypes = {
   day: PropTypes.string,
 };
 
-export const mapDispatchToProps = (dispatch) => ({
-  storeDay: (day) => {
-    return dispatch(storeDay(day));
-  },
-});
-
 export const mapStateToProps = (state) => ({
   filteredRestaurants: state.filteredRestaurants,
   happyHours: state.happyHours,
@@ -130,4 +109,4 @@ export const mapStateToProps = (state) => ({
   day: state.day
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultCards);
+export default connect(mapStateToProps)(ResultCards);

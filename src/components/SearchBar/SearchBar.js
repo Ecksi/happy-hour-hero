@@ -8,7 +8,7 @@ import { classnames } from '../../helpers';
 import { withRouter } from 'react-router-dom';
 import geolib from 'geolib';
 import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
-import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours, storeDrinkSpecials, storeFoodSpecials } from '../../actions';
+import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours, storeDrinkSpecials, storeFoodSpecials, storeRestaurantId } from '../../actions';
 import PropTypes from 'prop-types';
 import './SearchBar.css';
 
@@ -138,7 +138,25 @@ class SearchBar extends React.Component {
       this.props.storeFoodSpecials(foodSpecial);
     });
 
-    this.props.history.push('/HappyHours');
+    this.pageRedirect();
+  }
+
+  pageRedirect = async () => {
+    const restaurantName = this.state.address.trim().split(" ");
+    const shortName = restaurantName.slice(0, 2);
+    const restaurantInDb = this.props.filteredRestaurants.find(restaurant => {
+      return restaurant.name.includes(shortName[0] && shortName[1])
+    });
+
+    if (restaurantInDb) {
+      this.props.storeRestaurantId(restaurantInDb.id);
+      const restaurantName = restaurantInDb.name;
+      const name = restaurantName.replace(/\s+/g, '+').replace(',', '');
+      this.props.history.push(`/restaurant/${name}`);
+    } else {
+
+      this.props.history.push('/happy-hours/');
+    }
   }
 
   handleAutolocateSubmit = async (event) => {
@@ -317,6 +335,9 @@ export const mapDispatchToProps = (dispatch) => ({
   storeFoodSpecials: (foodSpecial) => {
     return dispatch(storeFoodSpecials(foodSpecial));
   },
+  storeRestaurantId: (id) => {
+    return dispatch(storeRestaurantId(id));
+  }
 });
 
 export const mapStateToProps = (state) => ({
