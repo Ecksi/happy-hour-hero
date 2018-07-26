@@ -19,7 +19,7 @@ class Restaurant extends Component {
       day: null,
       drinkSpecials: [],
       foodSpecials: [],
-      cleanTimes: ''
+      joinedTimes: ''
     };
     
   }
@@ -145,10 +145,10 @@ class Restaurant extends Component {
       return times;
     }, []);
  
-    cleanTimes.join(" & ");
+    const joinedTimes = cleanTimes.join(" & ");
 
     this.setState({
-      cleanTimes
+      joinedTimes
     }, this.getHappyHourSpecialsForTime);
   }
 
@@ -235,7 +235,7 @@ class Restaurant extends Component {
 
       if (this.state.todaysHappyHours) {
         times = this.getHappyHourSpecialsForTime(todaysHappyHours); 
-        combinedTimes = this.state.cleanTimes
+        combinedTimes = this.state.joinedTimes;
         bestDrinkSpecial = this.getBestDrinkSpecial();
         bestFoodSpecial = this.getBestFoodSpecial(todaysHappyHours);
       }
