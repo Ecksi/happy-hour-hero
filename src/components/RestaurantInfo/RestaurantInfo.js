@@ -8,7 +8,7 @@ moment().format();
 
 class RestaurantInfo extends Component {  
   render() {
-    const { restaurant , todaysHappyHours, joinedTimes, bestDrinkSpecial, bestFoodSpecial } = this.props;
+    const { restaurant, joinedTimes, bestDrinkSpecial, bestFoodSpecial } = this.props;
 
     const { name, address, restaurant_image } = restaurant;
     const backgroundImage = {backgroundImage: "url(" + restaurant_image + ")"};
