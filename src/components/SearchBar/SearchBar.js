@@ -7,11 +7,12 @@ import PlacesAutocomplete, {
 import { classnames } from '../../helpers';
 import { withRouter } from 'react-router-dom';
 import geolib from 'geolib';
-import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
+// import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
 import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours, storeDrinkSpecials, storeFoodSpecials, storeRestaurantId } from '../../actions';
 import PropTypes from 'prop-types';
 import './SearchBar.css';
 require('dotenv').config();
+let googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -148,7 +149,7 @@ class SearchBar extends React.Component {
 
     if (shortName.length > 1) {
       restaurantInDb = this.props.filteredRestaurants.find(restaurant => {
-        return restaurant.name.includes(shortName[0] && shortName[1])
+        return restaurant.name.includes(shortName[0] && shortName[1]);
       });
     }
 
@@ -313,6 +314,7 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   storeLocation: PropTypes.func,
+  storeRestaurantId: PropTypes.func,
   storeFilteredRestaurants: PropTypes.func,
   filteredRestaurants: PropTypes.array,
   location: PropTypes.object,
