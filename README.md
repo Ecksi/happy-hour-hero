@@ -1,6 +1,8 @@
 # Happy Hour Hero
 ![happy hour](http://libertyresources.org/wp-content/uploads/2018/05/Happy_Hour_400x800_Webtile.jpg)
 
+![travis-ci](https://travis-ci.org/Ecksi/happy-hour-hero.svg?branch=master);
+
 ## Description
 
 An app that allow patrons to find happy hour food and drink specials based on location. A user can filter the results according to type of drinks, type of food, seating, times, and name of the establishment. A user can share a happy hour recommendations with friends and family as well.
