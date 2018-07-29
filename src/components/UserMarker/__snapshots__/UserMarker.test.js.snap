@@ -18,6 +18,7 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <img
+        alt="User Pin"
         src="user-marker.png"
 />,
       "className": "userMarker",
@@ -28,6 +29,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
+        "alt": "User Pin",
         "src": "user-marker.png",
       },
       "ref": null,
@@ -43,6 +45,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <img
+          alt="User Pin"
           src="user-marker.png"
 />,
         "className": "userMarker",
@@ -53,6 +56,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
+          "alt": "User Pin",
           "src": "user-marker.png",
         },
         "ref": null,

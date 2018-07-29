@@ -56,7 +56,9 @@ ShallowWrapper {
           >
                     <p
                               className="drinkSpecial"
-                    />
+                    >
+                              No Drink Specials
+                    </p>
                     <span>
                               |
                     </span>
@@ -96,6 +98,7 @@ ShallowWrapper {
           <a
                     className="moreInfoButton"
                     href="#"
+                    onClick={[Function]}
           >
                     More Info
           </a>
@@ -242,7 +245,9 @@ ShallowWrapper {
 >
             <p
                         className="drinkSpecial"
-            />
+            >
+                        No Drink Specials
+            </p>
             <span>
                         |
             </span>
@@ -263,7 +268,9 @@ ShallowWrapper {
             "children": Array [
               <p
                 className="drinkSpecial"
-/>,
+>
+                No Drink Specials
+</p>,
               <span>
                 |
 </span>,
@@ -282,11 +289,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": undefined,
+                "children": "No Drink Specials",
                 "className": "drinkSpecial",
               },
               "ref": null,
-              "rendered": null,
+              "rendered": "No Drink Specials",
               "type": "p",
             },
             Object {
@@ -349,6 +356,7 @@ ShallowWrapper {
             <a
               className="moreInfoButton"
               href="#"
+              onClick={[Function]}
 >
               More Info
 </a>,
@@ -479,6 +487,7 @@ ShallowWrapper {
               "children": "More Info",
               "className": "moreInfoButton",
               "href": "#",
+              "onClick": [Function],
             },
             "ref": null,
             "rendered": "More Info",
@@ -535,7 +544,9 @@ ShallowWrapper {
             >
                         <p
                                     className="drinkSpecial"
-                        />
+                        >
+                                    No Drink Specials
+                        </p>
                         <span>
                                     |
                         </span>
@@ -575,6 +586,7 @@ ShallowWrapper {
             <a
                         className="moreInfoButton"
                         href="#"
+                        onClick={[Function]}
             >
                         More Info
             </a>
@@ -721,7 +733,9 @@ ShallowWrapper {
 >
               <p
                             className="drinkSpecial"
-              />
+              >
+                            No Drink Specials
+              </p>
               <span>
                             |
               </span>
@@ -742,7 +756,9 @@ ShallowWrapper {
               "children": Array [
                 <p
                   className="drinkSpecial"
-/>,
+>
+                  No Drink Specials
+</p>,
                 <span>
                   |
 </span>,
@@ -761,11 +777,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": undefined,
+                  "children": "No Drink Specials",
                   "className": "drinkSpecial",
                 },
                 "ref": null,
-                "rendered": null,
+                "rendered": "No Drink Specials",
                 "type": "p",
               },
               Object {
@@ -828,6 +844,7 @@ ShallowWrapper {
               <a
                 className="moreInfoButton"
                 href="#"
+                onClick={[Function]}
 >
                 More Info
 </a>,
@@ -958,6 +975,7 @@ ShallowWrapper {
                 "children": "More Info",
                 "className": "moreInfoButton",
                 "href": "#",
+                "onClick": [Function],
               },
               "ref": null,
               "rendered": "More Info",

@@ -26,7 +26,12 @@ ShallowWrapper {
         <Route
           component={[Function]}
           exact={true}
-          path="/happyHours"
+          path="/happy-hours"
+/>,
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/restaurant"
 />,
       ],
       "className": "App",
@@ -53,7 +58,20 @@ ShallowWrapper {
         "props": Object {
           "component": [Function],
           "exact": true,
-          "path": "/happyHours",
+          "path": "/happy-hours",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/restaurant",
         },
         "ref": null,
         "rendered": null,
@@ -77,7 +95,12 @@ ShallowWrapper {
           <Route
             component={[Function]}
             exact={true}
-            path="/happyHours"
+            path="/happy-hours"
+/>,
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/restaurant"
 />,
         ],
         "className": "App",
@@ -104,7 +127,20 @@ ShallowWrapper {
           "props": Object {
             "component": [Function],
             "exact": true,
-            "path": "/happyHours",
+            "path": "/happy-hours",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": [Function],
+            "exact": true,
+            "path": "/restaurant",
           },
           "ref": null,
           "rendered": null,

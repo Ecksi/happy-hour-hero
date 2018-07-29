@@ -18,6 +18,7 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <img
+        alt="Restaurant Marker"
         src="restaurant-marker.png"
 />,
       "className": "restaurantMarker markerundefined",
@@ -30,6 +31,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
+        "alt": "Restaurant Marker",
         "src": "restaurant-marker.png",
       },
       "ref": null,
@@ -45,6 +47,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <img
+          alt="Restaurant Marker"
           src="restaurant-marker.png"
 />,
         "className": "restaurantMarker markerundefined",
@@ -57,6 +60,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
+          "alt": "Restaurant Marker",
           "src": "restaurant-marker.png",
         },
         "ref": null,
