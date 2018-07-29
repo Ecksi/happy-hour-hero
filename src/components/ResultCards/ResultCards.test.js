@@ -4,9 +4,17 @@ import { ResultCards } from './ResultCards';
 
 describe('ResultsCard', () => {
   let wrapper;
+  let mockProps;
 
   beforeEach(() => {
-    wrapper = shallow(<ResultCards />);
+    mockProps = {
+      filteredRestaurants: [],
+      happyHours: [],
+      day: 'Today',
+      drinkSpecials: [],
+      foodSpecials: [],
+    };
+    wrapper = shallow(<ResultCards {...mockProps} />);
   });
 
   it('matches the snapshot', () => {
