@@ -7,7 +7,7 @@ import PlacesAutocomplete, {
 import { classnames } from '../../helpers';
 import { withRouter } from 'react-router-dom';
 import geolib from 'geolib';
-// import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
+import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
 import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours, storeDrinkSpecials, storeFoodSpecials, storeRestaurantId } from '../../actions';
 import PropTypes from 'prop-types';
 import './SearchBar.css';
@@ -98,7 +98,7 @@ class SearchBar extends React.Component {
     
     setTimeout(() => this.storeHappyHours(), 10);
   }
-  
+
   storeHappyHours = async () => {
     const { filteredRestaurants } = this.props;
     
