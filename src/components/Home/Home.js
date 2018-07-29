@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Home.css';
 import homeLogo from './images/home-logo.png';
 import SearchBar from '../SearchBar/SearchBar';
 import { storeDay } from '../../actions';
+import PropTypes from 'prop-types';
+import './Home.css';
 
-class Home extends Component {
+export class Home extends Component {
   componentDidMount() {
     this.findDay();
   }
@@ -30,11 +31,14 @@ class Home extends Component {
   }
 }
 
+Home.propTypes = {
+  storeDay: PropTypes.func,
+};
+
 export const mapDispatchToProps = (dispatch) => ({
   storeDay: (day) => {
     return dispatch(storeDay(day));
   },
 });
-
 
 export default connect(null, mapDispatchToProps)(Home);

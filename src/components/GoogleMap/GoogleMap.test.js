@@ -4,9 +4,17 @@ import { GoogleMap } from './GoogleMap';
 
 describe('GoogleMap', () => {
   let wrapper;
+  let mockProps;
 
   beforeEach(() => {
-    wrapper = shallow(<GoogleMap latitude='1' />);
+    mockProps = {
+      filteredRestaurants: [],
+      location: { 
+        latitude: '1',
+        longitude: '1',
+      }
+    };
+    wrapper = shallow(<GoogleMap latitude='1' {...mockProps} />);
   });
 
   it('matches the snapshot', () => {

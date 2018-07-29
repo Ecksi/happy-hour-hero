@@ -4,9 +4,13 @@ import { Header } from './Header';
 
 describe('Header', () => {
   let wrapper;
+  let mockProps;
 
   beforeEach(() => {
-    wrapper = shallow(<Header />);
+    mockProps = {
+      location: {address: 'some where'},
+    };
+    wrapper = shallow(<Header {...mockProps} />);
   });
 
   it('matches the snapshot', () => {
