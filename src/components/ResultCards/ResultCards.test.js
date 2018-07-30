@@ -69,7 +69,6 @@ describe('Result Cards', () => {
     });
   });
 
-
   describe('getBestFoodSpecial', () => {
     let mockFoodSpecials;
     let wrapper;
@@ -95,6 +94,34 @@ describe('Result Cards', () => {
       const result = wrapper.instance().getBestFoodSpecial(mockHappyHour);
       
       expect(result).toEqual('$3 Tacos');
+    });
+  });
+
+  describe('getBestDrinkSpecial', () => {
+    let mockDrinkSpecials;
+    let wrapper;
+    
+    beforeEach(() => {
+      mockDrinkSpecials = [
+        {name: '2-for-1  Margaritas', id: 1, best_deal: true},
+        {name: '$5 Martinis', id: 2, best_deal: true},
+        {name: '$12 Beers', id: 3, best_deal: false}
+      ];
+      
+      wrapper = shallow(<ResultCards 
+        drinkSpecials={mockDrinkSpecials}
+        filteredRestaurants={mockRestaurants}
+        happyHours={mockHappyHours}
+      />, 
+      { disableLifecycleMethods: true });
+    });
+
+    it('should return the name of the best special', () => {
+      const mockHappyHour = {drink_specials_id: 1};
+
+      const result = wrapper.instance().getBestDrinkSpecial(mockHappyHour);
+      
+      expect(result).toEqual('2-for-1  Margaritas');
     });
   });
 });
