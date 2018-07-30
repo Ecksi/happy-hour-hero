@@ -1,0 +1,388 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactBar matches the snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ContactBar
+    restaurant={
+        Object {
+            "phone": "(123) 456-7890",
+            "website": "www.com",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <a
+          className="contactPhone"
+          href="tel:(123) 456-7890"
+>
+          Phone 
+          <i
+                    className="fas fa-phone"
+          />
+</a>,
+        <a
+          className="contactWebsite"
+          href="www.com"
+          target="_blank"
+>
+          Website 
+          <i
+                    className="fas fa-globe-americas"
+          />
+</a>,
+        <a
+          className="contactDirections"
+          href="https://www.google.com/maps/dir/undefined/undefined"
+          target="_blank"
+>
+          Directions 
+          <i
+                    className="fas fa-compass"
+          />
+</a>,
+        <a
+          className="contactShare"
+          href="#"
+>
+          Share 
+          <i
+                    className="fas fa-share-alt"
+          />
+</a>,
+      ],
+      "className": "contactBarContainer",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            "Phone ",
+            <i
+              className="fas fa-phone"
+/>,
+          ],
+          "className": "contactPhone",
+          "href": "tel:(123) 456-7890",
+        },
+        "ref": null,
+        "rendered": Array [
+          "Phone ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "fas fa-phone",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "i",
+          },
+        ],
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            "Website ",
+            <i
+              className="fas fa-globe-americas"
+/>,
+          ],
+          "className": "contactWebsite",
+          "href": "www.com",
+          "target": "_blank",
+        },
+        "ref": null,
+        "rendered": Array [
+          "Website ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "fas fa-globe-americas",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "i",
+          },
+        ],
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            "Directions ",
+            <i
+              className="fas fa-compass"
+/>,
+          ],
+          "className": "contactDirections",
+          "href": "https://www.google.com/maps/dir/undefined/undefined",
+          "target": "_blank",
+        },
+        "ref": null,
+        "rendered": Array [
+          "Directions ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "fas fa-compass",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "i",
+          },
+        ],
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            "Share ",
+            <i
+              className="fas fa-share-alt"
+/>,
+          ],
+          "className": "contactShare",
+          "href": "#",
+        },
+        "ref": null,
+        "rendered": Array [
+          "Share ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "fas fa-share-alt",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "i",
+          },
+        ],
+        "type": "a",
+      },
+    ],
+    "type": "section",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <a
+            className="contactPhone"
+            href="tel:(123) 456-7890"
+>
+            Phone 
+            <i
+                        className="fas fa-phone"
+            />
+</a>,
+          <a
+            className="contactWebsite"
+            href="www.com"
+            target="_blank"
+>
+            Website 
+            <i
+                        className="fas fa-globe-americas"
+            />
+</a>,
+          <a
+            className="contactDirections"
+            href="https://www.google.com/maps/dir/undefined/undefined"
+            target="_blank"
+>
+            Directions 
+            <i
+                        className="fas fa-compass"
+            />
+</a>,
+          <a
+            className="contactShare"
+            href="#"
+>
+            Share 
+            <i
+                        className="fas fa-share-alt"
+            />
+</a>,
+        ],
+        "className": "contactBarContainer",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              "Phone ",
+              <i
+                className="fas fa-phone"
+/>,
+            ],
+            "className": "contactPhone",
+            "href": "tel:(123) 456-7890",
+          },
+          "ref": null,
+          "rendered": Array [
+            "Phone ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "fas fa-phone",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "i",
+            },
+          ],
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              "Website ",
+              <i
+                className="fas fa-globe-americas"
+/>,
+            ],
+            "className": "contactWebsite",
+            "href": "www.com",
+            "target": "_blank",
+          },
+          "ref": null,
+          "rendered": Array [
+            "Website ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "fas fa-globe-americas",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "i",
+            },
+          ],
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              "Directions ",
+              <i
+                className="fas fa-compass"
+/>,
+            ],
+            "className": "contactDirections",
+            "href": "https://www.google.com/maps/dir/undefined/undefined",
+            "target": "_blank",
+          },
+          "ref": null,
+          "rendered": Array [
+            "Directions ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "fas fa-compass",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "i",
+            },
+          ],
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              "Share ",
+              <i
+                className="fas fa-share-alt"
+/>,
+            ],
+            "className": "contactShare",
+            "href": "#",
+          },
+          "ref": null,
+          "rendered": Array [
+            "Share ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "fas fa-share-alt",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "i",
+            },
+          ],
+          "type": "a",
+        },
+      ],
+      "type": "section",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
