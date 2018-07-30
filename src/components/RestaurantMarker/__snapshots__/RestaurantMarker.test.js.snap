@@ -4,7 +4,9 @@ exports[`RestaurantMarker matches the snapshot 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <RestaurantMarker />,
+  Symbol(enzyme.__unrendered__): <RestaurantMarker
+    id={3}
+/>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -21,8 +23,8 @@ ShallowWrapper {
         alt="Restaurant Marker"
         src="restaurant-marker.png"
 />,
-      "className": "restaurantMarker markerundefined",
-      "id": undefined,
+      "className": "restaurantMarker marker3",
+      "id": 3,
       "onClick": [Function],
     },
     "ref": null,
@@ -50,8 +52,8 @@ ShallowWrapper {
           alt="Restaurant Marker"
           src="restaurant-marker.png"
 />,
-        "className": "restaurantMarker markerundefined",
-        "id": undefined,
+        "className": "restaurantMarker marker3",
+        "id": 3,
         "onClick": [Function],
       },
       "ref": null,
