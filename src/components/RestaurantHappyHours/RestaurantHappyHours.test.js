@@ -49,6 +49,25 @@ describe('RestaurantHappyHours', () => {
 
       expect(result).toEqual(["2-for-1 drinks"]);
     });
+
+    it('should not return drink specials if the happy hour times dont align', () => {
+      mockProps.times = '8:00PM-close'
+      wrapper = shallow(<RestaurantHappyHours {...mockProps} />);
+
+      const result = wrapper.instance().getDrinkSpecials();
+
+      expect(result).toEqual([]);
+    });
+
+    it('should not return drink specials if the happy hour ids dont align', () => {
+      mockProps.times = '4:00PM-8:00PM';
+      mockProps.hourlyDrinkSpecials[0].id = 6;
+      wrapper = shallow(<RestaurantHappyHours {...mockProps} />);
+
+      const result = wrapper.instance().getDrinkSpecials();
+
+      expect(result).toEqual([]);
+    });
   });
 
   describe('getFoodSpecials', () => {
@@ -56,6 +75,15 @@ describe('RestaurantHappyHours', () => {
       const result = wrapper.instance().getFoodSpecials();
 
       expect(result).toEqual(["$3 Tacos"]);
+    });
+
+    it('should not return food specials if the happy hour ids dont align', () => {
+      mockProps.hourlyFoodSpecials[0].id = 6;
+      wrapper = shallow(<RestaurantHappyHours {...mockProps} />);
+
+      const result = wrapper.instance().getFoodSpecials();
+
+      expect(result).toEqual([]);
     });
   });
 });
