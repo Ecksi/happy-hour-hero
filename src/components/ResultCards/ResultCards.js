@@ -6,7 +6,7 @@ import './ResultCards.css';
 import { storeDay } from '../../actions';
 
 export class ResultCards extends Component {
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     this.findDay();
   }
 
