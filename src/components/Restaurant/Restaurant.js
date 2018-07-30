@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import './Restaurant.css';
 import { storeDay } from '../../actions';
 
-class Restaurant extends Component {
+export class Restaurant extends Component {
   constructor() {
     super();
 
@@ -46,7 +46,6 @@ class Restaurant extends Component {
       day
     });
   }
-
 
   getRestaurantBySlug = async () => {
     try {
@@ -133,7 +132,6 @@ class Restaurant extends Component {
       foodSpecials
     }, this.cleanHappyHourTimes);
   }
-
 
   cleanHappyHourTimes = () => {
     const { todaysHappyHours } = this.state;
@@ -260,6 +258,7 @@ Restaurant.propTypes = {
   filteredRestaurants: PropTypes.array,
   happyHours: PropTypes.string,
   day: PropTypes.string,
+  location: PropTypes.object,
 };
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -267,7 +266,6 @@ export const mapDispatchToProps = (dispatch) => ({
     return dispatch(storeDay(day));
   },
 });
-
 
 export const mapStateToProps = (state) => ({
   location: state.location,
