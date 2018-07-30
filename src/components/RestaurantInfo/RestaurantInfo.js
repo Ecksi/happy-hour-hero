@@ -6,10 +6,9 @@ import borderImg from './assets/main-img-border.png';
 import moment from 'moment';
 moment().format();
 
-class RestaurantInfo extends Component {  
+export class RestaurantInfo extends Component {  
   render() {
     const { restaurant, joinedTimes, bestDrinkSpecial, bestFoodSpecial } = this.props;
-
     const { name, address, restaurant_image } = restaurant;
     const backgroundImage = {backgroundImage: "url(" + restaurant_image + ")"};
     const borderBackground = {backgroundImage: "url(" + borderImg + ")"};
@@ -39,6 +38,10 @@ RestaurantInfo.propTypes = {
   getRestaurant: PropTypes.func,
   getTodaysHappyHours: PropTypes.func,
   cleanHappyHourTimes: PropTypes.func,
+  restaurant: PropTypes.string,
+  joinedTimes: PropTypes.string,
+  bestDrinkSpecial: PropTypes.string,
+  bestFoodSpecial: PropTypes.string,
 };
 
 export const mapStateToProps = (state) => ({
