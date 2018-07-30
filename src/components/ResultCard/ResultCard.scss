@@ -134,10 +134,33 @@
   margin: -10px 0 10px 0;
 }
 
+@media only screen and (max-width: 1000px) and (min-width: 700px) {
+  .resultCardRightInfo {
+    width: 45%;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 70px;
+    margin-left: -90px;
+  }
+
+  .happyHourSpecials {
+    width: 157%;
+}
+
+  .resultCardInfo {
+    width: 35%;
+  }
+
+  .moreInfoButton {
+    margin-top: 20px;
+  }
+}
+
 @media only screen and (max-width: 700px) {
   .resultCardContainer {
       flex-direction: column;
       text-align: center;
+      position: relative;
   }
 
   .resultCardImage {
@@ -159,16 +182,16 @@
     padding: 5px 25px;
     margin-top: 0px;
     color: #fff;
-    width: 67%;
-    bottom: -444px;
+    width: 90%;
+    bottom: -40px;
     position: absolute;
-    left: 58px;
+    left: 0;
   }
 
   .resultCardRightInfo {
     width: 100%;
     align-items: normal;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     padding-bottom: 25px;
     justify-content: space-between;
@@ -188,11 +211,16 @@
   }
 
   .fa-clock {
-    font-size: 3rem;
+    font-size: 2.6rem;
+    margin-left: 20px;
   }
 
   .resultCardClock {
-    width: 52%;
+    width: 100%;
+    display: flex;
+    margin-bottom: 50px;
+    text-align: center;
+    flex-direction: column;
   }
 }
 
