@@ -24,17 +24,17 @@ export class ResultCard extends Component {
 
   secondsToTime(secs){
     let hours = Math.floor(secs / (60 * 60));
-    let divisor_for_minutes = secs % (60 * 60);
-    let minutes = Math.floor(divisor_for_minutes / 60);
-    let divisor_for_seconds = divisor_for_minutes % 60;
-    let seconds = Math.ceil(divisor_for_seconds);
-    let obj = {
-      "h": hours,
-      "m": minutes,
-      "s": seconds
+    let minutesDivisor = secs % (60 * 60);
+    let minutes = Math.floor(minutesDivisor / 60);
+    let secondsDivisor = minutesDivisor % 60;
+    let seconds = Math.ceil(secondsDivisor);
+    let time = {
+      hours,
+      minutes,
+      seconds
     };
 
-    return obj;
+    return time;
   }
 
   componentDidMount() {
@@ -146,7 +146,7 @@ export class ResultCard extends Component {
             <i className="far fa-clock"></i>
             <span>
               <p>{ this.state.currentlyHappyHour ? 'Ends in:' : 'Starts in:'} </p>
-              <p className="resultCardStartTime">{this.state.time.h}hrs {this.state.time.m}mins {this.state.time.s}secs</p>
+              <p className="resultCardStartTime">{this.state.time.hours}hrs {this.state.time.minutes}mins {this.state.time.seconds}secs</p>
             </span>
           </div>
           <a href="#" className="moreInfoButton" onClick={(event) => this.handleMoreInfoClick(event)} >More Info</a>
