@@ -14,7 +14,15 @@ ShallowWrapper {
             },
           ]
     }
-    hourlyFoodSpecials={Array []}
+    hourlyFoodSpecials={
+        Array [
+            Object {
+              "best_deal": true,
+              "id": 4,
+              "name": "$3 Tacos",
+            },
+          ]
+    }
     times="4:00PM-8:00PM"
     todaysHappyHours={
         Array [
@@ -23,7 +31,7 @@ ShallowWrapper {
               "day": "Monday",
               "drink_specials_id": 5,
               "end_time": "2000",
-              "food_specials_id": null,
+              "food_specials_id": 4,
               "id": 1,
               "restaurant_id": 1,
               "start_time": "1600",
@@ -67,7 +75,7 @@ ShallowWrapper {
                               Food
                     </h4>
                     <p>
-                              No food specials
+                              $3 Tacos
                     </p>
           </article>
 </section>,
@@ -110,7 +118,7 @@ ShallowWrapper {
                             Food
               </h4>
               <p>
-                            No food specials
+                            $3 Tacos
               </p>
 </article>,
           ],
@@ -171,9 +179,11 @@ ShallowWrapper {
                 <h4>
                   Food
 </h4>,
-                <p>
-                  No food specials
+                Array [
+                  <p>
+                    $3 Tacos
 </p>,
+                ],
               ],
               "className": "restaurantFoodSpecials special",
             },
@@ -192,13 +202,13 @@ ShallowWrapper {
               },
               Object {
                 "instance": null,
-                "key": undefined,
+                "key": "0",
                 "nodeType": "host",
                 "props": Object {
-                  "children": "No food specials",
+                  "children": "$3 Tacos",
                 },
                 "ref": null,
-                "rendered": "No food specials",
+                "rendered": "$3 Tacos",
                 "type": "p",
               },
             ],
@@ -240,7 +250,7 @@ ShallowWrapper {
                                     Food
                         </h4>
                         <p>
-                                    No food specials
+                                    $3 Tacos
                         </p>
             </article>
 </section>,
@@ -283,7 +293,7 @@ ShallowWrapper {
                                 Food
                 </h4>
                 <p>
-                                No food specials
+                                $3 Tacos
                 </p>
 </article>,
             ],
@@ -344,9 +354,11 @@ ShallowWrapper {
                   <h4>
                     Food
 </h4>,
-                  <p>
-                    No food specials
+                  Array [
+                    <p>
+                      $3 Tacos
 </p>,
+                  ],
                 ],
                 "className": "restaurantFoodSpecials special",
               },
@@ -365,13 +377,13 @@ ShallowWrapper {
                 },
                 Object {
                   "instance": null,
-                  "key": undefined,
+                  "key": "0",
                   "nodeType": "host",
                   "props": Object {
-                    "children": "No food specials",
+                    "children": "$3 Tacos",
                   },
                   "ref": null,
-                  "rendered": "No food specials",
+                  "rendered": "$3 Tacos",
                   "type": "p",
                 },
               ],
