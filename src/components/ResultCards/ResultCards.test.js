@@ -124,4 +124,41 @@ describe('Result Cards', () => {
       expect(result).toEqual('2-for-1  Margaritas');
     });
   });
+
+  describe('getTodaysHappyHour', () => {
+    let wrapper;
+    
+    beforeEach(() => {
+      mockHappyHours = [{
+        combined_times:'4:00PM-8:00PM',
+        created_at:'2018-07-30T13:59:04.931Z',
+        day:'Thursday',
+        drink_specials_id:1,
+        end_time:'2000',
+        food_specials_id:null,
+        id:1,
+        restaurant_id:1,
+        start_time:'1600',
+        updated_at:'2018-07-30T13:59:04.931Z'
+      }];
+      
+      wrapper = shallow(<ResultCards 
+        day={'Thursday'}
+        filteredRestaurants={mockRestaurants}
+        happyHours={mockHappyHours}
+      />, 
+      { disableLifecycleMethods: true });
+    });
+
+    it.skip('should return todays happy hour', () => {
+      const mockRestaurant = {name: 'Bardo', id: 1};
+
+      wrapper.instance().getBestFoodSpecial = jest.fn();
+      wrapper.instance().getBestDrinkSpecial = jest.fn();
+
+      const result = wrapper.instance().getTodaysHappyHour(mockRestaurant);
+      
+      expect(result).toEqual('2-for-1  Margaritas');
+    });
+  });
 });

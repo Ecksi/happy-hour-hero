@@ -45,9 +45,8 @@ export class ResultCards extends Component {
 
   getTodaysHappyHour = (restaurant) => {
     const { happyHours, day } = this.props;
-
+    
     const todaysHappyHour = happyHours.find(happyHour => {
-
       return happyHour.restaurant_id == restaurant.id && happyHour.day == day;
     });
 
