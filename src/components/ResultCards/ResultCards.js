@@ -6,7 +6,7 @@ import './ResultCards.css';
 import { storeDay } from '../../actions';
 
 export class ResultCards extends Component {
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     this.findDay();
   }
 
@@ -21,7 +21,7 @@ export class ResultCards extends Component {
 
   getBestFoodSpecial = (todaysHappyHour) => {
     const { foodSpecials } = this.props;
-
+  
     const bestFoodSpecial = foodSpecials.find(special => {
       return special.id === todaysHappyHour.food_specials_id && special.best_deal === true;
     });
@@ -45,7 +45,7 @@ export class ResultCards extends Component {
 
   getTodaysHappyHour = (restaurant) => {
     const { happyHours, day } = this.props;
-
+    
     const todaysHappyHour = happyHours.find(happyHour => {
       return happyHour.restaurant_id == restaurant.id && happyHour.day == day;
     });
@@ -73,7 +73,7 @@ export class ResultCards extends Component {
         const restaurantName = restaurant.name;
         const { id, address, restaurant_image } = restaurant;
         const todaysHappyHour = this.getTodaysHappyHour(restaurant);
-
+     
         if (todaysHappyHour) {
           times = todaysHappyHour.combined_times;
           bestFoodSpecial = this.getBestFoodSpecial(todaysHappyHour);
