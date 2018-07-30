@@ -52,7 +52,7 @@ export class Restaurant extends Component {
       const restaurantSlug = window.location.search;
       const index = restaurantSlug.indexOf('=');
       let name = restaurantSlug.substring(index + 1);
-
+     
       const response = await fetch(`http://localhost:3000/api/v1/restaurants?name=${name}`);
       const currentRestaurants = await response.json();
       const currentRestaurant = currentRestaurants[0];
@@ -75,6 +75,7 @@ export class Restaurant extends Component {
     this.setState({
       todaysHappyHours
     }, this.getDrinkSpecials);
+ 
   }
 
   getDrinkSpecials = async () => {
