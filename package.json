@@ -51,7 +51,10 @@
       "src/**/*.{js,jsx}",
       "!src/index.js",
       "!src/actions/index.js",
-      "!src/apiCalls/apiKeys/*"
+      "!src/apiCalls/apiKeys/*",
+      "!src/PlacesAutocomplete.js",
+      "!src/helpers.js",
+      "!src/utils.js"
     ]
   }
 }

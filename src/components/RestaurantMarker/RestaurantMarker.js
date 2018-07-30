@@ -10,7 +10,7 @@ export class RestaurantMarker extends Component {
     const id = event.target.closest('section').getAttribute('id');
     const selectedSelector = `.resultCard${id}`;
     const selectedCard = document.querySelector(selectedSelector);
-
+    
     allCards.forEach(card => card.classList.remove('selectedCard'));
     selectedCard.classList.add('selectedCard');
     selectedCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
