@@ -59,9 +59,8 @@ export class Restaurant extends Component {
 
       this.setState({
         restaurant: currentRestaurant
-      }, this.getTodaysHappyHours );
+      }, this.getTodaysHappyHours);
     } catch (error) {
-      console.log(error);
     }
   }
 
@@ -86,7 +85,7 @@ export class Restaurant extends Component {
       const id = happyHour.drink_specials_id;
       const response = await fetch(`http://localhost:3000/api/v1/drink_specials/${id}`);
       const drinkSpecial = await response.json();
-
+      
       return drinkSpecial[0];
     });
 
