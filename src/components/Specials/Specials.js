@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import './Specials.css';
 
-class Specials extends Component {
+export class Specials extends Component {
   constructor (props) {
     super(props);
   }
 
-render() {
-
+  render() {
     return (
       <section className="specialsContainer">
       </section>

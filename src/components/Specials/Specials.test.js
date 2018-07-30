@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { UserMarker, mapStateToProps } from './UserMarker';
+import { Specials, mapStateToProps } from './Specials';
 
-describe('UserMarker', () => {
+describe('Specials', () => {
   let wrapper;
   let mockProps;
 
   beforeEach(() => {
     mockProps = {
-      location: []
+      location: [],
     };
-    wrapper = shallow(<UserMarker />);
+    wrapper = shallow(<Specials />);
   });
 
-  it('matches the snapshot', () => {
+  it('should match the snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
 

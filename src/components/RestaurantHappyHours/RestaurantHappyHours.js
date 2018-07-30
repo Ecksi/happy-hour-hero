@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './RestaurantHappyHours.css';
 
-class RestaurantHappyHours extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+export class RestaurantHappyHours extends Component {
   getDrinkSpecials = () => {
     let drinkSpecials = [];
   
@@ -66,6 +62,10 @@ RestaurantHappyHours.propTypes = {
   getRestaurant: PropTypes.func,
   getTodaysHappyHours: PropTypes.func,
   cleanHappyHourTimes: PropTypes.func,
+  times: PropTypes.string,
+  todaysHappyHours: PropTypes.array,
+  hourlyDrinkSpecials: PropTypes.array,
+  hourlyFoodSpecials: PropTypes.array,
 };
 
 export const mapStateToProps = (state) => ({
