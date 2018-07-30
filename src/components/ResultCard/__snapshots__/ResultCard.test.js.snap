@@ -4,7 +4,10 @@ exports[`ResultCard matches the snapshot 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ResultCard />,
+  Symbol(enzyme.__unrendered__): <ResultCard
+    endTime="1800"
+    startTime="1200"
+/>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -80,7 +83,7 @@ ShallowWrapper {
                     />
                     <span>
                               <p>
-                                        Starts in:
+                                        Ends in:
                                          
                               </p>
                               <p
@@ -338,7 +341,7 @@ ShallowWrapper {
               />
               <span>
                             <p>
-                                          Starts in:
+                                          Ends in:
                                            
                             </p>
                             <p
@@ -376,7 +379,7 @@ ShallowWrapper {
 />,
                 <span>
                   <p>
-                                    Starts in:
+                                    Ends in:
                                      
                   </p>
                   <p
@@ -413,7 +416,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <p>
-                      Starts in:
+                      Ends in:
                        
 </p>,
                     <p
@@ -436,13 +439,13 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": Array [
-                        "Starts in:",
+                        "Ends in:",
                         " ",
                       ],
                     },
                     "ref": null,
                     "rendered": Array [
-                      "Starts in:",
+                      "Ends in:",
                       " ",
                     ],
                     "type": "p",
@@ -568,7 +571,7 @@ ShallowWrapper {
                         />
                         <span>
                                     <p>
-                                                Starts in:
+                                                Ends in:
                                                  
                                     </p>
                                     <p
@@ -826,7 +829,7 @@ ShallowWrapper {
                 />
                 <span>
                                 <p>
-                                                Starts in:
+                                                Ends in:
                                                  
                                 </p>
                                 <p
@@ -864,7 +867,7 @@ ShallowWrapper {
 />,
                   <span>
                     <p>
-                                        Starts in:
+                                        Ends in:
                                          
                     </p>
                     <p
@@ -901,7 +904,7 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <p>
-                        Starts in:
+                        Ends in:
                          
 </p>,
                       <p
@@ -924,13 +927,13 @@ ShallowWrapper {
                       "nodeType": "host",
                       "props": Object {
                         "children": Array [
-                          "Starts in:",
+                          "Ends in:",
                           " ",
                         ],
                       },
                       "ref": null,
                       "rendered": Array [
-                        "Starts in:",
+                        "Ends in:",
                         " ",
                       ],
                       "type": "p",
