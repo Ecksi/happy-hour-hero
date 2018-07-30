@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import './ContactBar.css';
 import PropTypes from 'prop-types';
 
-class ContactBar extends Component {
+export class ContactBar extends Component {
   render() {
-    const restaurant = this.props.restaurant
-    const { phone, website, name } = restaurant;
+    const restaurant = this.props.restaurant;
+    const { phone, website } = restaurant;
     const { currentLocation, restaurantLocation } = this.props;
 
     return (
@@ -24,6 +24,9 @@ ContactBar.propTypes = {
   location: PropTypes.string,
   filteredRestaurants: PropTypes.array,
   restaurantId: PropTypes.number,
+  restaurant: PropTypes.object,
+  restaurantLocation: PropTypes.number,
+  currentLocation: PropTypes.number,
 };
 
 export const mapStateToProps = (state) => ({
