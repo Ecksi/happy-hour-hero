@@ -27,4 +27,19 @@ describe('Restaurant', () => {
     });
   });
 
+  describe('findDay', () => {
+    beforeEach(() => {
+      wrapper = shallow(<Restaurant />);
+    });
+
+    it('should return todays date', async () => {
+      const mockDate = new Date('2016');
+      global.Date = jest.fn(() => mockDate);
+    
+      wrapper.instance().findDay();
+
+      expect(wrapper.state('day')).toEqual('Thursday');
+    });
+  });
+
 });
