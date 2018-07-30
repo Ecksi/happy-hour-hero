@@ -40,7 +40,7 @@ describe('Result Cards', () => {
       wrapper = shallow(<ResultCards 
         filteredRestaurants={mockRestaurants}
         happyHours={mockHappyHours}
-        />, { disableLifecycleMethods: true });
+      />, { disableLifecycleMethods: true });
     });
 
     expect(wrapper).toMatchSnapshot();
@@ -54,6 +54,7 @@ describe('Result Cards', () => {
         filteredRestaurants={mockRestaurants} 
         storeDay={jest.fn()}
         happyHours={mockHappyHours}
+        day={'Thursday'}
       />, { disableLifecycleMethods: true });
 
     });
@@ -70,29 +71,30 @@ describe('Result Cards', () => {
 
 
   describe('getBestFoodSpecial', () => {
+    let mockFoodSpecials;
     let wrapper;
     
     beforeEach(() => {
-      const mockFoodSpecials = [
-        {name: '2-for-1 Drinks', id: 1, best_deal: true},
-        {name: '$3 Triples', id: 2, best_deal: true},
-        {name: '$5 House Wines', id: 3, best_deal: false}
+      mockFoodSpecials = [
+        {name: '$3 Tacos', id: 1, best_deal: true},
+        {name: '$2 Burgers', id: 2, best_deal: true},
+        {name: '$7 Tapas', id: 3, best_deal: false}
       ];
       
       wrapper = shallow(<ResultCards 
         foodSpecials={mockFoodSpecials}
         filteredRestaurants={mockRestaurants}
+        happyHours={mockHappyHours}
       />, 
       { disableLifecycleMethods: true });
     });
 
-    it.skip('should return the name of the best special', () => {
-      const mockHappyHours = {food_special_id: 1};
-      
-      const result = wrapper.instance().getBestFoodSpecial(mockHappyHours);
-      wrapper.instance().getBestFoodSpecial(mockHappyHours);
+    it('should return the name of the best special', () => {
+      const mockHappyHour = {food_specials_id: 1};
 
-      expect(result).toEqual('Thursday');
+      const result = wrapper.instance().getBestFoodSpecial(mockHappyHour);
+      
+      expect(result).toEqual('$3 Tacos');
     });
   });
 });

@@ -21,7 +21,7 @@ export class ResultCards extends Component {
 
   getBestFoodSpecial = (todaysHappyHour) => {
     const { foodSpecials } = this.props;
-
+  
     const bestFoodSpecial = foodSpecials.find(special => {
       return special.id === todaysHappyHour.food_specials_id && special.best_deal === true;
     });
