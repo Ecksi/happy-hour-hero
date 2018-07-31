@@ -8,5 +8,6 @@ module.exports = [
   { name: '$3.00 Select Appetizers', best_deal: false },
   { name: '$4.00 Select Appetizers', best_deal: false },
   { name: '$5.00 Select Appetizers', best_deal: false },
-  { name: '$1.00 Off All Appetizers', best_deal: true }
+  { name: '$1.00 Off All Appetizers', best_deal: true },
+  { name: '$10 Burger & Beer', best_deal: true }
 ]
