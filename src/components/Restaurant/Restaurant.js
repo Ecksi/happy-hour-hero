@@ -85,7 +85,7 @@ export class Restaurant extends Component {
       const id = happyHour.drink_specials_id;
       const response = await fetch(`http://localhost:3000/api/v1/drink_specials/${id}`);
       const drinkSpecial = await response.json();
-      
+      console.log(drinkSpecial)
       return drinkSpecial[0];
     });
 
