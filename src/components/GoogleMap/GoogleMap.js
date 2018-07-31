@@ -11,27 +11,60 @@ export class GoogleMap extends Component {
     super();
 
     this.state = {
-      zoom: 12
+      zoom: 16,
+      todaysRestaurants: []
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.happyHours !== prevProps.happyHours) {
+      this.todaysHappyHourRestaurants();
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.happyHours) {
+      this.todaysHappyHourRestaurants();
+    }
+  }
+
+  todaysHappyHourRestaurants = () => {
+    const todaysRestaurants = this.props.filteredRestaurants.reduce((restaurants, restaurant) => {
+      this.props.happyHours.forEach((happyHour) => {
+        if (happyHour.restaurant_id == restaurant.id && happyHour.day == this.props.day && !restaurants.includes(restaurant)) {
+          restaurants.push(restaurant);
+        }
+      });
+
+      return restaurants;
+    }, []);
+
+    this.setState({todaysRestaurants});
+    console.log(this.state.todaysRestaurants)
+  }
+
   render() {
+    let markers;
+
     const center = {
       lat: this.props.location.latitude,
       lng: this.props.location.longitude
     };
 
-    const markers = this.props.filteredRestaurants.map((restaurant, index) => {
-      const { latitude, longitude, name, id } = restaurant;
+    if (this.state.todaysRestaurants) {
+      markers = this.state.todaysRestaurants.map((restaurant, index) => {
+        const { latitude, longitude, name, id } = restaurant;
 
-      return ( <RestaurantMarker
-        lat={ latitude }
-        lng={ longitude }
-        key={ index }
-        name={ name }
-        id={ id }
-      />);
-    });
+        return (<RestaurantMarker
+          lat={ latitude }
+          lng={ longitude }
+          key={ index }
+          name={ name }
+          id={ id }
+        />);
+      });
+
+    }
 
     return (
       <div className='google-map'>
@@ -56,7 +89,9 @@ GoogleMap.propTypes = {
 
 export const mapStateToProps = (state) => ({
   location: state.location,
-  filteredRestaurants: state.filteredRestaurants
+  filteredRestaurants: state.filteredRestaurants,
+  happyHours: state.happyHours,
+  day: state.day
 });
 
 export default connect(mapStateToProps)(GoogleMap);
