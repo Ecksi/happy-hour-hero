@@ -55,7 +55,7 @@ describe('Restaurant', () => {
       updated_at: "2018-07-30T13:59:04.910Z",
     }];
 
-    wrapper = shallow(<Restaurant />, { disableLifecycleMethods: true });
+    wrapper = shallow(<Restaurant location={{name: 'Denver, CO'}}/>, { disableLifecycleMethods: true });
   });
 
   it('matches the snapshot', () => {
@@ -63,10 +63,6 @@ describe('Restaurant', () => {
   });
 
   describe('formatAddress', () => {
-    beforeEach(() => {
-      wrapper = shallow(<Restaurant />, { disableLifecycleMethods: true });
-    });
-
     it('should return the address in the correct format', () => {
       const mockAddress = 'Falling Rock Brewery Denver, CO';
       const expected = 'falling+rock+brewery+denver+co';
@@ -77,10 +73,6 @@ describe('Restaurant', () => {
   });
 
   describe('findDay', () => {
-    beforeEach(() => {
-      wrapper = shallow(<Restaurant />, { disableLifecycleMethods: true });
-    });
-
     it('should return the name of the day', () => {
       const mockDate = new Date('08 02 2018');
       global.Date = jest.fn(() => mockDate);
@@ -93,7 +85,6 @@ describe('Restaurant', () => {
 
   describe('getRestaurantBySlug', () => {
     beforeEach(() => {
-      wrapper = shallow(<Restaurant />, { disableLifecycleMethods: true });
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         json: () => Promise.resolve({
           mockRestaurant
@@ -120,10 +111,7 @@ describe('Restaurant', () => {
   });
 
   describe('getTodaysHappyHours', () => {
-    let wrapper;
-
     beforeEach(() => {
-      wrapper = shallow(<Restaurant location={{name: 'Denver, CO'}}/>, { disableLifecycleMethods: true });
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         json: () => Promise.resolve({
           mockHappyHours
@@ -157,10 +145,7 @@ describe('Restaurant', () => {
   });
 
   describe('getDrinkSpecials', () => {
-    let wrapper;
-
     beforeEach(() => {
-      wrapper = shallow(<Restaurant location={{name: 'Denver, CO'}}/>, { disableLifecycleMethods: true });
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         json: () => Promise.resolve(mockDrinkSpecials)
       }));
@@ -192,10 +177,7 @@ describe('Restaurant', () => {
   });
 
   describe('getFoodSpecials', () => {
-    let wrapper;
-
     beforeEach(() => {
-      wrapper = shallow(<Restaurant location={{name: 'Denver, CO'}}/>, { disableLifecycleMethods: true });
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         json: () => Promise.resolve(mockFoodSpecials)
       }));
@@ -223,6 +205,20 @@ describe('Restaurant', () => {
       await wrapper.instance().getFoodSpecials();
 
       expect(wrapper.state('foodSpecials')).toEqual(mockFoodSpecials);
+    });
+  });
+
+  describe('cleanHappyHourTimes', () => {
+    it('should fetch url with the correct arguments', async () => {
+      wrapper.instance().getHappyHourSpecialsForTime= jest.fn();
+      wrapper.setState({
+        todaysHappyHours: mockHappyHours
+      });
+
+      const expected = 'http://localhost:3000/api/v1/food_specials/1';
+      await wrapper.instance().getFoodSpecials();
+
+      expect(wrapper.state('joinedTimes')).toEqual('4:00PM-8:00PM');
     });
   });
 });
