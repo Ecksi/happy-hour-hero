@@ -162,6 +162,7 @@
       flex-direction: column;
       text-align: center;
       position: relative;
+      padding: 20px 20px 90px 20px;
   }
 
   .resultCardImage {
@@ -180,13 +181,17 @@
 
   .happyHourSpecials {
     height: 50px;
+    margin-left: 3%;
     padding: 5px 25px;
     margin-top: 0px;
     color: #fff;
-    width: 90%;
-    bottom: -40px;
+    width: 74%;
+    display: flex;
+    bottom: 25px;
     position: absolute;
-    left: 0;
+    border-radius: 20px;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
   }
 
   .resultCardRightInfo {
