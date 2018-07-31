@@ -27,7 +27,7 @@ export class Restaurant extends Component {
     
   }
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     this.getRestaurantBySlug();
     this.findDay();
   }

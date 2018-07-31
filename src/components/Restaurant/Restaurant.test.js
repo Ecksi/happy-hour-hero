@@ -119,17 +119,18 @@ describe('Restaurant', () => {
     });
 
     // One of the two tests below work but not both for some reason
-    it.skip('should fetch url with the correct arguments', async () => {
-      console.log(wrapper.state('restaurant'))
+    it('should fetch url with the correct arguments', async () => {
+      wrapper.setState({
+        day: 'Thursday'
+      });
+
       const expected = 'http://localhost:3000/api/v1/happy_hours?restaurant_id=1&day=Thursday';
       await wrapper.instance().getTodaysHappyHours();
 
       expect(window.fetch).toHaveBeenCalledWith(expected);
     });
 
-    it.skip('should set state to restaurants happy hour times', async () => {
-      console.log(wrapper.state('restaurant'))
-
+    it('should set state to restaurants happy hour times', async () => {
       const expected = { "mockHappyHours": mockHappyHours};
       await wrapper.instance().getTodaysHappyHours();
 
@@ -169,6 +170,13 @@ describe('Restaurant', () => {
       await wrapper.instance().getDrinkSpecials();
 
       expect(window.fetch).toHaveBeenCalledWith(expected);
+    });
+
+    it.skip('should set state to restaurants happy hour times', async () => {
+      const expected = { "mockHappyHours": mockHappyHours};
+      await wrapper.instance().getDrinkSpecials();
+
+      expect(wrapper.state('drinkSpecials')).toEqual(expected);
     });
 
     it.skip('should set state to restaurants happy hour times', async () => {
