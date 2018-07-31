@@ -59,3 +59,47 @@
 .bestDealTitle {
   font-weight: 100;
   margin-bottom: 0; }
+
+@media only screen and (max-width: 700px) {
+  .restaurantInfo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 50px 100px 50px; }
+  .restaurantInfo h1 {
+    display: block;
+    justify-content: center;
+    text-align: center; }
+  .restaurantInfo h3 {
+    margin: 0px 0 5px 0; }
+  .bestDeals {
+    position: relative;
+    font-size: 1rem;
+    border-radius: 20px;
+    text-align: center;
+    padding: 15px 35px; }
+  .restaurantAddress {
+    margin-top: 5px; }
+  .restaurantInfo .times {
+    margin-bottom: -15px; }
+  .restaurantHappyHoursContainer {
+    text-align: center;
+    padding-top: 20px; }
+  .restaurantSpecialsContainer h2 {
+    text-align: center;
+    font-size: 1.6rem !important; }
+  .restaurantHappyHoursContainer h3 {
+    font-size: 1.3rem  !important; }
+  .restaurantHappyHoursContainer h4 {
+    font-size: 1.3rem !important; }
+  .contactBarContainer a {
+    font-size: 0.8rem !important;
+    flex-direction: column-reverse;
+    justify-content: center !important;
+    width: 24% !important; }
+  .contactBarContainer {
+    width: calc(80% - 40px) !important;
+    padding: 20px !important; }
+  .contactBarContainer i {
+    margin: 0 0 5px 0 !important; } }
