@@ -6,6 +6,8 @@ describe('Result Cards', () => {
   let wrapper;
   let mockRestaurants;
   let mockHappyHours;
+  let mockFoodSpecials;
+  let mockDrinkSpecials;
 
   it('matches the snapshot', () => {
     mockRestaurants = [{
@@ -23,23 +25,52 @@ describe('Result Cards', () => {
       zip_code: 80202
     }];
 
+    mockFoodSpecials = [
+      {name: '$3 Tacos', id: 1, best_deal: true},
+      {name: '$2 Burgers', id: 2, best_deal: true},
+      {name: '$7 Tapas', id: 3, best_deal: false}
+    ];
+
+    mockDrinkSpecials = [
+      {name: '2-for-1  Margaritas', id: 1, best_deal: true},
+      {name: '$5 Martinis', id: 2, best_deal: true},
+      {name: '$12 Beers', id: 3, best_deal: false}
+    ];
+
     mockHappyHours = [{
-      combined_times:"4:00PM-8:00PM",
-      created_at:"2018-07-30T13:59:04.931Z",
-      day:"Monday",
+      combined_times:'4:00PM-8:00PM',
+      created_at:'2018-07-30T13:59:04.931Z',
+      day:'Monday',
       drink_specials_id:1,
-      end_time:"2000",
+      end_time:'2000',
       food_specials_id:null,
       id:1,
       restaurant_id:1,
-      start_time:"1600",
-      updated_at:"2018-07-30T13:59:04.931Z"
-    }];
+      start_time:'1600',
+      updated_at:'2018-07-30T13:59:04.931Z'
+    },
+    {
+      combined_times:'8:00PM-10:00PM',
+      created_at:'2018-07-30T13:59:04.931Z',
+      day:'Thursday',
+      drink_specials_id: 2,
+      end_time:'2000',
+      food_specials_id:null,
+      id: 2,
+      restaurant_id: 2,
+      start_time:'1600',
+      updated_at:'2018-07-30T13:59:04.931Z'
+    }
+    ];
 
     beforeEach(() => {
       wrapper = shallow(<ResultCards 
+        foodSpecials={mockFoodSpecials}
+        drinkSpecials={mockDrinkSpecials}
         filteredRestaurants={mockRestaurants}
         happyHours={mockHappyHours}
+        storeDay={jest.fn()}
+        day={'Thursday'}
       />, { disableLifecycleMethods: true });
     });
 
@@ -47,18 +78,6 @@ describe('Result Cards', () => {
   });
 
   describe('findDay', () => {
-    let wrapper; 
-    
-    beforeEach(() => {
-      wrapper = shallow(<ResultCards 
-        filteredRestaurants={mockRestaurants} 
-        storeDay={jest.fn()}
-        happyHours={mockHappyHours}
-        day={'Thursday'}
-      />, { disableLifecycleMethods: true });
-
-    });
-
     it('should call storeDay with correct argument', () => {
       const mockDate = new Date('2016');
       global.Date = jest.fn(() => mockDate);
@@ -70,24 +89,6 @@ describe('Result Cards', () => {
   });
 
   describe('getBestFoodSpecial', () => {
-    let mockFoodSpecials;
-    let wrapper;
-    
-    beforeEach(() => {
-      mockFoodSpecials = [
-        {name: '$3 Tacos', id: 1, best_deal: true},
-        {name: '$2 Burgers', id: 2, best_deal: true},
-        {name: '$7 Tapas', id: 3, best_deal: false}
-      ];
-      
-      wrapper = shallow(<ResultCards 
-        foodSpecials={mockFoodSpecials}
-        filteredRestaurants={mockRestaurants}
-        happyHours={mockHappyHours}
-      />, 
-      { disableLifecycleMethods: true });
-    });
-
     it('should return the name of the best special', () => {
       const mockHappyHour = {food_specials_id: 1};
 
@@ -98,24 +99,6 @@ describe('Result Cards', () => {
   });
 
   describe('getBestDrinkSpecial', () => {
-    let mockDrinkSpecials;
-    let wrapper;
-    
-    beforeEach(() => {
-      mockDrinkSpecials = [
-        {name: '2-for-1  Margaritas', id: 1, best_deal: true},
-        {name: '$5 Martinis', id: 2, best_deal: true},
-        {name: '$12 Beers', id: 3, best_deal: false}
-      ];
-      
-      wrapper = shallow(<ResultCards 
-        drinkSpecials={mockDrinkSpecials}
-        filteredRestaurants={mockRestaurants}
-        happyHours={mockHappyHours}
-      />, 
-      { disableLifecycleMethods: true });
-    });
-
     it('should return the name of the best special', () => {
       const mockHappyHour = {drink_specials_id: 1};
 
@@ -126,39 +109,13 @@ describe('Result Cards', () => {
   });
 
   describe('getTodaysHappyHour', () => {
-    let wrapper;
-    
-    beforeEach(() => {
-      mockHappyHours = [{
-        combined_times:'4:00PM-8:00PM',
-        created_at:'2018-07-30T13:59:04.931Z',
-        day:'Thursday',
-        drink_specials_id:1,
-        end_time:'2000',
-        food_specials_id:null,
-        id:1,
-        restaurant_id:1,
-        start_time:'1600',
-        updated_at:'2018-07-30T13:59:04.931Z'
-      }];
-      
-      wrapper = shallow(<ResultCards 
-        day={'Thursday'}
-        filteredRestaurants={mockRestaurants}
-        happyHours={mockHappyHours}
-      />, 
-      { disableLifecycleMethods: true });
-    });
-
-    it.skip('should return todays happy hour', () => {
-      const mockRestaurant = {name: 'Bardo', id: 1};
-
-      wrapper.instance().getBestFoodSpecial = jest.fn();
-      wrapper.instance().getBestDrinkSpecial = jest.fn();
+    it('should return todays happy hour', () => {
+      const mockRestaurant = {name: 'Bardo', id: 2};
+      const expected = wrapper.instance().props.happyHours[1];
 
       const result = wrapper.instance().getTodaysHappyHour(mockRestaurant);
-      
-      expect(result).toEqual('2-for-1  Margaritas');
+
+      expect(result).toEqual(expected);
     });
   });
 });

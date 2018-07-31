@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ResultCard
     endTime="1800"
+    restaurantName="Ale House"
     startTime="1200"
 />,
   Symbol(enzyme.__renderer__): Object {
@@ -32,7 +33,9 @@ ShallowWrapper {
         <div
           className="resultCardInfo"
 >
-          <h2 />
+          <h2>
+                    Ale House
+          </h2>
           <p
                     className="address"
           />
@@ -132,7 +135,9 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <h2 />,
+            <h2>
+              Ale House
+</h2>,
             <p
               className="address"
 />,
@@ -160,10 +165,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": undefined,
+              "children": "Ale House",
             },
             "ref": null,
-            "rendered": null,
+            "rendered": "Ale House",
             "type": "h2",
           },
           Object {
@@ -520,7 +525,9 @@ ShallowWrapper {
           <div
             className="resultCardInfo"
 >
-            <h2 />
+            <h2>
+                        Ale House
+            </h2>
             <p
                         className="address"
             />
@@ -620,7 +627,9 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <h2 />,
+              <h2>
+                Ale House
+</h2>,
               <p
                 className="address"
 />,
@@ -648,10 +657,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": undefined,
+                "children": "Ale House",
               },
               "ref": null,
-              "rendered": null,
+              "rendered": "Ale House",
               "type": "h2",
             },
             Object {
