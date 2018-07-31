@@ -181,10 +181,8 @@ class SearchBar extends Component {
   } 
 
   getAddress = async (location) => {
-    console.log('location', location)
     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
     const data = await response.json();
-    console.log('data', data)
     const address = data.results[0].formatted_address;
 
     return address;
