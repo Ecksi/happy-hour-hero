@@ -242,6 +242,17 @@ describe('Restaurant', () => {
 
       expect(wrapper.state('bestDrinkSpecial')).toEqual('2-for-1 drinks');
     });
+
+    it('should return null if no best drink special', () => {
+      wrapper.instance().getBestFoodSpecial= jest.fn();
+      wrapper.setState({
+        drinkSpecials: [{name: "$30 Margs", best_deal: false}]
+      });
+
+      wrapper.instance().getBestDrinkSpecial();
+
+      expect(wrapper.state('bestDrinkSpecial')).toEqual('');
+    });
   });
 
   describe('getBestFoodSpecial ', () => {
@@ -253,6 +264,16 @@ describe('Restaurant', () => {
       wrapper.instance().getBestFoodSpecial();
 
       expect(wrapper.state('bestFoodSpecial')).toEqual('$3 tacos');
+    });
+
+    it('should return null if no best food special', () => {
+      wrapper.setState({
+        foodSpecials: [{name: "$24 tacos", best_deal: false}]
+      });
+
+      wrapper.instance().getBestFoodSpecial();
+
+      expect(wrapper.state('bestFoodSpecial')).toEqual('');
     });
   });
 });
