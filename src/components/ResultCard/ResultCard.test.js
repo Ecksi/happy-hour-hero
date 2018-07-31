@@ -44,12 +44,30 @@ describe('ResultCard', () => {
 
     it('should set state of currentlyHappyHour to false when happy hour is not going on', () => {
       mockProps.endTime = '1500';
-      
+
       wrapper = shallow(<ResultCard {...mockProps}/>);
 
       wrapper.instance().setTimeUntilRemaining();
 
       expect(wrapper.state('currentlyHappyHour')).toEqual(false);
+    });
+  });
+
+  describe('getRemainingTime', () => {
+    it('should set state to remaining seconds', () => {
+      const mockedDate = new Date(2017, 11, 10);
+      const originalDate = Date;
+
+      global.Date = jest.fn(() => mockedDate);
+      global.Date.getFullYear = '2018';
+      global.Date.getMonth = 'July';
+      global.Date.geDate = '07302018';
+      global.Date.now = jest.fn(() => '07302018');
+
+
+      wrapper.instance().getRemainingTime();
+
+      expect(wrapper.state('seconds')).toEqual(1512881897.982);
     });
   });
 });
