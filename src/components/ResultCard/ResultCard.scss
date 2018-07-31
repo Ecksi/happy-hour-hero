@@ -5,6 +5,7 @@
   border-radius: 20px;
   justify-content: space-between;
   box-shadow: 1px 1px 1px 1px #eee;
+  background: #fff;
 }
 
 .resultCardContainer.selectedCard {
@@ -14,7 +15,7 @@
 
 .resultCardImage {
   width: 250px;
-  height: 150px;
+  height: auto;
   background: url(http://www.brothersbar.com/wp-content/uploads/2015/10/GALLERY-Stapleton.jpg);
   background-size: cover;
   border-radius: 5px;
@@ -91,6 +92,7 @@
   background: #fdb82a;
   display: flex;
   padding: 5px 25px;
+  text-align: center;
   margin-top: -20px;
   display: flex;
   align-items: center;
@@ -123,7 +125,7 @@
   width: 100px;
   display: flex;
   padding: 5px 20px;
-  border: 1px solid #b3b3b3;
+  border: 2px solid rgba(0, 0, 0, 0.1)
   border-radius: 5px;
   justify-content: center;
 }

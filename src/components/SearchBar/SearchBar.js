@@ -7,12 +7,11 @@ import PlacesAutocomplete, {
 import { classnames } from '../../helpers';
 import { withRouter } from 'react-router-dom';
 import geolib from 'geolib';
-// import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
+import { googleApiKey } from '../../apiCalls/apiKeys/googleApiKey';
 import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours, storeDrinkSpecials, storeFoodSpecials, storeRestaurantId } from '../../actions';
 import PropTypes from 'prop-types';
 import './SearchBar.css';
 require('dotenv').config();
-let googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 class SearchBar extends Component {
   constructor(props) {
@@ -181,8 +180,10 @@ class SearchBar extends Component {
   } 
 
   getAddress = async (location) => {
+    console.log('location', location)
     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
     const data = await response.json();
+    console.log('data', data)
     const address = data.results[0].formatted_address;
 
     return address;
