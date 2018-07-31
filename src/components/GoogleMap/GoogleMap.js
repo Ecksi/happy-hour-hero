@@ -50,7 +50,7 @@ export class GoogleMap extends Component {
 }
 
 GoogleMap.propTypes = {
-  location: PropTypes.string,
+  location: PropTypes.object,
   filteredRestaurants: PropTypes.array,
 };
 
