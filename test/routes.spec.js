@@ -50,7 +50,7 @@ describe('CLIENT routes', () => {
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.a('array');
-          response.body.length.should.equal(3);
+          response.body.length.should.equal(44);
           response.body[0].should.have.property('name');
           response.body[0].name.should.equal('Brothers Bar');
           response.body[0].should.have.property('address');
@@ -139,7 +139,7 @@ describe('CLIENT routes', () => {
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.a('array');
-          response.body.length.should.equal(15);
+          response.body.length.should.equal(60);
           response.body[0].should.have.property('name');
           response.body[0].name.should.equal('2-for-1 drinks');
           response.body[0].should.have.property('best_deal');
@@ -198,9 +198,9 @@ describe('CLIENT routes', () => {
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.a('array');
-          response.body.length.should.equal(2);
+          response.body.length.should.equal(11);
           response.body[0].should.have.property('name');
-          response.body[0].name.should.equal('25¢ wings');
+          response.body[0].name.should.equal('25¢ Wings');
           done();
         });
     });
@@ -253,19 +253,19 @@ describe('CLIENT routes', () => {
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.be.a('array');
-          response.body.length.should.equal(3);
-          response.body[0].should.have.property('day');
-          response.body[0].day.should.equal('Monday');
-          response.body[0].should.have.property('start_time');
-          response.body[0].start_time.should.equal('1600');
-          response.body[0].should.have.property('end_time');
-          response.body[0].end_time.should.equal('2000');
-          response.body[0].should.have.property('drink_specials_id');
-          response.body[0].drink_specials_id.should.equal(1);
-          response.body[0].should.have.property('food_specials_id');
-          response.body[0].food_specials_id.should.equal(2);
-          response.body[0].should.have.property('restaurant_id');
-          response.body[0].restaurant_id.should.equal(3);
+          response.body.length.should.equal(301);
+          response.body[10].should.have.property('day');
+          response.body[10].day.should.equal('Wednesday');
+          response.body[10].should.have.property('start_time');
+          response.body[10].start_time.should.equal('2000');
+          response.body[10].should.have.property('end_time');
+          response.body[10].end_time.should.equal('0200');
+          response.body[10].should.have.property('drink_specials_id');
+          response.body[10].drink_specials_id.should.equal(10);
+          response.body[10].should.have.property('food_specials_id');
+          response.body[10].food_specials_id.should.equal(1);
+          response.body[10].should.have.property('restaurant_id');
+          response.body[10].restaurant_id.should.equal(1);
           done();
         });
     });
@@ -283,7 +283,7 @@ describe('CLIENT routes', () => {
   describe('GET /api/v1/happy_hours/:id', () => {
     it('should return an array of one happy hour', done => {
       chai.request(server)
-        .get('/api/v1/happy_hours/1')
+        .get('/api/v1/happy_hours/28')
         .end((error, response) => {
           response.should.have.status(200);
           response.should.be.json;
@@ -292,15 +292,15 @@ describe('CLIENT routes', () => {
           response.body[0].should.have.property('day');
           response.body[0].day.should.equal('Monday');
           response.body[0].should.have.property('start_time');
-          response.body[0].start_time.should.equal('1600');
+          response.body[0].start_time.should.equal('1430');
           response.body[0].should.have.property('end_time');
-          response.body[0].end_time.should.equal('2000');
+          response.body[0].end_time.should.equal('1800');
           response.body[0].should.have.property('drink_specials_id');
-          response.body[0].drink_specials_id.should.equal(1);
+          response.body[0].drink_specials_id.should.equal(21);
           response.body[0].should.have.property('food_specials_id');
-          response.body[0].food_specials_id.should.equal(2);
+          response.body[0].food_specials_id.should.equal(4);
           response.body[0].should.have.property('restaurant_id');
-          response.body[0].restaurant_id.should.equal(3);
+          response.body[0].restaurant_id.should.equal(2);
           done();
         });
     });
