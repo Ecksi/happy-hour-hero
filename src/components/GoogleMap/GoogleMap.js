@@ -40,7 +40,6 @@ export class GoogleMap extends Component {
     }, []);
 
     this.setState({todaysRestaurants});
-    console.log(this.state.todaysRestaurants)
   }
 
   render() {
