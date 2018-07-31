@@ -108,7 +108,6 @@ describe('Restaurant', () => {
     });
 
     it('should fetch url with the correct arguments', async () => {
-
       Object.defineProperty(location, 'search', {
         value: 'http://localhost:3001/restaurant?name=Brothers+Bar',
         writable: true,

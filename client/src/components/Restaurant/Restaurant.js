@@ -61,6 +61,7 @@ export class Restaurant extends Component {
         restaurant: currentRestaurant
       }, this.getTodaysHappyHours);
     } catch (error) {
+      throw new Error(`Network request failed. (error: ${error.message})`);
     }
   }
 
