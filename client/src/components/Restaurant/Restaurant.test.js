@@ -195,13 +195,7 @@ describe('Restaurant', () => {
       expect(window.fetch).toHaveBeenCalledWith(expected);
     });
 
-    it('should set state to restaurants happy hour times', async () => {
-      await wrapper.instance().getFoodSpecials();
-
-      expect(wrapper.state('foodSpecials')).toEqual(mockFoodSpecials);
-    });
-
-    it('should set state to restaurants happy hour times', async () => {
+    it('should set state of foodSpecials to all food specials', async () => {
       await wrapper.instance().getFoodSpecials();
 
       expect(wrapper.state('foodSpecials')).toEqual(mockFoodSpecials);
@@ -209,7 +203,7 @@ describe('Restaurant', () => {
   });
 
   describe('cleanHappyHourTimes', () => {
-    it('should fetch url with the correct arguments', () => {
+    it('should set state of joinedTimes to the combined hh time', () => {
       wrapper.instance().getHappyHourSpecialsForTime= jest.fn();
       wrapper.setState({
         todaysHappyHours: mockHappyHours
@@ -223,7 +217,7 @@ describe('Restaurant', () => {
 
   // Not sure how to test that it renders and array of components
   describe('getHappyHourSpecialsForTime', () => {
-    it.skip('should fetch url with the correct arguments', () => {
+    it.skip('should return an array of RestaurantHappyHour components', () => {
       wrapper.instance().getBestDrinkSpecial = jest.fn();
       wrapper.setState({
         todaysHappyHours: mockHappyHours,
@@ -238,7 +232,7 @@ describe('Restaurant', () => {
   });
 
   describe('getBestDrinkSpecial ', () => {
-    it('should fetch url with the correct arguments', () => {
+    it('should set state of bestDrinkSpecial to the matching best_deal special', () => {
       wrapper.instance().getBestFoodSpecial= jest.fn();
       wrapper.setState({
         drinkSpecials: mockDrinkSpecials
@@ -247,6 +241,18 @@ describe('Restaurant', () => {
       wrapper.instance().getBestDrinkSpecial();
 
       expect(wrapper.state('bestDrinkSpecial')).toEqual('2-for-1 drinks');
+    });
+  });
+
+  describe('getBestFoodSpecial ', () => {
+    it('should set state of bestFoodSpecial to the matching best_deal special', () => {
+      wrapper.setState({
+        foodSpecials: mockFoodSpecials
+      });
+
+      wrapper.instance().getBestFoodSpecial();
+
+      expect(wrapper.state('bestFoodSpecial')).toEqual('$3 tacos');
     });
   });
 });
