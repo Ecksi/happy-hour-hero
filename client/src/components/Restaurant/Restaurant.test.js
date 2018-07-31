@@ -107,15 +107,14 @@ describe('Restaurant', () => {
       wrapper.instance().getTodaysHappyHours = jest.fn();
     });
 
-    // not sure how to mock window.location
-    it.skip('should fetch url with the correct arguments', async () => {
+    it('should fetch url with the correct arguments', async () => {
 
-      Object.defineProperty(location, 'href', {
+      Object.defineProperty(location, 'search', {
         value: 'http://localhost:3001/restaurant?name=Brothers+Bar',
         writable: true,
       });
 
-      const expected = 'Brothers+Bar';
+      const expected = "http://localhost:3000/api/v1/restaurants?name=Brothers+Bar";
 
       await wrapper.instance().getRestaurantBySlug();
 
