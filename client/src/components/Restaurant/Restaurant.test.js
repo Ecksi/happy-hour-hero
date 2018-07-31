@@ -21,7 +21,20 @@ describe('Restaurant', () => {
       restaurant_id:1,
       start_time:"1600",
       updated_at:"2018-07-30T13:59:04.931Z"
-    }];
+    },
+    {
+      combined_times:"4:00PM-8:00PM",
+      created_at:"2018-07-30T13:59:04.931Z",
+      day:"Monday",
+      drink_specials_id:2,
+      end_time:"2000",
+      food_specials_id:2,
+      id:2,
+      restaurant_id:2,
+      start_time:"1600",
+      updated_at:"2018-07-30T13:59:04.931Z"
+    }
+    ];
 
     mockRestaurant = {
       id: 1, 
@@ -217,17 +230,25 @@ describe('Restaurant', () => {
 
   // Not sure how to test that it renders and array of components
   describe('getHappyHourSpecialsForTime', () => {
-    it.skip('should return an array of RestaurantHappyHour components', () => {
+    beforeEach(() => {
       wrapper.instance().getBestDrinkSpecial = jest.fn();
       wrapper.setState({
         todaysHappyHours: mockHappyHours,
         drinkSpecials: mockDrinkSpecials,
         foodSpecials: mockFoodSpecials
       });
+    })
 
+    it.skip('should return an array of RestaurantHappyHour components', () => {
       wrapper.instance().getHappyHourSpecialsForTime();
 
       expect(wrapper.state('specials')).toBe(SimpleComponent);
+    });
+
+    it('should not add restaurant happy hour to array if time has been added', () => {
+      wrapper.instance().getHappyHourSpecialsForTime();
+
+      expect(wrapper.state('specials').length).toEqual(2);
     });
   });
 
