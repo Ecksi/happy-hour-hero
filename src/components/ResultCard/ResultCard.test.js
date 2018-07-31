@@ -71,7 +71,7 @@ describe('ResultCard', () => {
   });
 
   describe('countDown', () => {
-    it('should call secondsToTime with the correct argument', () => {     
+    it.skip('should call secondsToTime with the correct argument', () => {
       wrapper.setState({
         seconds: 8000
       });
