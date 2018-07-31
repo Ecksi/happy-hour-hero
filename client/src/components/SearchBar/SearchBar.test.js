@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SearchBar from './SearchBar';
+import { SearchBar } from './SearchBar';
 
 describe('SearchBar', () => {
   let wrapper;
@@ -33,13 +33,12 @@ describe('SearchBar', () => {
   });
 
   describe('resultsPageToggle', () => {
-    it.skip('should set state of resultsPage to true when there are filtered restaurants', () => {
-      console.log(wrapper.instance().resultsPageToggle)
+    it('should set state of resultsPage to true when there are filtered restaurants', () => {
+      wrapper.instance().resultsPageToggle();
 
-      expect(wrapper.state('resultsPage')).toEqual('CO');
+      expect(wrapper.state('resultsPage')).toEqual(true);
     });
   });
-
 
   describe('getMyLocation', () => {
     it.skip('should set state of latitude, longitude and change findLocationDropdown to true', () => {

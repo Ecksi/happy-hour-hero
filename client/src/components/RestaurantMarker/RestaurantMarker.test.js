@@ -12,15 +12,4 @@ describe('RestaurantMarker', () => {
   it('matches the snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  describe('handleClick', () => {
-    it.skip('should remove selectedCard class from all cards before adding new ones', () => {
-      const mockedEvent = { target: {
-        closest: jest.fn().mockImplementation(() => <div id="1"></div>),
-        getAttribute: jest.fn()
-      } 
-      }
-      wrapper.instance().handleClick(mockedEvent)
-    });
-  });
 });
