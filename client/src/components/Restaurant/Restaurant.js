@@ -147,7 +147,7 @@ export class Restaurant extends Component {
     }, []);
  
     const joinedTimes = cleanTimes.join(" & ");
-
+   
     this.setState({
       joinedTimes
     }, this.getHappyHourSpecialsForTime);

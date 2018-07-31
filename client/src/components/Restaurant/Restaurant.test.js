@@ -209,16 +209,44 @@ describe('Restaurant', () => {
   });
 
   describe('cleanHappyHourTimes', () => {
-    it('should fetch url with the correct arguments', async () => {
+    it('should fetch url with the correct arguments', () => {
       wrapper.instance().getHappyHourSpecialsForTime= jest.fn();
       wrapper.setState({
         todaysHappyHours: mockHappyHours
       });
 
-      const expected = 'http://localhost:3000/api/v1/food_specials/1';
-      await wrapper.instance().getFoodSpecials();
+      wrapper.instance().cleanHappyHourTimes();
 
       expect(wrapper.state('joinedTimes')).toEqual('4:00PM-8:00PM');
+    });
+  });
+
+  // Not sure how to test that it renders and array of components
+  describe('getHappyHourSpecialsForTime', () => {
+    it.skip('should fetch url with the correct arguments', () => {
+      wrapper.instance().getBestDrinkSpecial = jest.fn();
+      wrapper.setState({
+        todaysHappyHours: mockHappyHours,
+        drinkSpecials: mockDrinkSpecials,
+        foodSpecials: mockFoodSpecials
+      });
+
+      wrapper.instance().getHappyHourSpecialsForTime();
+
+      expect(wrapper.state('specials')).toBe(SimpleComponent);
+    });
+  });
+
+  describe('getBestDrinkSpecial ', () => {
+    it('should fetch url with the correct arguments', () => {
+      wrapper.instance().getBestFoodSpecial= jest.fn();
+      wrapper.setState({
+        drinkSpecials: mockDrinkSpecials
+      });
+
+      wrapper.instance().getBestDrinkSpecial();
+
+      expect(wrapper.state('bestDrinkSpecial')).toEqual('2-for-1 drinks');
     });
   });
 });
