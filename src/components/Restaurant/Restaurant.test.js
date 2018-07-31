@@ -118,18 +118,18 @@ describe('Restaurant', () => {
       });
     });
 
-    // One of the two tests below work but not both for some reason
-    it.skip('should fetch url with the correct arguments', async () => {
-      console.log(wrapper.state('restaurant'))
+    it('should fetch url with the correct arguments', async () => {
+      wrapper.setState({
+        day: 'Thursday'
+      });
+
       const expected = 'http://localhost:3000/api/v1/happy_hours?restaurant_id=1&day=Thursday';
       await wrapper.instance().getTodaysHappyHours();
 
       expect(window.fetch).toHaveBeenCalledWith(expected);
     });
 
-    it.skip('should set state to restaurants happy hour times', async () => {
-      console.log(wrapper.state('restaurant'))
-
+    it('should set state to restaurants happy hour times', async () => {
       const expected = { "mockHappyHours": mockHappyHours};
       await wrapper.instance().getTodaysHappyHours();
 
@@ -139,9 +139,23 @@ describe('Restaurant', () => {
 
   describe('getDrinkSpecials', () => {
     let mockDrinkSpecials;
+    let mockHappyHours;
     let wrapper;
 
     beforeEach(() => {
+      mockHappyHours = [{
+        combined_times:"4:00PM-8:00PM",
+        created_at:"2018-07-30T13:59:04.931Z",
+        day:"Monday",
+        drink_specials_id:1,
+        end_time:"2000",
+        food_specials_id:null,
+        id:1,
+        restaurant_id:1,
+        start_time:"1600",
+        updated_at:"2018-07-30T13:59:04.931Z"
+      }];
+
       mockDrinkSpecials = [{
         best_deal: true,
         created_at: "2018-07-30T13:59:04.910Z",
@@ -153,13 +167,13 @@ describe('Restaurant', () => {
       wrapper = shallow(<Restaurant location={{name: 'Denver, CO'}}/>, { disableLifecycleMethods: true });
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         json: () => Promise.resolve({
-          mockDrinkSpecials 
+          drinkSpecial: mockDrinkSpecials 
         })
       }));
 
       wrapper.instance().getFoodSpecials = jest.fn();
       wrapper.setState({
-        todaysHappyHours: [{drink_specials_id: 1}]
+        todaysHappyHours: mockHappyHours
       });
     });
 
@@ -169,6 +183,14 @@ describe('Restaurant', () => {
       await wrapper.instance().getDrinkSpecials();
 
       expect(window.fetch).toHaveBeenCalledWith(expected);
+    });
+
+    it('should set state to restaurants happy hour times', async () => {
+      const expected = { "mockHappyHours": mockHappyHours};
+
+      await wrapper.instance().getDrinkSpecials();
+
+      expect(wrapper.state('drinkSpecials')).toEqual(expected);
     });
 
     it.skip('should set state to restaurants happy hour times', async () => {
