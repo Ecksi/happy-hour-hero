@@ -1,9 +1,6 @@
 {
   "name": "happy-hour-hero",
   "version": "0.1.0",
-  "engines": {
-    "node": "9.4.0"
-  },
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -29,11 +26,10 @@
     "redux": "^4.0.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar --include-path ./build/src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./build/src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
-    "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
