@@ -4,8 +4,9 @@
 
 .homeContainer {
   width: 600px;
-  margin: 50px auto 0 auto;
+  margin: 0 auto;
   text-align: center;
+  padding: 50px 0;
 }
 
 .homeLogo {
@@ -76,13 +77,14 @@
 
 .findLocationDropdown {
   position: relative;
-  margin-top: -20px;
+  margin-top: -10px;
   margin-bottom: 30px;
   box-shadow: 1px 1px 1px 1px #eee;
   padding: 20px 80px;
   align-items: center;
   width: 73%;
   border-radius: 3px;
+  background: #fff;
 }
 
 .findLocationDropdown a {
