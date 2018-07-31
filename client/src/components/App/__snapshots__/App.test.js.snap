@@ -35,6 +35,9 @@ ShallowWrapper {
 />,
       ],
       "className": "App",
+      "style": Object {
+        "backgroundImage": "url(happy-hour-home-bg.jpg)",
+      },
     },
     "ref": null,
     "rendered": Array [
@@ -104,6 +107,9 @@ ShallowWrapper {
 />,
         ],
         "className": "App",
+        "style": Object {
+          "backgroundImage": "url(happy-hour-home-bg.jpg)",
+        },
       },
       "ref": null,
       "rendered": Array [

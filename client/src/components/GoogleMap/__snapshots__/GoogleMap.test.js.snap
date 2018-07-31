@@ -34,7 +34,7 @@ ShallowWrapper {
                         "lng": "1",
                       }
         }
-        defaultZoom={12}
+        defaultZoom={16}
         distanceToMouse={[Function]}
         googleMapLoader={[Function]}
         heatmap={Object {}}
@@ -78,7 +78,7 @@ ShallowWrapper {
           "lat": "1",
           "lng": "1",
         },
-        "defaultZoom": 12,
+        "defaultZoom": 16,
         "distanceToMouse": [Function],
         "googleMapLoader": [Function],
         "heatmap": Object {},
@@ -128,7 +128,7 @@ ShallowWrapper {
                               "lng": "1",
                             }
           }
-          defaultZoom={12}
+          defaultZoom={16}
           distanceToMouse={[Function]}
           googleMapLoader={[Function]}
           heatmap={Object {}}
@@ -172,7 +172,7 @@ ShallowWrapper {
             "lat": "1",
             "lng": "1",
           },
-          "defaultZoom": 12,
+          "defaultZoom": 16,
           "distanceToMouse": [Function],
           "googleMapLoader": [Function],
           "heatmap": Object {},
