@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Restaurant } from './Restaurant';
+import { Restaurant, mapDispatchToProps } from './Restaurant';
 
 describe('Restaurant', () => {
   let wrapper;
@@ -237,7 +237,7 @@ describe('Restaurant', () => {
         drinkSpecials: mockDrinkSpecials,
         foodSpecials: mockFoodSpecials
       });
-    })
+    });
 
     it.skip('should return an array of RestaurantHappyHour components', () => {
       wrapper.instance().getHappyHourSpecialsForTime();
@@ -295,6 +295,22 @@ describe('Restaurant', () => {
       wrapper.instance().getBestFoodSpecial();
 
       expect(wrapper.state('bestFoodSpecial')).toEqual('');
+    });
+  });
+
+  describe('mapDispatchToProps', () => {
+    it('should call dispatch with the correct params on storeDay', () => {
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      const mockDay = 'Thursday';
+      const mockAction = {
+        type: 'STORE_DAY',
+        day: mockDay
+      };
+
+      mappedProps.storeDay(mockDay);
+
+      expect(mockDispatch).toHaveBeenCalledWith(mockAction);
     });
   });
 });
