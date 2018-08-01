@@ -144,20 +144,31 @@ describe('SearchBar', () => {
   });
 
   describe('handleAutolocateSubmit', () => {
-    it('should store restaurant id in the store if found in database', async () => {
+    let mockEvent;
+
+    beforeEach(() => {
+      mockEvent = {preventDefault: jest.fn()};
       wrapper.setState({
         latitude: 1100,
         longitude: 90
       });
-      const mockEvent = {preventDefault: jest.fn()};
+      wrapper.instance().getAddress = jest.fn().mockImplementation(() => 'Brothers Bar')
+    });
 
-      wrapper.instance().getAddress = jest.fn();
-
+    it('should store restaurant id in the store if found in database', async () => {
       expect(wrapper.state('autoDetectLocation')).toEqual(false);
 
       await wrapper.instance().handleAutolocateSubmit(mockEvent);
 
       expect(wrapper.state('autoDetectLocation')).toEqual(true);
+    });
+
+    it('should store a location', async () => {
+      await wrapper.instance().handleAutolocateSubmit(mockEvent);
+
+      const expected = ["Brothers Bar", 90, 1100];
+
+      expect(wrapper.instance().props.storeLocation).toHaveBeenCalledWith(...expected);
     });
   });
 });
