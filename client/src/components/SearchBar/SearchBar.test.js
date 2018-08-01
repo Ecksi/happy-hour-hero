@@ -50,12 +50,27 @@ describe('SearchBar', () => {
       });
 
       wrapper.instance().findRadius = jest.fn();
-      wrapper.instance().storeRestaurants = jest.fn();
       wrapper.instance().getAddress = jest.fn().mockImplementation(() => '1920 Market St')
 
       await wrapper.instance().handleSubmit();
 
       expect(wrapper.instance().props.storeLocation).toHaveBeenCalledWith('1920 Market St', 45.22, 104.98);
+    });
+  });
+
+  describe('findRadius', () => {
+    it('should call storeLocation with the correct arguments if no address', () => {
+      wrapper.setState({
+        latitude: 104.98,
+        longitude: 45.22
+      });
+      wrapper.instance().storeRestaurants = jest.fn();
+
+      const expected = [104.94376811594204, 105.01623188405797, 45.25623188405797, 45.18376811594203]
+
+      wrapper.instance().findRadius();
+
+      expect(wrapper.instance().storeRestaurants).toHaveBeenCalledWith(...expected);
     });
   });
 });

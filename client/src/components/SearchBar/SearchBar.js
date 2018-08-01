@@ -65,12 +65,14 @@ export class SearchBar extends Component {
   }
 
   findRadius = () => {
+    const { latitude, longitude } = this.state;
+
     const miles = 2.5;
     const degreesDiff = miles / 69;
-    const minLat = this.state.latitude - degreesDiff;
-    const maxLat = this.state.latitude + degreesDiff;
-    const minLong = this.state.longitude + degreesDiff;
-    const maxLong = this.state.longitude - degreesDiff;
+    const minLat = latitude - degreesDiff;
+    const maxLat = latitude + degreesDiff;
+    const minLong = longitude + degreesDiff;
+    const maxLong = longitude - degreesDiff;
 
     this.storeRestaurants(minLat, maxLat, minLong, maxLong);
   }
