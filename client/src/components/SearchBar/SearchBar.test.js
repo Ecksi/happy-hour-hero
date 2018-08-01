@@ -171,4 +171,21 @@ describe('SearchBar', () => {
       expect(wrapper.instance().props.storeLocation).toHaveBeenCalledWith(...expected);
     });
   });
+
+  describe('getAddress', () => {
+    it('should return an address', async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve(
+          {results: [
+            {formatted_address: '755 17th St Denver, CO'}
+          ]})
+      }));
+
+      const result = await wrapper.instance().getAddress();
+
+      const expected = '755 17th St Denver, CO';
+
+      expect(result).toEqual(expected);
+    });
+  });
 });
