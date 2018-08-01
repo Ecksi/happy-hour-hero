@@ -7,7 +7,7 @@ const database = require('knex')(configuration);
 const bodyParser = require('body-parser');
 // require('dotenv').config();
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Happy Hour Hero';
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -131,9 +131,9 @@ app.get('/api/v1/happy_hours/:id', (request, response) => {
     .catch(error => response.status(500).json({ error }));
 });
 
-app.get('*', (request, response) => {
-  response.sendFile(path.join(__dirname + '/client/build/index.html'));
-});
+// app.get('*', (request, response) => {
+//   response.sendFile(path.join(__dirname + '/client/build/index.html'));
+// });
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);

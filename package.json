@@ -37,7 +37,7 @@
     "heroku-postbuild": "cd client && npm install && npm run build",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom && nyc mocha --exit",
     "test-back": "nyc mocha --exit",
     "eject": "react-scripts eject",
     "lint": "./node_modules/eslint/bin/eslint.js ./src/*.js"
