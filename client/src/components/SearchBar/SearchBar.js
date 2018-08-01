@@ -104,8 +104,8 @@ export class SearchBar extends Component {
 
   storeHappyHours = async () => {
     const { filteredRestaurants } = this.props;
-    
-    await filteredRestaurants.forEach(async(restaurant) => {
+ 
+    await filteredRestaurants.forEach( async (restaurant) => {
       const id = restaurant.id;
       const response = await fetch(`http://localhost:3000/api/v1/happy_hours?restaurant_id=${id}`);
       const happyHour = await response.json();
@@ -144,7 +144,7 @@ export class SearchBar extends Component {
     this.pageRedirect();
   }
 
-  pageRedirect = async () => {
+  pageRedirect = () => {
     let restaurantInDb;
     const restaurantName = this.state.address.trim().split(" ");
     const shortName = restaurantName.slice(0, 2);
