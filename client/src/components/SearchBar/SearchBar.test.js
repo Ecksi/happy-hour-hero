@@ -24,6 +24,8 @@ describe('SearchBar', () => {
 
     wrapper = shallow(<SearchBar 
       filteredRestaurants={mockRestaurants}
+      location={{address: ''}}
+      storeLocation={jest.fn()}
     />, 
     {disableLifecycleMethods: true});
   });
@@ -40,11 +42,20 @@ describe('SearchBar', () => {
     });
   });
 
-  describe('getMyLocation', () => {
-    it.skip('should set state of latitude, longitude and change findLocationDropdown to true', () => {
-      wrapper.instance().getMyLocation();
+  describe('handleSubmit', () => {
+    it('should call storeLocation with the correct arguments if no address', async () => {
+      wrapper.setState({
+        latitude: 104.98,
+        longitude: 45.22
+      });
 
-      expect(wrapper.state('latitude')).toEqual('CO');
+      wrapper.instance().findRadius = jest.fn();
+      wrapper.instance().storeRestaurants = jest.fn();
+      wrapper.instance().getAddress = jest.fn().mockImplementation(() => '1920 Market St')
+
+      await wrapper.instance().handleSubmit();
+
+      expect(wrapper.instance().props.storeLocation).toHaveBeenCalledWith('1920 Market St', 45.22, 104.98);
     });
   });
 });

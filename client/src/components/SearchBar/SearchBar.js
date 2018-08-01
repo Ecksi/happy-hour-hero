@@ -57,7 +57,7 @@ export class SearchBar extends Component {
     if (!address) {
       const location = `${latitude} + ${longitude}`;
       const address = await this.getAddress(location);
-      
+     
       this.props.storeLocation(address, longitude, latitude);
     } 
 

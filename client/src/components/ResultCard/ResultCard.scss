@@ -170,6 +170,7 @@
 
   .resultCardImage {
     width: 100%;
+    height: 200px;
   }
 
   .resultCardInfo {
@@ -180,20 +181,21 @@
 
   .happyHourSpecialsContainer {
     width: 100%;
+    position: relative;
   }
 
   .happyHourSpecials {
     height: 50px;
     margin-left: 0;
     padding: 5px 25px;
+    top: 190px;
     margin-top: 0px;
     color: #fff;
-    width: 74%;
+    width: 82%;
     display: flex;
     bottom: 25px;
     position: absolute;
     border-radius: 20px;
-    -ms-flex-pack: distribute;
     justify-content: space-around;
   }
 
