@@ -54,7 +54,8 @@
       "!src/apiCalls/apiKeys/*",
       "!src/PlacesAutocomplete.js",
       "!src/helpers.js",
-      "!src/utils.js"
+      "!src/utils.js",
+      "!src/components/RestaurantMarker/RestaurantMarker.js"
     ]
   }
 }

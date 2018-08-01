@@ -8,12 +8,26 @@ describe('Header', () => {
 
   beforeEach(() => {
     mockProps = {
-      location: {address: 'some where'},
+      location: {address: 'Turing School Denver, CO'},
     };
     wrapper = shallow(<Header {...mockProps} />);
   });
 
   it('matches the snapshot', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe('handleSubmit', () => {
+    it('should set of dropdownSelected to true', () => {
+      wrapper.instance().handleSelected();
+
+      expect(wrapper.state('dropdownSelected')).toEqual(false);
+    });
+  });
+
+  describe('handleSelected', () => {
+    it('should set of dropdownSelected to false', () => {
+
+    });
   });
 });
