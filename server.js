@@ -5,7 +5,7 @@ const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 const bodyParser = require('body-parser');
-require('dotenv').config();
+// require('dotenv').config();
 
 app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Happy Hour Hero';
