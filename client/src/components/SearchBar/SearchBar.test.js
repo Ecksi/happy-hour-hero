@@ -188,4 +188,16 @@ describe('SearchBar', () => {
       expect(result).toEqual(expected);
     });
   });
+
+  describe('getAllRestaurants', () => {
+    it('should return all restaurants', async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve(mockRestaurants)
+      }));
+
+      const result = await wrapper.instance().getAllRestaurants();
+
+      expect(result).toEqual(mockRestaurants);
+    });
+  });
 });

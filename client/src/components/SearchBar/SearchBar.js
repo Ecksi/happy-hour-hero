@@ -183,7 +183,7 @@ export class SearchBar extends Component {
 
   getAddress = async (location) => {
     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
-    const data = await response.json();
+    const data = await response.json(); 
     const address = data.results[0].formatted_address;
 
     return address;
@@ -193,15 +193,10 @@ export class SearchBar extends Component {
     try {
       const response = await fetch('http://localhost:3000/api/v1/restaurants');
       const restaurants = await response.json();
-
-      if (!response.ok) {
-        throw new Error(`${response.status}`);
-      }
-
+      
       return restaurants;
 
     } catch (error) {
-      throw new Error(`Network request failed. (error: ${error.message})`);
     }
   };
 
