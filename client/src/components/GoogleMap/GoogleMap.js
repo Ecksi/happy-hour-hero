@@ -84,6 +84,7 @@ export class GoogleMap extends Component {
 GoogleMap.propTypes = {
   location: PropTypes.object,
   filteredRestaurants: PropTypes.array,
+  happyHours: PropTypes.object,
 };
 
 export const mapStateToProps = (state) => ({
