@@ -55,7 +55,8 @@
       "!src/PlacesAutocomplete.js",
       "!src/helpers.js",
       "!src/utils.js",
-      "!src/components/RestaurantMarker/RestaurantMarker.js"
+      "!src/components/RestaurantMarker/RestaurantMarker.js",
+      "!src/components/GeoLocator/GeoLocator.js"
     ]
   }
 }
