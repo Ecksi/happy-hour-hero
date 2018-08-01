@@ -33,12 +33,12 @@ export class RestaurantInfo extends Component {
 }
 
 RestaurantInfo.propTypes = {
-  foodSpecials: PropTypes.string,
-  drinkSpecials: PropTypes.string,
+  foodSpecials: PropTypes.array,
+  drinkSpecials: PropTypes.array,
   getRestaurant: PropTypes.func,
   getTodaysHappyHours: PropTypes.func,
   cleanHappyHourTimes: PropTypes.func,
-  restaurant: PropTypes.string,
+  restaurant: PropTypes.object,
   joinedTimes: PropTypes.string,
   bestDrinkSpecial: PropTypes.string,
   bestFoodSpecial: PropTypes.string,

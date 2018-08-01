@@ -112,10 +112,15 @@ export class Restaurant extends Component {
 
     const allFoodSpecials = todaysHappyHours.map( async (happyHour) => {
       const id = happyHour.food_specials_id;
-      const response = await fetch(`http://localhost:3001/api/v1/food_specials/${id}`);
-      const foodSpecial = await response.json();
+      try {
+        const response = await fetch(`http://localhost:3001/api/v1/food_specials/${id}`);
+        const foodSpecial = await response.json();
 
-      return foodSpecial[0];
+        return foodSpecial[0];
+      } catch (error) {
+        throw new Error('No food specials for this restaurant');
+      }
+
     });
 
     const result = await Promise.all(allFoodSpecials);
@@ -159,7 +164,7 @@ export class Restaurant extends Component {
 
     let times = [];
 
-    const specials = todaysHappyHours.map(happyHour => {
+    const specials = todaysHappyHours.map((happyHour, index) => {
       const { combined_times } = happyHour;
 
       if (!times.includes(combined_times)) {
@@ -170,8 +175,11 @@ export class Restaurant extends Component {
             todaysHappyHours={ todaysHappyHours}
             hourlyDrinkSpecials={ drinkSpecials }
             hourlyFoodSpecials= { foodSpecials }
+            key={index}
           />
         );
+      } else {
+        return null;
       }
     });
 
@@ -257,7 +265,7 @@ export class Restaurant extends Component {
 Restaurant.propTypes = {
   restaurantId: PropTypes.number,
   filteredRestaurants: PropTypes.array,
-  happyHours: PropTypes.string,
+  happyHours: PropTypes.array,
   day: PropTypes.string,
   location: PropTypes.object,
 };

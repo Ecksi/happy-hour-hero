@@ -14,19 +14,19 @@ export class ContactBar extends Component {
         <a href={`tel:${phone}`} className="contactPhone">Phone <i className="fas fa-phone"></i></a>
         <a href={website} target="_blank" className="contactWebsite">Website <i className="fas fa-globe-americas"></i></a>
         <a href={`https://www.google.com/maps/dir/${currentLocation}/${restaurantLocation}`} target="_blank" className="contactDirections">Directions <i className="fas fa-compass"></i></a>
-        <a href="#" className="contactShare">Share <i className="fas fa-share-alt"></i></a>
+        <a className="contactShare">Share <i className="fas fa-share-alt"></i></a>
       </section>
     );
   }
 }
 
 ContactBar.propTypes = {
-  location: PropTypes.string,
+  location: PropTypes.object,
   filteredRestaurants: PropTypes.array,
-  restaurantId: PropTypes.number,
+  restaurantId: PropTypes.string,
   restaurant: PropTypes.object,
-  restaurantLocation: PropTypes.number,
-  currentLocation: PropTypes.number,
+  restaurantLocation: PropTypes.string,
+  currentLocation: PropTypes.string
 };
 
 export const mapStateToProps = (state) => ({
