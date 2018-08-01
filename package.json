@@ -60,7 +60,7 @@
       "!src/PlacesAutocomplete.js",
       "!src/helpers.js",
       "!src/utils.js",
-      "!src/components/RestaurantMarker/*"
+      "!src/components/RestaurantMarker/RestaurantMarker.js"
     ]
   }
 }
