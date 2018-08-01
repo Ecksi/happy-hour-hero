@@ -38,7 +38,7 @@ RestaurantInfo.propTypes = {
   getRestaurant: PropTypes.func,
   getTodaysHappyHours: PropTypes.func,
   cleanHappyHourTimes: PropTypes.func,
-  restaurant: PropTypes.object,
+  restaurant: PropTypes.string,
   joinedTimes: PropTypes.string,
   bestDrinkSpecial: PropTypes.string,
   bestFoodSpecial: PropTypes.string,
