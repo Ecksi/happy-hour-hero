@@ -200,4 +200,15 @@ describe('SearchBar', () => {
       expect(result).toEqual(mockRestaurants);
     });
   });
+
+  describe('handleChange', () => {
+    it('should reset state when called', async () => {
+      const result = await wrapper.instance().handleChange('Brothers');
+
+      expect(wrapper.state('address')).toEqual('Brothers');
+      expect(wrapper.state('latitude')).toEqual(null);
+      expect(wrapper.state('longitude')).toEqual(null);
+      expect(wrapper.state('errorMessage')).toEqual('');
+    });
+  });
 });

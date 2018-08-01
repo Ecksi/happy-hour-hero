@@ -200,7 +200,7 @@ export class SearchBar extends Component {
     }
   };
 
-  handleChange = address => {
+  handleChange = (address) => {
     this.setState({
       address,
       latitude: null,
