@@ -24,7 +24,6 @@ export class Restaurant extends Component {
       bestDrinkSpecial: '',
       bestFoodSpecial: ''
     };
-    
   }
 
   componentDidMount = async () => {
@@ -46,13 +45,14 @@ export class Restaurant extends Component {
       day
     });
   }
-
+// not a slug its a query parameter
   getRestaurantBySlug = async () => {
     try {
       const restaurantSlug = window.location.search;
       const index = restaurantSlug.indexOf('=');
       let name = restaurantSlug.substring(index + 1);
-      const response = await fetch(`http://localhost:3001/api/v1/restaurants?name=${name}`);
+      console.log('/api/v1/restaurants?name=Brothers_Bar')
+      const response = await fetch(`/api/v1/restaurants?name=${name}`);
       const currentRestaurants = await response.json();
       const currentRestaurant = currentRestaurants[0];
 
@@ -68,7 +68,7 @@ export class Restaurant extends Component {
     const { restaurant } = this.state;
     const { day } = this.state;
   
-    const response = await fetch(`http://localhost:3001/api/v1/happy_hours?restaurant_id=${restaurant.id}&day=${day}`)
+    const response = await fetch(`/api/v1/happy_hours?restaurant_id=${restaurant.id}&day=${day}`)
     const todaysHappyHours = await response.json();
     
     this.setState({
@@ -83,7 +83,7 @@ export class Restaurant extends Component {
 
     const allDrinkSpecials = todaysHappyHours.map( async (happyHour) => {
       const id = happyHour.drink_specials_id;
-      const response = await fetch(`http://localhost:3001/api/v1/drink_specials/${id}`);
+      const response = await fetch(`/api/v1/drink_specials/${id}`);
       const drinkSpecial = await response.json();
 
       return drinkSpecial[0];
@@ -112,7 +112,7 @@ export class Restaurant extends Component {
     const allFoodSpecials = todaysHappyHours.map( async (happyHour) => {
       const id = happyHour.food_specials_id;
       try {
-        const response = await fetch(`http://localhost:3001/api/v1/food_specials/${id}`);
+        const response = await fetch(`/api/v1/food_specials/${id}`);
         const foodSpecial = await response.json();
 
         return foodSpecial[0];

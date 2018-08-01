@@ -109,11 +109,11 @@ describe('Restaurant', () => {
 
     it('should fetch url with the correct arguments', async () => {
       Object.defineProperty(location, 'search', {
-        value: 'http://localhost:3001/restaurant?name=Brothers+Bar',
+        value: '/restaurant?name=Brothers+Bar',
         writable: true,
       });
 
-      const expected = "http://localhost:3001/api/v1/restaurants?name=Brothers+Bar";
+      const expected = "/api/v1/restaurants?name=Brothers+Bar";
 
       await wrapper.instance().getRestaurantBySlug();
 
@@ -141,7 +141,7 @@ describe('Restaurant', () => {
         day: 'Thursday'
       });
 
-      const expected = 'http://localhost:3001/api/v1/happy_hours?restaurant_id=1&day=Thursday';
+      const expected = '/api/v1/happy_hours?restaurant_id=1&day=Thursday';
       await wrapper.instance().getTodaysHappyHours();
 
       expect(window.fetch).toHaveBeenCalledWith(expected);
@@ -168,7 +168,7 @@ describe('Restaurant', () => {
     });
 
     it('should fetch url with the correct arguments', async () => {
-      const expected = 'http://localhost:3001/api/v1/drink_specials/1';
+      const expected = '/api/v1/drink_specials/1';
       await wrapper.instance().getDrinkSpecials();
 
       expect(window.fetch).toHaveBeenCalledWith(expected);
@@ -200,7 +200,7 @@ describe('Restaurant', () => {
     });
 
     it('should fetch url with the correct arguments', async () => {
-      const expected = 'http://localhost:3001/api/v1/food_specials/1';
+      const expected = '/api/v1/food_specials/1';
       await wrapper.instance().getFoodSpecials();
 
       expect(window.fetch).toHaveBeenCalledWith(expected);
@@ -235,12 +235,6 @@ describe('Restaurant', () => {
         drinkSpecials: mockDrinkSpecials,
         foodSpecials: mockFoodSpecials
       });
-    });
-
-    it.skip('should return an array of RestaurantHappyHour components', () => {
-      wrapper.instance().getHappyHourSpecialsForTime();
-
-      expect(wrapper.state('specials')).toBe(SimpleComponent);
     });
 
     it('should not add restaurant happy hour to array if time has been added', () => {

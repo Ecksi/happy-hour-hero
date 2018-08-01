@@ -133,22 +133,6 @@ describe('SearchBar', () => {
     });
   });
 
-  // Unsure how to get props functions to call within awaited forEach
-  describe('storeHappyHours', () => {
-    it.skip('should call storeLocation with the correct arguments if no address', async () => {
-      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        json: () => Promise.resolve(mockHappyHours)
-      }));
-      wrapper.instance().storeDrinkSpecials = jest.fn();
-
-      const expected = mockHappyHours;
-
-      await wrapper.instance().storeHappyHours(mockHappyHours);
-
-      expect(wrapper.instance().props.storeHappyHours).toHaveBeenCalledWith(expected);
-    });
-  });
-
   describe('pageRedirect', () => {
     it('should store restaurant id in the store if found in database',  () => {
       wrapper.setState({

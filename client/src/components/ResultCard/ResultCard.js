@@ -38,9 +38,6 @@ export class ResultCard extends Component {
   }
 
   componentDidMount() {
-    let timeLeftVar = this.secondsToTime(this.state.seconds);
-
-    this.setState({ time: timeLeftVar });
     this.setTimeUntilRemaining();
   }
 
@@ -51,6 +48,9 @@ export class ResultCard extends Component {
   }
 
   setTimeUntilRemaining = () => {
+    let timeLeftVar = this.secondsToTime(this.state.seconds);
+
+    this.setState({ time: timeLeftVar });
     const { startTime, endTime } = this.props;
     const currentTime = moment().format('HHmm'); 
 
