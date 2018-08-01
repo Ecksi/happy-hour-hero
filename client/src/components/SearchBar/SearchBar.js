@@ -183,7 +183,7 @@ export class SearchBar extends Component {
 
   getAddress = async (location) => {
     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`);
-    const data = await response.json();
+    const data = await response.json(); 
     const address = data.results[0].formatted_address;
 
     return address;
@@ -193,19 +193,14 @@ export class SearchBar extends Component {
     try {
       const response = await fetch('http://localhost:3000/api/v1/restaurants');
       const restaurants = await response.json();
-
-      if (!response.ok) {
-        throw new Error(`${response.status}`);
-      }
-
+      
       return restaurants;
 
     } catch (error) {
-      throw new Error(`Network request failed. (error: ${error.message})`);
     }
   };
 
-  handleChange = address => {
+  handleChange = (address) => {
     this.setState({
       address,
       latitude: null,
@@ -215,6 +210,8 @@ export class SearchBar extends Component {
   };
 
   handleSelect = (selected) => {
+    console.log('hit')
+    console.log(selected)
     this.setState({ isGeocoding: true, address: selected, findLocationDropdown: false });
     geocodeByAddress(selected)
       .then(res => getLatLng(res[0]))
@@ -231,7 +228,6 @@ export class SearchBar extends Component {
       })
       .catch(error => {
         this.setState({ isGeocoding: false });
-        console.log('error', error); // eslint-disable-line no-console
       });
   };
 
@@ -240,13 +236,6 @@ export class SearchBar extends Component {
       address: '',
       latitude: null,
       longitude: null,
-    });
-  };
-
-  handleError = (status, clearSuggestions) => {
-    console.log('Error from Google Maps API', status); // eslint-disable-line no-console
-    this.setState({ errorMessage: status }, () => {
-      clearSuggestions();
     });
   };
 
@@ -260,7 +249,6 @@ export class SearchBar extends Component {
             onChange={this.handleChange}
             value={address}
             onSelect={this.handleSelect}
-            onError={this.handleError}
             shouldFetchSuggestions={address.length > 2}
           >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => {

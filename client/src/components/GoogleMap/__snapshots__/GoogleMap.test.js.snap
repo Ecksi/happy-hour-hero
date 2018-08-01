@@ -27,13 +27,13 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <GoogleMap
-        debounced={true}
-        defaultCenter={
+        center={
                 Object {
                         "lat": "1",
                         "lng": "1",
                       }
         }
+        debounced={true}
         defaultZoom={16}
         distanceToMouse={[Function]}
         googleMapLoader={[Function]}
@@ -66,6 +66,10 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
+        "center": Object {
+          "lat": "1",
+          "lng": "1",
+        },
         "children": Array [
           <Connect(UserMarker)
             lat="1"
@@ -74,10 +78,6 @@ ShallowWrapper {
           Array [],
         ],
         "debounced": true,
-        "defaultCenter": Object {
-          "lat": "1",
-          "lng": "1",
-        },
         "defaultZoom": 16,
         "distanceToMouse": [Function],
         "googleMapLoader": [Function],
@@ -121,13 +121,13 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <GoogleMap
-          debounced={true}
-          defaultCenter={
+          center={
                     Object {
                               "lat": "1",
                               "lng": "1",
                             }
           }
+          debounced={true}
           defaultZoom={16}
           distanceToMouse={[Function]}
           googleMapLoader={[Function]}
@@ -160,6 +160,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "center": Object {
+            "lat": "1",
+            "lng": "1",
+          },
           "children": Array [
             <Connect(UserMarker)
               lat="1"
@@ -168,10 +172,6 @@ ShallowWrapper {
             Array [],
           ],
           "debounced": true,
-          "defaultCenter": Object {
-            "lat": "1",
-            "lng": "1",
-          },
           "defaultZoom": 16,
           "distanceToMouse": [Function],
           "googleMapLoader": [Function],
