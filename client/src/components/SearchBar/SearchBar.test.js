@@ -1,13 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { SearchBar } from './SearchBar';
-import { createMemoryHistory } from 'history'
+import { SearchBar, mapDispatchToProps } from './SearchBar';
+import { createMemoryHistory } from 'history';
 
 describe('SearchBar', () => {
   let wrapper;
   let history;
   let mockRestaurants;
   let mockHappyHours;
+  let mockDrinkSpecials;
+  let mockFoodSpecials;
 
   beforeEach(() => {
     history = createMemoryHistory('/');
@@ -38,6 +40,22 @@ describe('SearchBar', () => {
       restaurant_id:1,
       start_time:"1600",
       updated_at:"2018-07-30T13:59:04.931Z"
+    }];
+
+    mockDrinkSpecials = [{
+      best_deal: true,
+      created_at: "2018-07-30T13:59:04.910Z",
+      id: 1,
+      name: "2-for-1 drinks",
+      updated_at: "2018-07-30T13:59:04.910Z",
+    }];
+
+    mockFoodSpecials = [{
+      best_deal: true,
+      created_at: "2018-07-30T13:59:04.910Z",
+      id: 1,
+      name: "$3 tacos",
+      updated_at: "2018-07-30T13:59:04.910Z",
     }];
 
     wrapper = shallow(<SearchBar 
@@ -203,12 +221,107 @@ describe('SearchBar', () => {
 
   describe('handleChange', () => {
     it('should reset state when called', async () => {
-      const result = await wrapper.instance().handleChange('Brothers');
+      await wrapper.instance().handleChange('Brothers');
 
       expect(wrapper.state('address')).toEqual('Brothers');
       expect(wrapper.state('latitude')).toEqual(null);
       expect(wrapper.state('longitude')).toEqual(null);
       expect(wrapper.state('errorMessage')).toEqual('');
+    });
+  });
+
+  describe('mapDispatchToProps', () => {
+    it('should call dispatch with the correct params on storeLocation', () => {
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      const mockAction = {
+        type: 'STORE_LOCATION',
+        address: 'Brothers Bar',
+        longitude: 100,
+        latitude: 50
+      };
+
+      mappedProps.storeLocation('Brothers Bar', 100, 50);
+
+      expect(mockDispatch).toHaveBeenCalledWith(mockAction);
+    });
+
+    it('should call dispatch with the correct params on storeRestauranst', () => {
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      const mockAction = {
+        type: 'STORE_RESTAURANTS',
+        restaurant: mockRestaurants[0]
+      };
+
+      mappedProps.storeRestaurants(mockRestaurants[0]);
+
+      expect(mockDispatch).toHaveBeenCalledWith(mockAction);
+    });
+
+    it('should call dispatch with the correct params on storeFilteredREstaurants', () => {
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      const mockAction = {
+        type: 'STORE_FILTERED_RESTAURANTS',
+        restaurants: mockRestaurants
+      };
+
+      mappedProps.storeFilteredRestaurants(mockRestaurants);
+
+      expect(mockDispatch).toHaveBeenCalledWith(mockAction);
+    });
+
+    it('should call dispatch with the correct params on storeHappyHours', () => {
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      const mockAction = {
+        type: 'STORE_HAPPY_HOURS',
+        happyHour: mockHappyHours
+      };
+
+      mappedProps.storeHappyHours(mockHappyHours);
+
+      expect(mockDispatch).toHaveBeenCalledWith(mockAction);
+    });
+
+    it('should call dispatch with the correct params on storeDrinkSpecials', () => {
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      const mockAction = {
+        type: 'STORE_DRINK_SPECIALS',
+        drinkSpecial: mockDrinkSpecials
+      };
+
+      mappedProps.storeDrinkSpecials(mockDrinkSpecials);
+
+      expect(mockDispatch).toHaveBeenCalledWith(mockAction);
+    });
+
+    it('should call dispatch with the correct params on storeFoodSpecials', () => {
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      const mockAction = {
+        type: 'STORE_FOOD_SPECIALS',
+        foodSpecial: mockFoodSpecials
+      };
+
+      mappedProps.storeFoodSpecials(mockFoodSpecials);
+
+      expect(mockDispatch).toHaveBeenCalledWith(mockAction);
+    });
+
+    it('should call dispatch with the correct params on storeRestaurantId', () => {
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      const mockAction = {
+        type: 'STORE_RESTAURANT_ID',
+        id: 1
+      };
+
+      mappedProps.storeRestaurantId(1);
+
+      expect(mockDispatch).toHaveBeenCalledWith(mockAction);
     });
   });
 });

@@ -210,6 +210,8 @@ export class SearchBar extends Component {
   };
 
   handleSelect = (selected) => {
+    console.log('hit')
+    console.log(selected)
     this.setState({ isGeocoding: true, address: selected, findLocationDropdown: false });
     geocodeByAddress(selected)
       .then(res => getLatLng(res[0]))
@@ -226,7 +228,6 @@ export class SearchBar extends Component {
       })
       .catch(error => {
         this.setState({ isGeocoding: false });
-        console.log('error', error); // eslint-disable-line no-console
       });
   };
 
@@ -235,13 +236,6 @@ export class SearchBar extends Component {
       address: '',
       latitude: null,
       longitude: null,
-    });
-  };
-
-  handleError = (status, clearSuggestions) => {
-    console.log('Error from Google Maps API', status); // eslint-disable-line no-console
-    this.setState({ errorMessage: status }, () => {
-      clearSuggestions();
     });
   };
 
@@ -255,7 +249,6 @@ export class SearchBar extends Component {
             onChange={this.handleChange}
             value={address}
             onSelect={this.handleSelect}
-            onError={this.handleError}
             shouldFetchSuggestions={address.length > 2}
           >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => {
