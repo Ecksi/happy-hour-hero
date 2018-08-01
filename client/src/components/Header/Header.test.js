@@ -19,15 +19,17 @@ describe('Header', () => {
 
   describe('handleSubmit', () => {
     it('should set of dropdownSelected to true', () => {
-      wrapper.instance().handleSelected();
+      wrapper.instance().handleSubmit();
 
-      expect(wrapper.state('dropdownSelected')).toEqual(false);
+      expect(wrapper.state('dropdownSelected')).toEqual(true);
     });
   });
 
   describe('handleSelected', () => {
     it('should set of dropdownSelected to false', () => {
+      wrapper.instance().handleSelected();
 
+      expect(wrapper.state('dropdownSelected')).toEqual(false);
     });
   });
 });
