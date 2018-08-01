@@ -142,4 +142,22 @@ describe('SearchBar', () => {
       expect(wrapper.instance().props.storeRestaurantId).toHaveBeenCalledWith(1);
     });
   });
+
+  describe('handleAutolocateSubmit', () => {
+    it('should store restaurant id in the store if found in database', async () => {
+      wrapper.setState({
+        latitude: 1100,
+        longitude: 90
+      });
+      const mockEvent = {preventDefault: jest.fn()};
+
+      wrapper.instance().getAddress = jest.fn();
+
+      expect(wrapper.state('autoDetectLocation')).toEqual(false);
+
+      await wrapper.instance().handleAutolocateSubmit(mockEvent);
+
+      expect(wrapper.state('autoDetectLocation')).toEqual(true);
+    });
+  });
 });
