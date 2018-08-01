@@ -52,7 +52,6 @@ export class Restaurant extends Component {
       const restaurantSlug = window.location.search;
       const index = restaurantSlug.indexOf('=');
       let name = restaurantSlug.substring(index + 1);
-      console.log(name)
       const response = await fetch(`http://localhost:3001/api/v1/restaurants?name=${name}`);
       const currentRestaurants = await response.json();
       const currentRestaurant = currentRestaurants[0];

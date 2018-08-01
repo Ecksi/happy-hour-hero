@@ -7,12 +7,12 @@ import PlacesAutocomplete, {
 import { classnames } from '../../helpers';
 import { withRouter } from 'react-router-dom';
 import geolib from 'geolib';
-import { googleApiKey } from '../../apiKeys/googleApiKey';
+// import { googleApiKey } from '../../apiKeys/googleApiKey';
 import { storeLocation, storeRestaurants, storeFilteredRestaurants, storeHappyHours, storeDrinkSpecials, storeFoodSpecials, storeRestaurantId } from '../../actions';
 import PropTypes from 'prop-types';
 import './SearchBar.css';
-// require('dotenv').config();
-// let googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+require('dotenv').config();
+let googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export class SearchBar extends Component {
   constructor(props) {
