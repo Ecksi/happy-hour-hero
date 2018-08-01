@@ -54,42 +54,4 @@ describe('ResultCard', () => {
     });
   });
 
-  describe('getRemainingTime', () => {
-    it.skip('should set state to remaining seconds', () => {
-      const mockedDate = new Date(2017, 11, 10);
-
-      global.Date = jest.fn(() => mockedDate);
-      global.Date.getFullYear = '2018';
-      global.Date.getMonth = 'July';
-      global.Date.geDate = '07302018';
-      global.Date.now = jest.fn(() => '07302018');
-
-      wrapper.instance().getRemainingTime();
-
-      expect(wrapper.state('seconds')).toEqual(1512881897.982);
-    });
-  });
-
-  describe('countDown', () => {
-    it.skip('should call secondsToTime with the correct argument', () => {
-      wrapper.setState({
-        seconds: 8000
-      });
-
-      expect(wrapper.state('seconds')).toEqual(8000);
-
-      wrapper.instance().countDown();
-
-      wrapper.instance().secondsToTime = jest.fn();
-      const result = wrapper.instance().secondsToTime;
-
-      expect(result).toHaveBeenCalledWith(1000);
-    });
-  });
-
-  describe('handleMoreInfoClick', () => {
-    it('should dispatch storeRestaurantId', () => { });
-  });
-
-
 });

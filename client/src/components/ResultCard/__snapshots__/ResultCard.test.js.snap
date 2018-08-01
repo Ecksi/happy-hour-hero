@@ -103,7 +103,6 @@ ShallowWrapper {
           </div>
           <a
                     className="moreInfoButton"
-                    href="#"
                     onClick={[Function]}
           >
                     More Info
@@ -363,7 +362,6 @@ ShallowWrapper {
 </div>,
             <a
               className="moreInfoButton"
-              href="#"
               onClick={[Function]}
 >
               More Info
@@ -494,7 +492,6 @@ ShallowWrapper {
             "props": Object {
               "children": "More Info",
               "className": "moreInfoButton",
-              "href": "#",
               "onClick": [Function],
             },
             "ref": null,
@@ -595,7 +592,6 @@ ShallowWrapper {
             </div>
             <a
                         className="moreInfoButton"
-                        href="#"
                         onClick={[Function]}
             >
                         More Info
@@ -855,7 +851,6 @@ ShallowWrapper {
 </div>,
               <a
                 className="moreInfoButton"
-                href="#"
                 onClick={[Function]}
 >
                 More Info
@@ -986,7 +981,6 @@ ShallowWrapper {
               "props": Object {
                 "children": "More Info",
                 "className": "moreInfoButton",
-                "href": "#",
                 "onClick": [Function],
               },
               "ref": null,

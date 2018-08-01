@@ -58,5 +58,6 @@
       "!src/components/RestaurantMarker/RestaurantMarker.js",
       "!src/components/GeoLocator/GeoLocator.js"
     ]
-  }
+  },
+  "proxy": "http://localhost:3001"
 }

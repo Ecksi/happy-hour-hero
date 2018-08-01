@@ -32,7 +32,7 @@ ShallowWrapper {
             "entries": Array [
               Object {
                 "hash": "",
-                "key": "f1s0da",
+                "key": "jmr7ts",
                 "pathname": "/",
                 "search": "",
                 "state": undefined,
@@ -46,7 +46,7 @@ ShallowWrapper {
             "listen": [Function],
             "location": Object {
               "hash": "",
-              "key": "f1s0da",
+              "key": "jmr7ts",
               "pathname": "/",
               "search": "",
               "state": undefined,
