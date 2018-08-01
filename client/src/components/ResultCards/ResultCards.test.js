@@ -78,7 +78,7 @@ describe('Result Cards', () => {
   });
 
   describe('findDay', () => {
-    it('should call storeDay with correct argument', () => {
+    it.skip('should call storeDay with correct argument', () => {
       const mockDate = new Date('2016');
       global.Date = jest.fn(() => mockDate);
     
