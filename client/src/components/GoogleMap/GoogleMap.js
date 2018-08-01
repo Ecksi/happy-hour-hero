@@ -68,7 +68,7 @@ export class GoogleMap extends Component {
     return (
       <div className='google-map'>
         <GoogleMapReact
-          center={ center }
+          centers={ center }
           defaultZoom={ this.state.zoom }>
           <UserMarker
             lat={ center.lat }
