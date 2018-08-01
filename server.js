@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/api/v1/restaurants', (request, response) => {
   const name = request.query.name;
-
+ 
   if (name) {
     database('restaurants')
     .select()

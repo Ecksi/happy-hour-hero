@@ -78,7 +78,7 @@ export class SearchBar extends Component {
   }
 
   storeRestaurants = async (minLat, maxLat, minLong, maxLong) => {
-    const response = await fetch(`http://localhost:3000/api/v1/restaurants/${minLat}/${maxLat}/${minLong}/${maxLong}`);
+    const response = await fetch(`http://localhost:3001/api/v1/restaurants/${minLat}/${maxLat}/${minLong}/${maxLong}`);
     const restaurants = await response.json();
     const homeLatitude = this.state.latitude;
     const homeLongitude = this.state.longitude;
@@ -107,7 +107,7 @@ export class SearchBar extends Component {
  
     await filteredRestaurants.forEach( async (restaurant) => {
       const id = restaurant.id;
-      const response = await fetch(`http://localhost:3000/api/v1/happy_hours?restaurant_id=${id}`);
+      const response = await fetch(`http://localhost:3001/api/v1/happy_hours?restaurant_id=${id}`);
       const happyHour = await response.json();
 
       this.props.storeHappyHours(happyHour);
@@ -121,7 +121,7 @@ export class SearchBar extends Component {
   
     await happyHours.forEach(async(happyHour) => {
       const id = happyHour.drink_specials_id;
-      const response = await fetch(`http://localhost:3000/api/v1/drink_specials/${id}`);
+      const response = await fetch(`http://localhost:3001/api/v1/drink_specials/${id}`);
       const drinkSpecial = await response.json();
 
       this.props.storeDrinkSpecials(drinkSpecial);
@@ -135,7 +135,7 @@ export class SearchBar extends Component {
   
     await happyHours.forEach(async(happyHour) => {
       const id = happyHour.food_specials_id;
-      const response = await fetch(`http://localhost:3000/api/v1/food_specials/${id}`);
+      const response = await fetch(`http://localhost:3001/api/v1/food_specials/${id}`);
       const foodSpecial = await response.json();
 
       this.props.storeFoodSpecials(foodSpecial);
@@ -191,7 +191,7 @@ export class SearchBar extends Component {
 
   getAllRestaurants = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/v1/restaurants');
+      const response = await fetch('http://localhost:3001/api/v1/restaurants');
       const restaurants = await response.json();
       
       return restaurants;

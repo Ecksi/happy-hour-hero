@@ -113,7 +113,7 @@ describe('Restaurant', () => {
         writable: true,
       });
 
-      const expected = "http://localhost:3000/api/v1/restaurants?name=Brothers+Bar";
+      const expected = "http://localhost:3001/api/v1/restaurants?name=Brothers+Bar";
 
       await wrapper.instance().getRestaurantBySlug();
 
@@ -141,7 +141,7 @@ describe('Restaurant', () => {
         day: 'Thursday'
       });
 
-      const expected = 'http://localhost:3000/api/v1/happy_hours?restaurant_id=1&day=Thursday';
+      const expected = 'http://localhost:3001/api/v1/happy_hours?restaurant_id=1&day=Thursday';
       await wrapper.instance().getTodaysHappyHours();
 
       expect(window.fetch).toHaveBeenCalledWith(expected);
@@ -168,7 +168,7 @@ describe('Restaurant', () => {
     });
 
     it('should fetch url with the correct arguments', async () => {
-      const expected = 'http://localhost:3000/api/v1/drink_specials/1';
+      const expected = 'http://localhost:3001/api/v1/drink_specials/1';
       await wrapper.instance().getDrinkSpecials();
 
       expect(window.fetch).toHaveBeenCalledWith(expected);
@@ -200,7 +200,7 @@ describe('Restaurant', () => {
     });
 
     it('should fetch url with the correct arguments', async () => {
-      const expected = 'http://localhost:3000/api/v1/food_specials/1';
+      const expected = 'http://localhost:3001/api/v1/food_specials/1';
       await wrapper.instance().getFoodSpecials();
 
       expect(window.fetch).toHaveBeenCalledWith(expected);

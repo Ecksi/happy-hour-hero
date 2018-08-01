@@ -31,7 +31,7 @@ export class GoogleMap extends Component {
   todaysHappyHourRestaurants = () => {
     const todaysRestaurants = this.props.filteredRestaurants.reduce((restaurants, restaurant) => {
       this.props.happyHours.forEach((happyHour) => {
-        if (happyHour.restaurant_id == restaurant.id && happyHour.day == this.props.day && !restaurants.includes(restaurant)) {
+        if (happyHour.restaurant_id === restaurant.id && happyHour.day === this.props.day && !restaurants.includes(restaurant)) {
           restaurants.push(restaurant);
         }
       });

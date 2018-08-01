@@ -149,7 +149,7 @@ export class ResultCard extends Component {
               <p className="resultCardStartTime">{this.state.time.hours}hrs {this.state.time.minutes}mins {this.state.time.seconds}secs</p>
             </span>
           </div>
-          <a href="#" className="moreInfoButton" onClick={(event) => this.handleMoreInfoClick(event)} >More Info</a>
+          <a className="moreInfoButton" onClick={(event) => this.handleMoreInfoClick(event)} >More Info</a>
         </div>
       </article>
     );
@@ -165,9 +165,9 @@ ResultCard.propTypes = {
   happyHourTimes: PropTypes.string,
   foodSpecial: PropTypes.string,
   drinkSpecial: PropTypes.string,
-  history: PropTypes.array,
+  history: PropTypes.object,
   id: PropTypes.number,
-  miles: PropTypes.number,
+  miles: PropTypes.string,
   storeRestaurantId: PropTypes.func,
 };
 
