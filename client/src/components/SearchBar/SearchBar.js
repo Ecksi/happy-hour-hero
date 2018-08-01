@@ -91,7 +91,6 @@ export class SearchBar extends Component {
       );
 
       const miles = meters * 0.000621371;
-
       if (miles < 5) {
         Object.assign(restaurant, {miles});
         filteredRestaurants.push(restaurant);

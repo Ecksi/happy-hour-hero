@@ -26,6 +26,7 @@ describe('SearchBar', () => {
       filteredRestaurants={mockRestaurants}
       location={{address: ''}}
       storeLocation={jest.fn()}
+      storeFilteredRestaurants={jest.fn()}
     />, 
     {disableLifecycleMethods: true});
   });
@@ -71,6 +72,26 @@ describe('SearchBar', () => {
       wrapper.instance().findRadius();
 
       expect(wrapper.instance().storeRestaurants).toHaveBeenCalledWith(...expected);
+    });
+  });
+
+  describe('storeRestaurants', () => {
+    it('should call storeLocation with the correct arguments if no address', async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        json: () => Promise.resolve([{name: 'Brothers Bar', latitude: 100, longitude: 50}])
+      }));
+
+      wrapper.setState({
+        latitude: 100.01,
+        longitude: 50.1
+      });
+      wrapper.instance().storeHappyHours = jest.fn();
+
+      const expected = [{"latitude": 100, "longitude": 50, "miles": 1.391249669, "name": "Brothers Bar"}];
+
+      await wrapper.instance().storeRestaurants(99.999, 100.01, 49.99, 50.11);
+
+      expect(wrapper.instance().props.storeFilteredRestaurants).toHaveBeenCalledWith(expected);
     });
   });
 });

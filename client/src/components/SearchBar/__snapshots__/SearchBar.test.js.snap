@@ -28,6 +28,7 @@ ShallowWrapper {
             "address": "",
           }
     }
+    storeFilteredRestaurants={[Function]}
     storeLocation={[Function]}
 />,
   Symbol(enzyme.__renderer__): Object {
