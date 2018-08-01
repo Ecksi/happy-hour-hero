@@ -1,0 +1,407 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RestaurantHappyHours should match the snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RestaurantHappyHours
+    hourlyDrinkSpecials={
+        Array [
+            Object {
+              "best_deal": true,
+              "id": 5,
+              "name": "2-for-1 drinks",
+            },
+          ]
+    }
+    hourlyFoodSpecials={
+        Array [
+            Object {
+              "best_deal": true,
+              "id": 4,
+              "name": "$3 Tacos",
+            },
+          ]
+    }
+    times="4:00PM-8:00PM"
+    todaysHappyHours={
+        Array [
+            Object {
+              "combined_times": "4:00PM-8:00PM",
+              "day": "Monday",
+              "drink_specials_id": 5,
+              "end_time": "2000",
+              "food_specials_id": 4,
+              "id": 1,
+              "restaurant_id": 1,
+              "start_time": "1600",
+            },
+          ]
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <h3>
+          4:00PM-8:00PM
+</h3>,
+        <section
+          className="restaurantSpecials"
+>
+          <article
+                    className="restaurantDrinkSpecials special"
+          >
+                    <h4>
+                              Drinks
+                    </h4>
+                    <p>
+                              2-for-1 drinks
+                    </p>
+          </article>
+          <article
+                    className="restaurantFoodSpecials special"
+          >
+                    <h4>
+                              Food
+                    </h4>
+                    <p>
+                              $3 Tacos
+                    </p>
+          </article>
+</section>,
+      ],
+      "className": "restaurantHappyHoursContainer",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "4:00PM-8:00PM",
+        },
+        "ref": null,
+        "rendered": "4:00PM-8:00PM",
+        "type": "h3",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <article
+              className="restaurantDrinkSpecials special"
+>
+              <h4>
+                            Drinks
+              </h4>
+              <p>
+                            2-for-1 drinks
+              </p>
+</article>,
+            <article
+              className="restaurantFoodSpecials special"
+>
+              <h4>
+                            Food
+              </h4>
+              <p>
+                            $3 Tacos
+              </p>
+</article>,
+          ],
+          "className": "restaurantSpecials",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <h4>
+                  Drinks
+</h4>,
+                Array [
+                  <p>
+                    2-for-1 drinks
+</p>,
+                ],
+              ],
+              "className": "restaurantDrinkSpecials special",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Drinks",
+                },
+                "ref": null,
+                "rendered": "Drinks",
+                "type": "h4",
+              },
+              Object {
+                "instance": null,
+                "key": "0",
+                "nodeType": "host",
+                "props": Object {
+                  "children": "2-for-1 drinks",
+                },
+                "ref": null,
+                "rendered": "2-for-1 drinks",
+                "type": "p",
+              },
+            ],
+            "type": "article",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <h4>
+                  Food
+</h4>,
+                Array [
+                  <p>
+                    $3 Tacos
+</p>,
+                ],
+              ],
+              "className": "restaurantFoodSpecials special",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Food",
+                },
+                "ref": null,
+                "rendered": "Food",
+                "type": "h4",
+              },
+              Object {
+                "instance": null,
+                "key": "0",
+                "nodeType": "host",
+                "props": Object {
+                  "children": "$3 Tacos",
+                },
+                "ref": null,
+                "rendered": "$3 Tacos",
+                "type": "p",
+              },
+            ],
+            "type": "article",
+          },
+        ],
+        "type": "section",
+      },
+    ],
+    "type": "section",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h3>
+            4:00PM-8:00PM
+</h3>,
+          <section
+            className="restaurantSpecials"
+>
+            <article
+                        className="restaurantDrinkSpecials special"
+            >
+                        <h4>
+                                    Drinks
+                        </h4>
+                        <p>
+                                    2-for-1 drinks
+                        </p>
+            </article>
+            <article
+                        className="restaurantFoodSpecials special"
+            >
+                        <h4>
+                                    Food
+                        </h4>
+                        <p>
+                                    $3 Tacos
+                        </p>
+            </article>
+</section>,
+        ],
+        "className": "restaurantHappyHoursContainer",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "4:00PM-8:00PM",
+          },
+          "ref": null,
+          "rendered": "4:00PM-8:00PM",
+          "type": "h3",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <article
+                className="restaurantDrinkSpecials special"
+>
+                <h4>
+                                Drinks
+                </h4>
+                <p>
+                                2-for-1 drinks
+                </p>
+</article>,
+              <article
+                className="restaurantFoodSpecials special"
+>
+                <h4>
+                                Food
+                </h4>
+                <p>
+                                $3 Tacos
+                </p>
+</article>,
+            ],
+            "className": "restaurantSpecials",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h4>
+                    Drinks
+</h4>,
+                  Array [
+                    <p>
+                      2-for-1 drinks
+</p>,
+                  ],
+                ],
+                "className": "restaurantDrinkSpecials special",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Drinks",
+                  },
+                  "ref": null,
+                  "rendered": "Drinks",
+                  "type": "h4",
+                },
+                Object {
+                  "instance": null,
+                  "key": "0",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "2-for-1 drinks",
+                  },
+                  "ref": null,
+                  "rendered": "2-for-1 drinks",
+                  "type": "p",
+                },
+              ],
+              "type": "article",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h4>
+                    Food
+</h4>,
+                  Array [
+                    <p>
+                      $3 Tacos
+</p>,
+                  ],
+                ],
+                "className": "restaurantFoodSpecials special",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Food",
+                  },
+                  "ref": null,
+                  "rendered": "Food",
+                  "type": "h4",
+                },
+                Object {
+                  "instance": null,
+                  "key": "0",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "$3 Tacos",
+                  },
+                  "ref": null,
+                  "rendered": "$3 Tacos",
+                  "type": "p",
+                },
+              ],
+              "type": "article",
+            },
+          ],
+          "type": "section",
+        },
+      ],
+      "type": "section",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

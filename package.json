@@ -1,13 +1,16 @@
 {
   "name": "happy-hour-hero",
   "version": "0.1.0",
+  "engines": {
+    "node": "9.4.0"
+  },
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
-    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "geolib": "^2.0.24",
     "google-map-react": "^1.0.5",
+    "history": "^4.7.2",
     "knex": "^0.15.2",
     "location-autocomplete": "^1.2.4",
     "moment": "^2.22.2",
@@ -27,10 +30,11 @@
     "redux": "^4.0.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./build/src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./build/src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
@@ -41,6 +45,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
+    "dotenv": "^6.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
@@ -51,7 +56,11 @@
       "src/**/*.{js,jsx}",
       "!src/index.js",
       "!src/actions/index.js",
-      "!src/apiCalls/apiKeys/*"
+      "!src/apiCalls/apiKeys/*",
+      "!src/PlacesAutocomplete.js",
+      "!src/helpers.js",
+      "!src/utils.js",
+      "!src/components/RestaurantMarker/*"
     ]
   }
 }

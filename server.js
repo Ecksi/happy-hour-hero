@@ -1,15 +1,16 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 const bodyParser = require('body-parser');
-require('dotenv').config();
+// require('dotenv').config();
 
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Happy Hour Hero';
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/api/v1/restaurants', (request, response) => {
   const name = request.query.name;
@@ -128,6 +129,10 @@ app.get('/api/v1/happy_hours/:id', (request, response) => {
     .where('id', request.params.id)
     .then(happy_hour => response.status(200).json(happy_hour)[id])
     .catch(error => response.status(500).json({ error }));
+});
+
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 app.listen(app.get('port'), () => {

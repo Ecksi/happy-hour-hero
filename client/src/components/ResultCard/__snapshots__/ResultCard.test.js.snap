@@ -1,0 +1,1011 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultCard matches the snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ResultCard
+    endTime="1800"
+    restaurantName="Ale House"
+    startTime="1200"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="resultCardImage"
+          style={
+                    Object {
+                              "backgroundImage": "url(undefined)",
+                            }
+          }
+/>,
+        <div
+          className="resultCardInfo"
+>
+          <h2>
+                    Ale House
+          </h2>
+          <p
+                    className="address"
+          />
+          <p
+                    className="miles"
+          >
+                     Miles
+          </p>
+          <h3>
+                    happy hour times
+          </h3>
+          <p
+                    className="times"
+          >
+                    mon-fri 
+                    <span />
+          </p>
+</div>,
+        <div
+          className="happyHourSpecialsContainer"
+>
+          <div
+                    className="happyHourSpecials"
+          >
+                    <p
+                              className="drinkSpecial"
+                    >
+                              No Drink Specials
+                    </p>
+                    <span>
+                              |
+                    </span>
+                    <p
+                              className="foodSpecial"
+                    >
+                              No Food Specials
+                    </p>
+          </div>
+</div>,
+        <div
+          className="resultCardRightInfo"
+>
+          <div
+                    className="resultCardClock"
+          >
+                    <i
+                              className="far fa-clock"
+                    />
+                    <span>
+                              <p>
+                                        Ends in:
+                                         
+                              </p>
+                              <p
+                                        className="resultCardStartTime"
+                              >
+                                        0
+                                        hrs 
+                                        0
+                                        mins 
+                                        0
+                                        secs
+                              </p>
+                    </span>
+          </div>
+          <a
+                    className="moreInfoButton"
+                    href="#"
+                    onClick={[Function]}
+          >
+                    More Info
+          </a>
+</div>,
+      ],
+      "className": "resultCardContainer resultCardundefined",
+      "id": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "className": "resultCardImage",
+          "style": Object {
+            "backgroundImage": "url(undefined)",
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <h2>
+              Ale House
+</h2>,
+            <p
+              className="address"
+/>,
+            <p
+              className="miles"
+>
+               Miles
+</p>,
+            <h3>
+              happy hour times
+</h3>,
+            <p
+              className="times"
+>
+              mon-fri 
+              <span />
+</p>,
+          ],
+          "className": "resultCardInfo",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Ale House",
+            },
+            "ref": null,
+            "rendered": "Ale House",
+            "type": "h2",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": undefined,
+              "className": "address",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "p",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                undefined,
+                " Miles",
+              ],
+              "className": "miles",
+            },
+            "ref": null,
+            "rendered": Array [
+              undefined,
+              " Miles",
+            ],
+            "type": "p",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "happy hour times",
+            },
+            "ref": null,
+            "rendered": "happy hour times",
+            "type": "h3",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                "mon-fri ",
+                <span />,
+              ],
+              "className": "times",
+            },
+            "ref": null,
+            "rendered": Array [
+              "mon-fri ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": undefined,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "span",
+              },
+            ],
+            "type": "p",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="happyHourSpecials"
+>
+            <p
+                        className="drinkSpecial"
+            >
+                        No Drink Specials
+            </p>
+            <span>
+                        |
+            </span>
+            <p
+                        className="foodSpecial"
+            >
+                        No Food Specials
+            </p>
+</div>,
+          "className": "happyHourSpecialsContainer",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <p
+                className="drinkSpecial"
+>
+                No Drink Specials
+</p>,
+              <span>
+                |
+</span>,
+              <p
+                className="foodSpecial"
+>
+                No Food Specials
+</p>,
+            ],
+            "className": "happyHourSpecials",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "No Drink Specials",
+                "className": "drinkSpecial",
+              },
+              "ref": null,
+              "rendered": "No Drink Specials",
+              "type": "p",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "|",
+              },
+              "ref": null,
+              "rendered": "|",
+              "type": "span",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "No Food Specials",
+                "className": "foodSpecial",
+              },
+              "ref": null,
+              "rendered": "No Food Specials",
+              "type": "p",
+            },
+          ],
+          "type": "div",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="resultCardClock"
+>
+              <i
+                            className="far fa-clock"
+              />
+              <span>
+                            <p>
+                                          Ends in:
+                                           
+                            </p>
+                            <p
+                                          className="resultCardStartTime"
+                            >
+                                          0
+                                          hrs 
+                                          0
+                                          mins 
+                                          0
+                                          secs
+                            </p>
+              </span>
+</div>,
+            <a
+              className="moreInfoButton"
+              href="#"
+              onClick={[Function]}
+>
+              More Info
+</a>,
+          ],
+          "className": "resultCardRightInfo",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <i
+                  className="far fa-clock"
+/>,
+                <span>
+                  <p>
+                                    Ends in:
+                                     
+                  </p>
+                  <p
+                                    className="resultCardStartTime"
+                  >
+                                    0
+                                    hrs 
+                                    0
+                                    mins 
+                                    0
+                                    secs
+                  </p>
+</span>,
+              ],
+              "className": "resultCardClock",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "far fa-clock",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "i",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <p>
+                      Ends in:
+                       
+</p>,
+                    <p
+                      className="resultCardStartTime"
+>
+                      0
+                      hrs 
+                      0
+                      mins 
+                      0
+                      secs
+</p>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        "Ends in:",
+                        " ",
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "Ends in:",
+                      " ",
+                    ],
+                    "type": "p",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        0,
+                        "hrs ",
+                        0,
+                        "mins ",
+                        0,
+                        "secs",
+                      ],
+                      "className": "resultCardStartTime",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      0,
+                      "hrs ",
+                      0,
+                      "mins ",
+                      0,
+                      "secs",
+                    ],
+                    "type": "p",
+                  },
+                ],
+                "type": "span",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "More Info",
+              "className": "moreInfoButton",
+              "href": "#",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": "More Info",
+            "type": "a",
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "article",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="resultCardImage"
+            style={
+                        Object {
+                                    "backgroundImage": "url(undefined)",
+                                  }
+            }
+/>,
+          <div
+            className="resultCardInfo"
+>
+            <h2>
+                        Ale House
+            </h2>
+            <p
+                        className="address"
+            />
+            <p
+                        className="miles"
+            >
+                         Miles
+            </p>
+            <h3>
+                        happy hour times
+            </h3>
+            <p
+                        className="times"
+            >
+                        mon-fri 
+                        <span />
+            </p>
+</div>,
+          <div
+            className="happyHourSpecialsContainer"
+>
+            <div
+                        className="happyHourSpecials"
+            >
+                        <p
+                                    className="drinkSpecial"
+                        >
+                                    No Drink Specials
+                        </p>
+                        <span>
+                                    |
+                        </span>
+                        <p
+                                    className="foodSpecial"
+                        >
+                                    No Food Specials
+                        </p>
+            </div>
+</div>,
+          <div
+            className="resultCardRightInfo"
+>
+            <div
+                        className="resultCardClock"
+            >
+                        <i
+                                    className="far fa-clock"
+                        />
+                        <span>
+                                    <p>
+                                                Ends in:
+                                                 
+                                    </p>
+                                    <p
+                                                className="resultCardStartTime"
+                                    >
+                                                0
+                                                hrs 
+                                                0
+                                                mins 
+                                                0
+                                                secs
+                                    </p>
+                        </span>
+            </div>
+            <a
+                        className="moreInfoButton"
+                        href="#"
+                        onClick={[Function]}
+            >
+                        More Info
+            </a>
+</div>,
+        ],
+        "className": "resultCardContainer resultCardundefined",
+        "id": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "resultCardImage",
+            "style": Object {
+              "backgroundImage": "url(undefined)",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <h2>
+                Ale House
+</h2>,
+              <p
+                className="address"
+/>,
+              <p
+                className="miles"
+>
+                 Miles
+</p>,
+              <h3>
+                happy hour times
+</h3>,
+              <p
+                className="times"
+>
+                mon-fri 
+                <span />
+</p>,
+            ],
+            "className": "resultCardInfo",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Ale House",
+              },
+              "ref": null,
+              "rendered": "Ale House",
+              "type": "h2",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": undefined,
+                "className": "address",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "p",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  undefined,
+                  " Miles",
+                ],
+                "className": "miles",
+              },
+              "ref": null,
+              "rendered": Array [
+                undefined,
+                " Miles",
+              ],
+              "type": "p",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "happy hour times",
+              },
+              "ref": null,
+              "rendered": "happy hour times",
+              "type": "h3",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  "mon-fri ",
+                  <span />,
+                ],
+                "className": "times",
+              },
+              "ref": null,
+              "rendered": Array [
+                "mon-fri ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": undefined,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "span",
+                },
+              ],
+              "type": "p",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="happyHourSpecials"
+>
+              <p
+                            className="drinkSpecial"
+              >
+                            No Drink Specials
+              </p>
+              <span>
+                            |
+              </span>
+              <p
+                            className="foodSpecial"
+              >
+                            No Food Specials
+              </p>
+</div>,
+            "className": "happyHourSpecialsContainer",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <p
+                  className="drinkSpecial"
+>
+                  No Drink Specials
+</p>,
+                <span>
+                  |
+</span>,
+                <p
+                  className="foodSpecial"
+>
+                  No Food Specials
+</p>,
+              ],
+              "className": "happyHourSpecials",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "No Drink Specials",
+                  "className": "drinkSpecial",
+                },
+                "ref": null,
+                "rendered": "No Drink Specials",
+                "type": "p",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "|",
+                },
+                "ref": null,
+                "rendered": "|",
+                "type": "span",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "No Food Specials",
+                  "className": "foodSpecial",
+                },
+                "ref": null,
+                "rendered": "No Food Specials",
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="resultCardClock"
+>
+                <i
+                                className="far fa-clock"
+                />
+                <span>
+                                <p>
+                                                Ends in:
+                                                 
+                                </p>
+                                <p
+                                                className="resultCardStartTime"
+                                >
+                                                0
+                                                hrs 
+                                                0
+                                                mins 
+                                                0
+                                                secs
+                                </p>
+                </span>
+</div>,
+              <a
+                className="moreInfoButton"
+                href="#"
+                onClick={[Function]}
+>
+                More Info
+</a>,
+            ],
+            "className": "resultCardRightInfo",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <i
+                    className="far fa-clock"
+/>,
+                  <span>
+                    <p>
+                                        Ends in:
+                                         
+                    </p>
+                    <p
+                                        className="resultCardStartTime"
+                    >
+                                        0
+                                        hrs 
+                                        0
+                                        mins 
+                                        0
+                                        secs
+                    </p>
+</span>,
+                ],
+                "className": "resultCardClock",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "className": "far fa-clock",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "i",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <p>
+                        Ends in:
+                         
+</p>,
+                      <p
+                        className="resultCardStartTime"
+>
+                        0
+                        hrs 
+                        0
+                        mins 
+                        0
+                        secs
+</p>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          "Ends in:",
+                          " ",
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        "Ends in:",
+                        " ",
+                      ],
+                      "type": "p",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          0,
+                          "hrs ",
+                          0,
+                          "mins ",
+                          0,
+                          "secs",
+                        ],
+                        "className": "resultCardStartTime",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        0,
+                        "hrs ",
+                        0,
+                        "mins ",
+                        0,
+                        "secs",
+                      ],
+                      "type": "p",
+                    },
+                  ],
+                  "type": "span",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "More Info",
+                "className": "moreInfoButton",
+                "href": "#",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "More Info",
+              "type": "a",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
