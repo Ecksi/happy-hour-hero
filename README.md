@@ -1,7 +1,5 @@
-# Happy Hour Hero
+# Happy Hour Hero ![travis-ci](https://travis-ci.org/Ecksi/happy-hour-hero.svg?branch=master)
 ![happy-hour-hero](https://user-images.githubusercontent.com/479463/43793897-0d2d1768-9a3a-11e8-9b4f-776084a0ba63.jpg)
-
-![travis-ci](https://travis-ci.org/Ecksi/happy-hour-hero.svg?branch=master)
 
 ## Description
 
